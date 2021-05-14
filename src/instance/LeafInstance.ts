@@ -1,14 +1,11 @@
-import { Element } from 'libxmljs2';
 import * as _ from 'lodash';
 
 import applyMixins from '../util/applyMixins';
 import { Leaf } from '../model';
-import { defineNamespaceOnRoot } from '../util/xmlUtil';
 
 import { Searchable, WithAttributes } from './mixins';
 import {
   LeafJSON,
-  XMLSerializationOptions,
   Visitor,
   NoMatchHandler,
   Parent,
@@ -22,11 +19,9 @@ import { Path } from './';
 
 export default class LeafInstance implements Searchable, WithAttributes {
   public customAttributes: WithAttributes['customAttributes'];
-  public parseAttributesFromXML: WithAttributes['parseAttributesFromXML'];
   public parseAttributesFromJSON: WithAttributes['parseAttributesFromJSON'];
   public hasAttributes: WithAttributes['hasAttributes'];
   public rawAttributes: WithAttributes['rawAttributes'];
-  public addAttributes: WithAttributes['addAttributes'];
   public getValueFromJSON: WithAttributes['getValueFromJSON'];
   public addOperation: WithAttributes['addOperation'];
   public addPosition: WithAttributes['addPosition'];
@@ -39,15 +34,9 @@ export default class LeafInstance implements Searchable, WithAttributes {
   private config?: Element;
   private value: string | null;
 
-  constructor(public model: Leaf, config: Element | LeafJSON, public parent: Parent) {
-    if (config instanceof Element) {
-      this.config = config;
-      this.injestConfigXML(config);
-      this.parseAttributesFromXML(config);
-    } else {
-      this.injestConfigJSON(config);
-      this.parseAttributesFromJSON(config);
-    }
+  constructor(public model: Leaf, config: LeafJSON, public parent: Parent) {
+    this.injestConfigJSON(config);
+    this.parseAttributesFromJSON(config);
   }
 
   public getConfig(authorized: Authorized) {
@@ -92,17 +81,6 @@ export default class LeafInstance implements Searchable, WithAttributes {
     return map(this);
   }
 
-  public toXML(parent: Element, options: XMLSerializationOptions = { includeAttributes: false }) {
-    const [prefix, href] = this.model.ns;
-    defineNamespaceOnRoot(parent, prefix, href);
-    const el = parent.node(this.model.name, this.value || undefined);
-    el.namespace(prefix);
-
-    if (options.includeAttributes && this.hasAttributes) {
-      this.addAttributes(el);
-    }
-  }
-
   public getInstance(path: Path, noMatchHandler: NoMatchHandler = this.handleNoMatch) {
     if (this.isTryingToMatchMe(path) && this.isMatch(path)) {
       return this;
@@ -118,11 +96,6 @@ export default class LeafInstance implements Searchable, WithAttributes {
   private injestConfigJSON(configJSON: LeafJSON) {
     const config = this.getValueFromJSON(configJSON) as LeafJSONValue;
     this.value = config === null ? null : config.toString();
-  }
-
-  private injestConfigXML(config: Element) {
-    const text = config.text();
-    this.value = _.isNil(text) ? null : text;
   }
 }
 

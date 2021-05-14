@@ -1,0 +1,65 @@
+{
+  "keyword": "leaf",
+  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+  "name": "neighborhood",
+  "module-prefix": "test",
+  "nsmap": { "test": "http://foo.bar" },
+  "children": [
+    {
+      "keyword": "type",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "t128ext:neighborhood-id",
+      "children": [
+        {
+          "keyword": "typedef",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "neighborhood-id",
+          "children": [
+            {
+              "keyword": "description",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "text": "A string identifier for network neighborhood."
+            },
+            {
+              "keyword": "type",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "name": "string",
+              "children": [
+                {
+                  "keyword": "pattern",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "value": "([a-zA-Z0-9]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]",
+                  "children": [
+                    {
+                      "keyword": "error-message",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "value": "Must contain only alphanumeric characters, underscores, and dashes"
+                    }
+                  ]
+                },
+                {
+                  "keyword": "length",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "value": "0..63"
+                }
+              ]
+            },
+            {
+              "keyword": "suggestionref",
+              "namespace": "http://128technology.com/t128-extensions",
+              "nsmap": {
+                "t128ext": "http://128technology.com/t128-extensions"
+              },
+              "text": "/t128:config/authy:authority/authy:security/authy:name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "keyword": "description",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "text": "Neigborhood where tenant members are located."
+    }
+  ]
+}

@@ -1,15 +1,21 @@
 import { expect } from 'chai';
-import { Element } from 'libxmljs2';
 
+import YinElement from '../../../util/YinElement';
 import applyMixins from '../../../util/applyMixins';
-import xmlUtil, { yinNS } from '../../../__tests__/xmlUtil';
 import { RequiredField } from '../';
 
 describe('Required Field Mixin', () => {
-  const typeEl = xmlUtil.toElement(`<type ${yinNS} name="string" />`);
+  const typeEl = new YinElement(
+    {
+      keyword: 'type',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'string'
+    },
+    null
+  );
 
   class Test implements RequiredField {
-    public validateRequiredFields: (el: Element, required: string[]) => void;
+    public validateRequiredFields: (el: YinElement, required: string[]) => void;
   }
 
   applyMixins(Test, [RequiredField]);

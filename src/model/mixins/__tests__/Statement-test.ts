@@ -1,11 +1,8 @@
 import { expect } from 'chai';
-import { Element } from 'libxmljs2';
 
-import xmlUtil, { yinNS, t128InternalNS } from '../../../__tests__/xmlUtil';
+import YinElement from '../../../util/YinElement';
 import applyMixins from '../../../util/applyMixins';
 import { Visibility, Status } from '../../../enum';
-import ns from '../../../util/ns';
-import { assertElement } from '../../../util/xmlUtil';
 
 import { Statement } from '../';
 import { Leaf, Model, Case } from '../../';
@@ -26,94 +23,130 @@ describe('Statement Mixin', () => {
     public getName: (camelCase?: boolean) => string;
     public choiceCase: Case;
 
-    public addStatementProps: (el: Element, parentModel: Model | null) => void;
+    public addStatementProps: (el: YinElement, parentModel: Model | null) => void;
 
     public visibility: Visibility | null;
 
-    constructor(el: Element, parentModel: Model | null) {
+    constructor(el: YinElement, parentModel: Model | null) {
       this.addStatementProps(el, parentModel);
     }
   }
 
   applyMixins(Test, [Statement]);
 
-  /* tslint:disable:max-line-length */
-  const withDescription = xmlUtil.toElement(`
-    <yin:leaf name="name" ${yinNS} xmlns:test="http://foo.bar" module-prefix="test">
-      <yin:type name="t128ext:tenant-name">
-        <yin:typedef name="tenant-name">
-          <yin:description>
-            <yin:text>A string identifier for a tenant, which uses alphanumerics, underscores,
-dots, or dashes, and cannot exceed 253 characters (similar to domain-name).</yin:text>
-          </yin:description>
-          <yin:type name="string">
-            <yin:pattern value="((([a-zA-Z0-9]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-9]\.)*([a-zA-Z0-9]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-9])?">
-              <yin:error-message>
-                <yin:value>Must contain only alphanumeric characters or any of the following: - _ .</yin:value>
-              </yin:error-message>
-            </yin:pattern>
-            <yin:length value="0..253"/>
-          </yin:type>
-        </yin:typedef>
-      </yin:type>
-      <t128ext:help>key identifier</t128ext:help>
-      <t128ext:test/>
-      <yin:status value="current" />
-      <t128-internal:visibility>visible</t128-internal:visibility>
-      <yin:description>
-        <yin:text>An arbitrary, unique name for the tenant, used to reference
-it in other configuration sections.</yin:text>
-      </yin:description>
-    </yin:leaf>
-  `);
+  const withDescription = new YinElement(
+    {
+      keyword: 'leaf',
+      namespace: 'mock',
+      name: 'name',
+      'module-prefix': 'test',
+      nsmap: { test: 'http://foo.bar' },
+      children: [
+        { keyword: 'help', namespace: 'mock', text: 'key identifier' },
+        { keyword: 'test', namespace: 'mock', text: null },
+        { keyword: 'status', namespace: 'mock', value: 'current' },
+        { keyword: 'visibility', namespace: 'mock', text: 'visible' },
+        {
+          keyword: 'description',
+          namespace: 'mock',
+          text: 'An arbitrary, unique name for the tenant, used to reference it in other configuration sections.'
+        },
+        {
+          keyword: 'type',
+          namespace: 'mock',
+          name: 'string'
+        }
+      ]
+    },
+    null
+  );
 
-  const withoutDescription = xmlUtil.toElement(`
-    <yin:leaf name="name" ${yinNS} xmlns:test="http://foo.bar" module-prefix="test">
-      <yin:type name="t128ext:tenant-name">
-        <yin:typedef name="tenant-name">
-          <yin:description>
-            <yin:text>A string identifier for a tenant, which uses alphanumerics, underscores,
-dots, or dashes, and cannot exceed 253 characters (similar to domain-name).</yin:text>
-          </yin:description>
-          <yin:type name="string">
-            <yin:pattern value="((([a-zA-Z0-9]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-9]\.)*([a-zA-Z0-9]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-9])?">
-              <yin:error-message>
-                <yin:value>Must contain only alphanumeric characters or any of the following: - _ .</yin:value>
-              </yin:error-message>
-            </yin:pattern>
-            <yin:length value="0..253"/>
-          </yin:type>
-        </yin:typedef>
-      </yin:type>
-      <t128ext:help>key identifier</t128ext:help>
-    </yin:leaf>
-  `);
+  const withoutDescription = new YinElement(
+    {
+      keyword: 'leaf',
+      namespace: 'mock',
+      name: 'name',
+      'module-prefix': 'test',
+      nsmap: { test: 'http://foo.bar' },
+      children: [
+        { keyword: 'help', namespace: 'mock', text: 'key identifier' },
+        {
+          keyword: 'type',
+          namespace: 'mock',
+          name: 'string'
+        }
+      ]
+    },
+    null
+  );
 
-  const prototype = xmlUtil.toElement(`
-    <yin:leaf name="name" ${yinNS} ${t128InternalNS} xmlns:test="http://foo.bar" module-prefix="test">
-      <yin:type name="string" />
-      <t128-internal:visibility>prototype</t128-internal:visibility>
-    </yin:leaf>
-  `);
+  const prototype = new YinElement(
+    {
+      keyword: 'leaf',
+      namespace: 'mock',
+      name: 'name',
+      'module-prefix': 'test',
+      nsmap: { test: 'http://foo.bar' },
+      children: [
+        { keyword: 'visibility', namespace: 'mock', text: 'prototype' },
+        {
+          keyword: 'type',
+          namespace: 'mock',
+          name: 'string'
+        }
+      ]
+    },
+    null
+  );
 
-  const obsolete = xmlUtil.toElement(`
-    <yin:leaf name="name" ${yinNS} xmlns:test="http://foo.bar" module-prefix="test">
-      <yin:type name="string" />
-      <yin:status value="obsolete" />
-    </yin:leaf>
-  `);
+  const obsolete = new YinElement(
+    {
+      keyword: 'leaf',
+      namespace: 'mock',
+      name: 'name',
+      'module-prefix': 'test',
+      nsmap: { test: 'http://foo.bar' },
+      children: [
+        { keyword: 'status', namespace: 'mock', value: 'obsolete' },
+        {
+          keyword: 'type',
+          namespace: 'mock',
+          name: 'string'
+        }
+      ]
+    },
+    null
+  );
 
-  const deprecated = xmlUtil.toElement(`
-    <yin:leaf name="name" ${yinNS} xmlns:test="http://foo.bar" module-prefix="test">
-      <yin:type name="string" />
-      <yin:status value="deprecated" />
-    </yin:leaf>
-  `);
-  /* tslint:enable:max-line-length */
+  const deprecated = new YinElement(
+    {
+      keyword: 'leaf',
+      namespace: 'mock',
+      name: 'name',
+      'module-prefix': 'test',
+      nsmap: { test: 'http://foo.bar' },
+      children: [
+        { keyword: 'status', namespace: 'mock', value: 'deprecated' },
+        {
+          keyword: 'type',
+          namespace: 'mock',
+          name: 'string'
+        }
+      ]
+    },
+    null
+  );
 
-  const withKebabCase = xmlUtil.toElement(`
-    <yin:leaf name="name-with-dashes" ${yinNS} xmlns:test="http://foo.bar" module-prefix="test"></yin:leaf>
-  `);
+  const withKebabCase = new YinElement(
+    {
+      keyword: 'leaf',
+      namespace: 'mock',
+      name: 'name-with-dashes',
+      'module-prefix': 'test',
+      nsmap: { test: 'http://foo.bar' }
+    },
+    null
+  );
 
   it('should get the name from a statement', () => {
     const statement = new Test(withDescription, null);
@@ -287,14 +320,31 @@ dots, or dashes, and cannot exceed 253 characters (similar to domain-name).</yin
   });
 
   it('should get its namespace', () => {
-    const el = xmlUtil.toElement(`
-        <yin:container ${yinNS} xmlns:ps="http://128technology.com/t128/popsickle-sticks" name="popsickle" module-prefix="ps">
-          <yin:container name="foo">
-            <yin:leaf name="bar">test</yin:leaf>
-          </yin:container>
-        </yin:container>
-      `);
-    const statement = new Test(assertElement(el.get('//yin:leaf', ns)!), null);
+    const el = new YinElement(
+      {
+        keyword: 'container',
+        namespace: 'mock',
+        name: 'popsickle',
+        'module-prefix': 'ps',
+        nsmap: { ps: 'http://128technology.com/t128/popsickle-sticks' },
+        children: [
+          {
+            keyword: 'container',
+            namespace: 'mock',
+            name: 'foo',
+            children: [
+              {
+                keyword: 'leaf',
+                namespace: 'mock',
+                name: 'bar'
+              }
+            ]
+          }
+        ]
+      },
+      null
+    );
+    const statement = new Test(el.children[0].children[0], null);
 
     expect(statement.ns).to.deep.equal(['ps', 'http://128technology.com/t128/popsickle-sticks']);
   });

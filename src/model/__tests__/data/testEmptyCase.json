@@ -1,0 +1,35 @@
+{
+  "keyword": "case",
+  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+  "name": "im-empty",
+  "module-prefix": "test",
+  "nsmap": { "test": "http://foo.bar" },
+  "children": [
+    {
+      "keyword": "leaf",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "im-emptier",
+      "children": [
+        {
+          "keyword": "type",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "t128ext:fizzlesticks",
+          "children": [
+            {
+              "keyword": "typedef",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "name": "fizzlesticks",
+              "children": [
+                {
+                  "keyword": "type",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "empty"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

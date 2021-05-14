@@ -1,11 +1,10 @@
-import { Element } from 'libxmljs2';
+import * as _ from 'lodash';
 
+import YinElement from '../util/YinElement';
 import applyMixins from '../util/applyMixins';
-import ns from '../util/ns';
 import { enumValueOf } from '../enum/BuiltInType';
 import { Identities } from '../model';
 import { SerializationReturnType } from '../enum/SerializationType';
-import { isElement, assertElement } from '../util/xmlUtil';
 
 import TypeParser from './util/TypeParser';
 import { Type, BuiltInType } from './';
@@ -26,9 +25,9 @@ export default class DerivedType implements Named, Traversable {
   public baseType: Type;
   public suggestionRefs: string[];
 
-  constructor(el: Element, identities: Identities) {
+  constructor(el: YinElement, identities: Identities) {
     this.addNamedProps(el);
-    const typeDefEl = assertElement(el.get('yin:typedef', ns)!);
+    const typeDefEl = el.findChild('typedef')!;
 
     this.parseBaseType(el, typeDefEl, identities);
     this.parseUnits(typeDefEl);
@@ -41,51 +40,51 @@ export default class DerivedType implements Named, Traversable {
     return this.baseType instanceof DerivedType ? this.baseType.builtInType : this.baseType;
   }
 
-  public parseDefault(typeDefEl: Element) {
-    const defaultEl = typeDefEl.get('./yin:default', ns);
+  public parseDefault(typeDefEl: YinElement) {
+    const defaultEl = typeDefEl.findChild('default');
 
     if (defaultEl) {
-      this.default = assertElement(defaultEl).attr('value')!.value();
+      this.default = defaultEl.value!;
     } else if (this.baseType instanceof DerivedType && this.baseType.default) {
       this.default = this.baseType.default;
     }
   }
 
-  public parseUnits(typeDefEl: Element) {
-    const unitsEl = typeDefEl.get('./yin:units', ns);
+  public parseUnits(typeDefEl: YinElement) {
+    const unitsEl = typeDefEl.findChild('units');
 
     if (unitsEl) {
-      this.units = assertElement(unitsEl).attr('name')!.value();
+      this.units = unitsEl.name!;
     }
   }
 
-  public parseDescription(typeDefEl: Element) {
-    const descriptionEl = typeDefEl.get('./yin:description/yin:text', ns);
+  public parseDescription(typeDefEl: YinElement) {
+    const descriptionEl = typeDefEl.findChild('description');
 
     if (descriptionEl) {
-      this.description = assertElement(descriptionEl).text();
+      this.description = descriptionEl.text!;
     }
   }
 
-  public parseBaseType(typeEl: Element, typeDefEl: Element, identities: Identities) {
-    const baseTypeEl = assertElement(typeDefEl.get('./yin:type', ns)!);
+  public parseBaseType(typeEl: YinElement, typeDefEl: YinElement, identities: Identities) {
+    const baseTypeEl = _.clone(typeDefEl.findChild('type')!);
 
-    // Really you only need to avoid typedef in the XPATH below, but a bug in yinsolidated
+    // Really you only need to avoid typedef below, but a bug in yinsolidated
     // also copies the child type into the derived type in some cases.
-    const restrictionEls = typeEl.find('./*[not(self::yin:typedef) and not(self::yin:type)]', ns).filter(isElement);
-
-    restrictionEls.forEach(el => {
-      baseTypeEl.addChild(el);
+    typeEl.children.forEach(child => {
+      if (child.keyword !== 'typedef' && child.keyword !== 'type') {
+        baseTypeEl.children.push(child);
+      }
     });
 
     this.baseType = TypeParser.parse(baseTypeEl, identities);
   }
 
-  public parseSuggestionRef(typeDefEl: Element) {
-    const suggestionEl = typeDefEl.get('./t128ext:suggestionref', ns);
+  public parseSuggestionRef(typeDefEl: YinElement) {
+    const suggestionEl = typeDefEl.findChild('suggestionref');
 
     if (suggestionEl) {
-      const text = assertElement(suggestionEl).text();
+      const text = suggestionEl.text;
       if (text) {
         const trimmed = text.trim();
         if (trimmed.length > 0) {

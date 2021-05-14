@@ -1,8 +1,6 @@
-import { Element } from 'libxmljs2';
 import * as _ from 'lodash';
 
-import ns from '../util/ns';
-import { isElement, assertElement } from '../util/xmlUtil';
+import YinElement from '../util/YinElement';
 
 interface IMember {
   base: string;
@@ -21,7 +19,7 @@ export interface IIdentity {
 export default class Identities {
   public identities: Map<string, IIdentity[]>;
 
-  constructor(el?: Element) {
+  constructor(el?: YinElement) {
     this.identities = new Map();
 
     if (el) {
@@ -29,18 +27,17 @@ export default class Identities {
     }
   }
 
-  public parseIdentitiesFromModel(el: Element) {
-    const identities = (_(el.find('yin:identity', ns))
-      .filter(isElement)
+  public parseIdentitiesFromModel(el: YinElement) {
+    const identities = (_(el.findChildren('identity'))
       .map(identity => {
-        const descriptionEl = identity.get('.//yin:description/yin:text', ns);
-        const baseEl = identity.get('./yin:base', ns);
+        const descriptionEl = identity.findChild('description');
+        const baseEl = identity.findChild('base');
 
         return {
-          base: baseEl ? _.last(assertElement(baseEl).attr('name')!.value().split(':')) : undefined,
-          description: descriptionEl ? assertElement(descriptionEl).text() : undefined,
-          name: identity.attr('name')!.value(),
-          prefix: identity.attr('module-prefix')!.value()
+          base: baseEl ? _.last(baseEl.name!.split(':')) : undefined,
+          description: descriptionEl ? descriptionEl.text! : undefined,
+          name: identity.name!,
+          prefix: identity.modulePrefix!
         };
       })
       .groupBy('base')

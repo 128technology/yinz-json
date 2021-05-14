@@ -3,19 +3,18 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as sinon from 'sinon';
 
-import xmlUtil from '../../__tests__/xmlUtil';
-
+import YinElement from '../../util/YinElement';
 import { Leaf, List, Choice, Container } from '../';
 
 describe('Choice Model', () => {
-  const modelText = fs.readFileSync(path.join(__dirname, './data/testChoice.xml'), 'utf-8');
-  const model = xmlUtil.toElement(modelText);
+  const modelText = fs.readFileSync(path.join(__dirname, './data/testChoice.json'), 'utf-8');
+  const model = new YinElement(JSON.parse(modelText), null);
 
-  const mandatoryModelText = fs.readFileSync(path.join(__dirname, './data/testMandatoryChoice.xml'), 'utf-8');
-  const mandatoryModel = xmlUtil.toElement(mandatoryModelText);
+  const mandatoryModelText = fs.readFileSync(path.join(__dirname, './data/testMandatoryChoice.json'), 'utf-8');
+  const mandatoryModel = new YinElement(JSON.parse(mandatoryModelText), null);
 
-  const emptyModelText = fs.readFileSync(path.join(__dirname, './data/testChoiceEmptyCases.xml'), 'utf-8');
-  const emptyModel = xmlUtil.toElement(emptyModelText);
+  const emptyModelText = fs.readFileSync(path.join(__dirname, './data/testChoiceEmptyCases.json'), 'utf-8');
+  const emptyModel = new YinElement(JSON.parse(emptyModelText), null);
 
   it('should get initalized', () => {
     const choice = new Choice(model, {} as Container);
@@ -78,6 +77,6 @@ describe('Choice Model', () => {
     const choice = new Choice(model, {} as Container);
     choice.visit(spy);
 
-    expect(spy.callCount).to.equal(10);
+    expect(spy.callCount).to.equal(13);
   });
 });

@@ -1,18 +1,32 @@
 import { expect } from 'chai';
 
-import xmlUtil, { yinNS } from '../../__tests__/xmlUtil';
+import YinElement from '../../util/YinElement';
 import { Range } from '../';
 
 describe('Range', () => {
   it('should parse a single range', () => {
-    const rangeEl = xmlUtil.toElement(`<range ${yinNS} value="0..10" />`);
+    const rangeEl = new YinElement(
+      {
+        keyword: 'range',
+        namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+        value: '0..10'
+      },
+      null
+    );
     const range = new Range(rangeEl);
 
     expect(range.ranges).to.deep.equal([{ min: 0, max: 10 }]);
   });
 
   it('should parse multiple ranges', () => {
-    const rangeEl = xmlUtil.toElement(`<range ${yinNS} value="0..10 | 20..50 | 1000..100000" />`);
+    const rangeEl = new YinElement(
+      {
+        keyword: 'range',
+        namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+        value: '0..10 | 20..50 | 1000..100000'
+      },
+      null
+    );
     const range = new Range(rangeEl);
 
     expect(range.ranges).to.deep.equal([
@@ -23,7 +37,14 @@ describe('Range', () => {
   });
 
   it('should handle min and max ranges', () => {
-    const rangeEl = xmlUtil.toElement(`<range ${yinNS} value="min..10 | 20..50 | 1000..max" />`);
+    const rangeEl = new YinElement(
+      {
+        keyword: 'range',
+        namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+        value: 'min..10 | 20..50 | 1000..max'
+      },
+      null
+    );
     const range = new Range(rangeEl);
 
     expect(range.ranges).to.deep.equal([
@@ -34,7 +55,14 @@ describe('Range', () => {
   });
 
   it('should handle single values', () => {
-    const rangeEl = xmlUtil.toElement(`<range ${yinNS} value="min | 20 | 1000" />`);
+    const rangeEl = new YinElement(
+      {
+        keyword: 'range',
+        namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+        value: 'min | 20 | 1000'
+      },
+      null
+    );
     const range = new Range(rangeEl);
 
     expect(range.ranges).to.deep.equal([

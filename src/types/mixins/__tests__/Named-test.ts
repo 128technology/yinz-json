@@ -1,21 +1,34 @@
 import { expect } from 'chai';
-import { Element } from 'libxmljs2';
 
+import YinElement from '../../../util/YinElement';
 import applyMixins from '../../../util/applyMixins';
-import xmlUtil, { yinNS } from '../../../__tests__/xmlUtil';
 import { Named } from '../';
 
 describe('Named Type Mixin', () => {
-  const typeEl = xmlUtil.toElement(`
-    <type ${yinNS} name="string">
-      <yin:length value="0..253" />
-      <yin:pattern value="*" />
-    </type>
-  `);
+  const typeEl = new YinElement(
+    {
+      keyword: 'type',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'string',
+      children: [
+        {
+          keyword: 'pattern',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          value: '*'
+        },
+        {
+          keyword: 'length',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          value: '0..253'
+        }
+      ]
+    },
+    null
+  );
 
   class Test implements Named {
     public type: string;
-    public addNamedProps: (el: Element) => void;
+    public addNamedProps: (el: YinElement) => void;
   }
 
   applyMixins(Test, [Named]);

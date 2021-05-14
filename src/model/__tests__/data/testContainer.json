@@ -1,0 +1,112 @@
+{
+  "keyword": "container",
+  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+  "name": "bfd",
+  "module-prefix": "test",
+  "nsmap": { "test": "http://foo.bar" },
+  "children": [
+    {
+      "keyword": "description",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "text": "BFD parameters for sessions between nodes within the router."
+    },
+    {
+      "keyword": "do-not-nest",
+      "namespace": "http://128technology.com/t128-codegen-extensions",
+      "nsmap": {
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "text": null
+    },
+    {
+      "keyword": "visibility",
+      "namespace": "http://128technology.com/t128-internal-extensions",
+      "nsmap": {
+        "t128-internal": "http://128technology.com/t128-internal-extensions"
+      },
+      "text": "advanced"
+    },
+    {
+      "keyword": "leaf",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "state",
+      "children": [
+        {
+          "keyword": "type",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "enumeration",
+          "children": [
+            {
+              "keyword": "enum",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "name": "enabled",
+              "children": [
+                {
+                  "keyword": "description",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "text": "BFD is enabled on all nodes of this router."
+                }
+              ]
+            },
+            {
+              "keyword": "enum",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "name": "disabled",
+              "children": [
+                {
+                  "keyword": "description",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "text": "BFD is disabled on all nodes of this router."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "When enabled, run BFD between all nodes within the router."
+        },
+        {
+          "keyword": "default",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "value": "enabled"
+        }
+      ]
+    },
+    {
+      "keyword": "leaf",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "desired-tx-interval",
+      "children": [
+        {
+          "keyword": "type",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "uint32",
+          "children": [
+            {
+              "keyword": "range",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "value": "50..600000"
+            }
+          ]
+        },
+        {
+          "keyword": "units",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "milliseconds"
+        },
+        {
+          "keyword": "default",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "value": "1000"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Represents the frequency with which BFD asynchronous\ncontrol packets are sent to peer nodes/routers."
+        }
+      ]
+    }
+  ]
+}

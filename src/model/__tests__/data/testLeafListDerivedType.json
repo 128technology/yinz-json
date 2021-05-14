@@ -1,0 +1,96 @@
+{
+  "keyword": "leaf-list",
+  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+  "name": "priority",
+  "module-prefix": "test",
+  "nsmap": { "test": "http://foo.bar" },
+  "children": [
+    {
+      "keyword": "type",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "vector-priority",
+      "children": [
+        {
+          "keyword": "typedef",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "vector-priority",
+          "children": [
+            {
+              "keyword": "type",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "name": "union",
+              "children": [
+                {
+                  "keyword": "type",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "uint32",
+                  "children": [
+                    {
+                      "keyword": "range",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "value": "1..999999"
+                    }
+                  ]
+                },
+                {
+                  "keyword": "type",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "enumeration",
+                  "children": [
+                    {
+                      "keyword": "enum",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "ordered",
+                      "children": [
+                        {
+                          "keyword": "description",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "text": "priority value determined by ordinal position"
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "enum",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "never",
+                      "children": [
+                        {
+                          "keyword": "description",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "text": "paths with the vector are not used"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "keyword": "default",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "value": "ordered"
+            },
+            {
+              "keyword": "type",
+              "namespace": "http://128technology.com/t128-codegen-extensions",
+              "nsmap": {
+                "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+              },
+              "text": "string"
+            },
+            {
+              "keyword": "description",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "text": "A type for defining priorities for vector use."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "keyword": "description",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "text": "Priority value for the paths with the vector."
+    }
+  ]
+}

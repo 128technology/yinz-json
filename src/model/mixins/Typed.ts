@@ -1,16 +1,13 @@
-import { Element } from 'libxmljs2';
-
-import ns from '../../util/ns';
+import YinElement from '../../util/YinElement';
 import TypeParser from '../../types/util/TypeParser';
 import { Type } from '../../types';
 import { Identities } from '../';
-import { assertElement } from '../../util/xmlUtil';
 
 export default class Typed {
   public type: Type;
 
-  public addTypeProps(el: Element, identities: Identities) {
-    const typeEl = assertElement(el.get('./yin:type', ns)!);
-    this.type = TypeParser.parse(typeEl, identities);
+  public addTypeProps(el: YinElement, identities: Identities) {
+    const type = el.findChild('type', 'urn:ietf:params:xml:ns:yang:yin:1')!;
+    this.type = TypeParser.parse(type, identities);
   }
 }

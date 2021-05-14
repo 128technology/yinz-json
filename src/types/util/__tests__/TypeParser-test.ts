@@ -2,19 +2,34 @@ import { expect } from 'chai';
 
 import Identities from '../../../model/Identities';
 import TypeParser from '../TypeParser';
-import xmlUtil, { yinNS } from '../../../__tests__/xmlUtil';
 import { StringType } from '../../';
+import YinElement from '../../../util/YinElement';
 
 describe('Type Parser', () => {
-  const typeEl = xmlUtil.toElement(`
-    <type ${yinNS} name="string">
-      <yin:length value="0..253" />
-      <yin:pattern value="*" />
-    </type>
-  `);
-
   it('should parse and construct a new type', () => {
-    const type = TypeParser.parse(typeEl, new Identities());
+    const type = TypeParser.parse(
+      new YinElement(
+        {
+          keyword: 'type',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          name: 'string',
+          children: [
+            {
+              keyword: 'pattern',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              value: '*'
+            },
+            {
+              keyword: 'length',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              value: '0..253'
+            }
+          ]
+        },
+        null
+      ),
+      new Identities()
+    );
 
     expect(type).to.be.an.instanceof(StringType);
   });

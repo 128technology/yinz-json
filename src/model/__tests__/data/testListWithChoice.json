@@ -1,0 +1,1230 @@
+{
+  "keyword": "list",
+  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+  "name": "service-route",
+  "module-prefix": "test",
+  "nsmap": { "test": "http://foo.bar" },
+  "children": [
+    {
+      "keyword": "key",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "value": "name"
+    },
+    {
+      "keyword": "choice",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "type",
+      "children": [
+        {
+          "keyword": "case",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "service-agent",
+          "children": [
+            {
+              "keyword": "leaf",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "name": "destination",
+              "children": [
+                {
+                  "keyword": "type",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "inet:ip-address",
+                  "children": [
+                    {
+                      "keyword": "typedef",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "ip-address",
+                      "children": [
+                        {
+                          "keyword": "type",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "union",
+                          "children": [
+                            {
+                              "keyword": "type",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "inet:ipv4-address",
+                              "children": [
+                                {
+                                  "keyword": "typedef",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "ipv4-address",
+                                  "children": [
+                                    {
+                                      "keyword": "type",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "name": "string",
+                                      "children": [
+                                        {
+                                          "keyword": "pattern",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "value": "(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])",
+                                          "children": [
+                                            {
+                                              "keyword": "error-message",
+                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                              "value": "Must be a valid IPv4 address."
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "keyword": "description",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "text": "The ipv4-address type represents an IPv4 address in\ndotted-quad notation."
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "keyword": "type",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "inet:ipv6-address",
+                              "children": [
+                                {
+                                  "keyword": "typedef",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "ipv6-address",
+                                  "children": [
+                                    {
+                                      "keyword": "type",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "name": "string",
+                                      "children": [
+                                        {
+                                          "keyword": "pattern",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "value": "((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}((([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|(((25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])))",
+                                          "children": [
+                                            {
+                                              "keyword": "error-message",
+                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                              "value": "Must be a valid IPv6 address."
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "keyword": "pattern",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "value": "(([^:]+:){6}(([^:]+:[^:]+)|(.*\\..*)))|((([^:]+:)*[^:]+)?::(([^:]+:)*[^:]+)?)",
+                                          "children": [
+                                            {
+                                              "keyword": "error-message",
+                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                              "value": "Must be a valid IPv6 address."
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "keyword": "description",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "text": "The ipv6-address type represents an IPv6 address in full,\nmixed, shortened, and shortened-mixed notation.\n\nThe canonical format of IPv6 addresses uses the compressed\nformat described in RFC 4291, Section 2.2, item 2 with the\nfollowing additional rules: the :: substitution must be\napplied to the longest sequence of all-zero 16-bit chunks\nin an IPv6 address.  If there is a tie, the first sequence\nof all-zero 16-bit chunks is replaced by ::.  Single\nall-zero 16-bit chunks are not compressed.  The canonical\nformat uses lowercase characters and leading zeros are\nnot allowed."
+                                    },
+                                    {
+                                      "keyword": "reference",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "text": "RFC 4291: IP Version 6 Addressing Architecture\nRFC 5952: A Recommendation for IPv6 Address Text Representation"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "keyword": "description",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "text": "The ip-address type represents an IP address and is IP\nversion neutral.  The format of the textual representations\nimplies the IP version."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "keyword": "status",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "value": "obsolete"
+                },
+                {
+                  "keyword": "replaced-by",
+                  "namespace": "http://128technology.com/t128-internal-extensions",
+                  "nsmap": {
+                    "t128-internal": "http://128technology.com/t128-internal-extensions"
+                  },
+                  "text": "../nat-target"
+                },
+                {
+                  "keyword": "description",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "text": "The address the destination is natted to. When the\ndestination is present, this is the address of the server\nfor the service."
+                }
+              ]
+            },
+            {
+              "keyword": "leaf",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "name": "nat-target",
+              "children": [
+                {
+                  "keyword": "type",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "inet:host",
+                  "children": [
+                    {
+                      "keyword": "typedef",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "host",
+                      "children": [
+                        {
+                          "keyword": "type",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "union",
+                          "children": [
+                            {
+                              "keyword": "type",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "inet:ip-address",
+                              "children": [
+                                {
+                                  "keyword": "typedef",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "ip-address",
+                                  "children": [
+                                    {
+                                      "keyword": "type",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "name": "union",
+                                      "children": [
+                                        {
+                                          "keyword": "type",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "name": "inet:ipv4-address",
+                                          "children": [
+                                            {
+                                              "keyword": "typedef",
+                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                              "name": "ipv4-address",
+                                              "children": [
+                                                {
+                                                  "keyword": "type",
+                                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                  "name": "string",
+                                                  "children": [
+                                                    {
+                                                      "keyword": "pattern",
+                                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                      "value": "(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])",
+                                                      "children": [
+                                                        {
+                                                          "keyword": "error-message",
+                                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                          "value": "Must be a valid IPv4 address."
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "keyword": "description",
+                                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                  "text": "The ipv4-address type represents an IPv4 address in\ndotted-quad notation."
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "keyword": "type",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "name": "inet:ipv6-address",
+                                          "children": [
+                                            {
+                                              "keyword": "typedef",
+                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                              "name": "ipv6-address",
+                                              "children": [
+                                                {
+                                                  "keyword": "type",
+                                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                  "name": "string",
+                                                  "children": [
+                                                    {
+                                                      "keyword": "pattern",
+                                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                      "value": "((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}((([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|(((25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])))",
+                                                      "children": [
+                                                        {
+                                                          "keyword": "error-message",
+                                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                          "value": "Must be a valid IPv6 address."
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "keyword": "pattern",
+                                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                      "value": "(([^:]+:){6}(([^:]+:[^:]+)|(.*\\..*)))|((([^:]+:)*[^:]+)?::(([^:]+:)*[^:]+)?)",
+                                                      "children": [
+                                                        {
+                                                          "keyword": "error-message",
+                                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                          "value": "Must be a valid IPv6 address."
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "keyword": "description",
+                                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                  "text": "The ipv6-address type represents an IPv6 address in full,\nmixed, shortened, and shortened-mixed notation.\n\nThe canonical format of IPv6 addresses uses the compressed\nformat described in RFC 4291, Section 2.2, item 2 with the\nfollowing additional rules: the :: substitution must be\napplied to the longest sequence of all-zero 16-bit chunks\nin an IPv6 address.  If there is a tie, the first sequence\nof all-zero 16-bit chunks is replaced by ::.  Single\nall-zero 16-bit chunks are not compressed.  The canonical\nformat uses lowercase characters and leading zeros are\nnot allowed."
+                                                },
+                                                {
+                                                  "keyword": "reference",
+                                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                  "text": "RFC 4291: IP Version 6 Addressing Architecture\nRFC 5952: A Recommendation for IPv6 Address Text Representation"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "keyword": "description",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "text": "The ip-address type represents an IP address and is IP\nversion neutral.  The format of the textual representations\nimplies the IP version."
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "keyword": "type",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "inet:domain-name",
+                              "children": [
+                                {
+                                  "keyword": "typedef",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "domain-name",
+                                  "children": [
+                                    {
+                                      "keyword": "type",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "name": "string",
+                                      "children": [
+                                        {
+                                          "keyword": "pattern",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "value": "((([a-zA-Z0-9_]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]\\.)*([a-zA-Z0-9_]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]\\.?)|\\."
+                                        },
+                                        {
+                                          "keyword": "length",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "value": "1..253"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "keyword": "description",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "text": "The domain-name type represents a DNS domain name.  The\nname SHOULD be fully qualified whenever possible.\n\nInternet domain names are only loosely specified.  Section\n3.5 of RFC 1034 recommends a syntax (modified in Section\n2.1 of RFC 1123).  The pattern above is intended to allow\nfor current practice in domain name use, and some possible\nfuture expansion.  It is designed to hold various types of\ndomain names, including names used for A or AAAA records\n(host names) and other records, such as SRV records.  Note\nthat Internet host names have a stricter syntax (described\nin RFC 952) than the DNS recommendations in RFCs 1034 and\n1123, and that systems that want to store host names in\nschema nodes using the domain-name type are recommended to\nadhere to this stricter standard to ensure interoperability.\n\nThe encoding of DNS names in the DNS protocol is limited\nto 255 characters.  Since the encoding consists of labels\nprefixed by a length bytes and there is a trailing NULL\nbyte, only 253 characters can appear in the textual dotted\nnotation.\n\nThe description clause of schema nodes using the domain-name\ntype MUST describe when and how these names are resolved to\nIP addresses.  Note that the resolution of a domain-name value\nmay require to query multiple DNS records (e.g., A for IPv4\nand AAAA for IPv6).  The order of the resolution process and\nwhich DNS record takes precedence can either be defined\nexplicitely or it may depend on the configuration of the\nresolver.\n\nDomain-name values use the US-ASCII encoding.  Their canonical\nformat uses lowercase US-ASCII characters.  Internationalized\ndomain names MUST be encoded in punycode as described in RFC\n3492"
+                                    },
+                                    {
+                                      "keyword": "reference",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "text": "RFC  952: DoD Internet Host Table Specification\nRFC 1034: Domain Names - Concepts and Facilities\nRFC 1123: Requirements for Internet Hosts -- Application\n          and Support\nRFC 2782: A DNS RR for specifying the location of services\n          (DNS SRV)\nRFC 3492: Punycode: A Bootstring encoding of Unicode for\n          Internationalized Domain Names in Applications\n          (IDNA)\nRFC 5891: Internationalizing Domain Names in Applications\n          (IDNA): Protocol"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "keyword": "description",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "text": "The host type represents either an IP address or a DNS\ndomain name."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "keyword": "replacing",
+                  "namespace": "http://128technology.com/t128-codegen-extensions",
+                  "nsmap": {
+                    "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+                  },
+                  "text": "destination"
+                },
+                {
+                  "keyword": "description",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "text": "The address or fqdn of the server that packets are\nforwarded to for the service. The destination is natted\nto this address."
+                }
+              ]
+            },
+            {
+              "keyword": "leaf",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "name": "port-target",
+              "children": [
+                {
+                  "keyword": "type",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "t128ext:l4-port",
+                  "children": [
+                    {
+                      "keyword": "typedef",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "l4-port",
+                      "children": [
+                        {
+                          "keyword": "description",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "text": "Transport (layer 4) port number."
+                        },
+                        {
+                          "keyword": "type",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "uint16"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "keyword": "when",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "condition": "count(../nat-target) > 0"
+                },
+                {
+                  "keyword": "description",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "text": "The port of the server that packets are forwarded to\nfor the service. The destination is port natted to this\nport. If no value is specified, no translation occurs."
+                },
+                {
+                  "keyword": "must",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "condition": ". = 0 or count(../../../svc:service[svc:name = current()/../svc:service-name]/svc:transport[svc:protocol = 'icmp']) = 0",
+                  "children": [
+                    {
+                      "keyword": "error-message",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "value": "A port-target cannot be configured on a service with an ICMP transport."
+                    },
+                    {
+                      "keyword": "inspector-rule",
+                      "namespace": "http://128technology.com/t128-internal-extensions",
+                      "nsmap": {
+                        "t128-internal": "http://128technology.com/t128-internal-extensions"
+                      },
+                      "text": "PortTargetServiceCheck"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "keyword": "list",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "name": "next-hop",
+              "children": [
+                {
+                  "keyword": "key",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "value": "node-name interface"
+                },
+                {
+                  "keyword": "description",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "text": "An instance of the nexthop for the service route."
+                },
+                {
+                  "keyword": "member-constructor",
+                  "namespace": "http://128technology.com/t128-codegen-extensions",
+                  "nsmap": {
+                    "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+                  },
+                  "text": null
+                },
+                {
+                  "keyword": "setters",
+                  "namespace": "http://128technology.com/t128-codegen-extensions",
+                  "nsmap": {
+                    "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+                  },
+                  "text": null
+                },
+                {
+                  "keyword": "must",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "condition": "count(../../sys:node[sys:name = current()/node-name]/sys:device-interface/\n      if:network-interface[if:name = current()/interface]) > 0",
+                  "children": [
+                    {
+                      "keyword": "error-message",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "value": "Interface must belong to the corresponding node"
+                    },
+                    {
+                      "keyword": "inspector-rule",
+                      "namespace": "http://128technology.com/t128-internal-extensions",
+                      "nsmap": {
+                        "t128-internal": "http://128technology.com/t128-internal-extensions"
+                      },
+                      "text": "NextHopInterfaceCheck"
+                    }
+                  ]
+                },
+                {
+                  "keyword": "must",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "condition": "count(../../sys:node[sys:name = current()/node-name]/\n      sys:device-interface[sys:forwarding = 'false']/\n      if:network-interface[if:name = current()/interface]) = 0",
+                  "children": [
+                    {
+                      "keyword": "error-message",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "value": "Only forwarding interfaces can be used as a next-hop"
+                    },
+                    {
+                      "keyword": "inspector-rule",
+                      "namespace": "http://128technology.com/t128-internal-extensions",
+                      "nsmap": {
+                        "t128-internal": "http://128technology.com/t128-internal-extensions"
+                      },
+                      "text": "NextHopForwarding"
+                    }
+                  ]
+                },
+                {
+                  "keyword": "leaf",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "node-name",
+                  "children": [
+                    {
+                      "keyword": "type",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "leafref",
+                      "children": [
+                        {
+                          "keyword": "path",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "value": "../../../sys:node/sys:name"
+                        },
+                        {
+                          "keyword": "type",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "t128ext:reserved-name-id",
+                          "children": [
+                            {
+                              "keyword": "typedef",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "reserved-name-id",
+                              "children": [
+                                {
+                                  "keyword": "description",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "text": "A string identifier which only uses alphanumerics, underscores,\nor dashes, and cannot exceed 63 characters, and cannot be the\nwords 'all', 'any', or 'unknown'."
+                                },
+                                {
+                                  "keyword": "type",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "t128ext:name-id",
+                                  "children": [
+                                    {
+                                      "keyword": "not-pattern",
+                                      "namespace": "http://128technology.com/t128-extensions",
+                                      "nsmap": {
+                                        "t128ext": "http://128technology.com/t128-extensions"
+                                      },
+                                      "value": "[aA][lL][lL]|[aA][nN][yY]|[uU][nN][kK][nN][oO][wW][nN]",
+                                      "children": [
+                                        {
+                                          "keyword": "error-message",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "value": "The names 'all'/'any'/'unknown' are reserved."
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "keyword": "typedef",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "name": "name-id",
+                                      "children": [
+                                        {
+                                          "keyword": "description",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "text": "A string identifier which only uses alphanumerics, underscores,\nor dashes, and cannot exceed 63 characters."
+                                        },
+                                        {
+                                          "keyword": "type",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "name": "string",
+                                          "children": [
+                                            {
+                                              "keyword": "pattern",
+                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                              "value": "([a-zA-Z0-9]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]",
+                                              "children": [
+                                                {
+                                                  "keyword": "error-message",
+                                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                  "value": "Must contain only alphanumeric characters or any of the following: _ -"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "keyword": "length",
+                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                              "value": "0..63"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "description",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "text": "The name of the node on which the interface resides."
+                    }
+                  ]
+                },
+                {
+                  "keyword": "leaf",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "interface",
+                  "children": [
+                    {
+                      "keyword": "type",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "leafref",
+                      "children": [
+                        {
+                          "keyword": "path",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "value": "../../../sys:node/sys:device-interface/if:network-interface/if:name"
+                        },
+                        {
+                          "keyword": "type",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "t128ext:name-id",
+                          "children": [
+                            {
+                              "keyword": "typedef",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "name-id",
+                              "children": [
+                                {
+                                  "keyword": "description",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "text": "A string identifier which only uses alphanumerics, underscores,\nor dashes, and cannot exceed 63 characters."
+                                },
+                                {
+                                  "keyword": "type",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "string",
+                                  "children": [
+                                    {
+                                      "keyword": "pattern",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "value": "([a-zA-Z0-9]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]",
+                                      "children": [
+                                        {
+                                          "keyword": "error-message",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "value": "Must contain only alphanumeric characters or any of the following: _ -"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "keyword": "length",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "value": "0..63"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "description",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "text": "A reference to the name of a configured network layer\ninterface used to reach the destination."
+                    }
+                  ]
+                },
+                {
+                  "keyword": "leaf",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "gateway-ip",
+                  "children": [
+                    {
+                      "keyword": "type",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "inet:ip-address",
+                      "children": [
+                        {
+                          "keyword": "typedef",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "ip-address",
+                          "children": [
+                            {
+                              "keyword": "type",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "union",
+                              "children": [
+                                {
+                                  "keyword": "type",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "inet:ipv4-address",
+                                  "children": [
+                                    {
+                                      "keyword": "typedef",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "name": "ipv4-address",
+                                      "children": [
+                                        {
+                                          "keyword": "type",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "name": "string",
+                                          "children": [
+                                            {
+                                              "keyword": "pattern",
+                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                              "value": "(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])",
+                                              "children": [
+                                                {
+                                                  "keyword": "error-message",
+                                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                  "value": "Must be a valid IPv4 address."
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "keyword": "description",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "text": "The ipv4-address type represents an IPv4 address in\ndotted-quad notation."
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "keyword": "type",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "inet:ipv6-address",
+                                  "children": [
+                                    {
+                                      "keyword": "typedef",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "name": "ipv6-address",
+                                      "children": [
+                                        {
+                                          "keyword": "type",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "name": "string",
+                                          "children": [
+                                            {
+                                              "keyword": "pattern",
+                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                              "value": "((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}((([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|(((25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])))",
+                                              "children": [
+                                                {
+                                                  "keyword": "error-message",
+                                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                  "value": "Must be a valid IPv6 address."
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "keyword": "pattern",
+                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                              "value": "(([^:]+:){6}(([^:]+:[^:]+)|(.*\\..*)))|((([^:]+:)*[^:]+)?::(([^:]+:)*[^:]+)?)",
+                                              "children": [
+                                                {
+                                                  "keyword": "error-message",
+                                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                  "value": "Must be a valid IPv6 address."
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "keyword": "description",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "text": "The ipv6-address type represents an IPv6 address in full,\nmixed, shortened, and shortened-mixed notation.\n\nThe canonical format of IPv6 addresses uses the compressed\nformat described in RFC 4291, Section 2.2, item 2 with the\nfollowing additional rules: the :: substitution must be\napplied to the longest sequence of all-zero 16-bit chunks\nin an IPv6 address.  If there is a tie, the first sequence\nof all-zero 16-bit chunks is replaced by ::.  Single\nall-zero 16-bit chunks are not compressed.  The canonical\nformat uses lowercase characters and leading zeros are\nnot allowed."
+                                        },
+                                        {
+                                          "keyword": "reference",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "text": "RFC 4291: IP Version 6 Addressing Architecture\nRFC 5952: A Recommendation for IPv6 Address Text Representation"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "keyword": "description",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "text": "The ip-address type represents an IP address and is IP\nversion neutral.  The format of the textual representations\nimplies the IP version."
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "description",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "text": "Gateway ip address of the service route nexthop."
+                    }
+                  ]
+                },
+                {
+                  "keyword": "leaf-list",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "target-address",
+                  "children": [
+                    {
+                      "keyword": "when",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "condition": "count(../../nat-target) = 0"
+                    },
+                    {
+                      "keyword": "type",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "inet:host",
+                      "children": [
+                        {
+                          "keyword": "typedef",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "host",
+                          "children": [
+                            {
+                              "keyword": "type",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "union",
+                              "children": [
+                                {
+                                  "keyword": "type",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "inet:ip-address",
+                                  "children": [
+                                    {
+                                      "keyword": "typedef",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "name": "ip-address",
+                                      "children": [
+                                        {
+                                          "keyword": "type",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "name": "union",
+                                          "children": [
+                                            {
+                                              "keyword": "type",
+                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                              "name": "inet:ipv4-address",
+                                              "children": [
+                                                {
+                                                  "keyword": "typedef",
+                                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                  "name": "ipv4-address",
+                                                  "children": [
+                                                    {
+                                                      "keyword": "type",
+                                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                      "name": "string",
+                                                      "children": [
+                                                        {
+                                                          "keyword": "pattern",
+                                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                          "value": "(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])",
+                                                          "children": [
+                                                            {
+                                                              "keyword": "error-message",
+                                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                              "value": "Must be a valid IPv4 address."
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "keyword": "description",
+                                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                      "text": "The ipv4-address type represents an IPv4 address in\ndotted-quad notation."
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "keyword": "type",
+                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                              "name": "inet:ipv6-address",
+                                              "children": [
+                                                {
+                                                  "keyword": "typedef",
+                                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                  "name": "ipv6-address",
+                                                  "children": [
+                                                    {
+                                                      "keyword": "type",
+                                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                      "name": "string",
+                                                      "children": [
+                                                        {
+                                                          "keyword": "pattern",
+                                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                          "value": "((:|[0-9a-fA-F]{0,4}):)([0-9a-fA-F]{0,4}:){0,5}((([0-9a-fA-F]{0,4}:)?(:|[0-9a-fA-F]{0,4}))|(((25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])))",
+                                                          "children": [
+                                                            {
+                                                              "keyword": "error-message",
+                                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                              "value": "Must be a valid IPv6 address."
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "keyword": "pattern",
+                                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                          "value": "(([^:]+:){6}(([^:]+:[^:]+)|(.*\\..*)))|((([^:]+:)*[^:]+)?::(([^:]+:)*[^:]+)?)",
+                                                          "children": [
+                                                            {
+                                                              "keyword": "error-message",
+                                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                              "value": "Must be a valid IPv6 address."
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "keyword": "description",
+                                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                      "text": "The ipv6-address type represents an IPv6 address in full,\nmixed, shortened, and shortened-mixed notation.\n\nThe canonical format of IPv6 addresses uses the compressed\nformat described in RFC 4291, Section 2.2, item 2 with the\nfollowing additional rules: the :: substitution must be\napplied to the longest sequence of all-zero 16-bit chunks\nin an IPv6 address.  If there is a tie, the first sequence\nof all-zero 16-bit chunks is replaced by ::.  Single\nall-zero 16-bit chunks are not compressed.  The canonical\nformat uses lowercase characters and leading zeros are\nnot allowed."
+                                                    },
+                                                    {
+                                                      "keyword": "reference",
+                                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                      "text": "RFC 4291: IP Version 6 Addressing Architecture\nRFC 5952: A Recommendation for IPv6 Address Text Representation"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "keyword": "description",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "text": "The ip-address type represents an IP address and is IP\nversion neutral.  The format of the textual representations\nimplies the IP version."
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "keyword": "type",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "inet:domain-name",
+                                  "children": [
+                                    {
+                                      "keyword": "typedef",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "name": "domain-name",
+                                      "children": [
+                                        {
+                                          "keyword": "type",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "name": "string",
+                                          "children": [
+                                            {
+                                              "keyword": "pattern",
+                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                              "value": "((([a-zA-Z0-9_]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]\\.)*([a-zA-Z0-9_]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]\\.?)|\\."
+                                            },
+                                            {
+                                              "keyword": "length",
+                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                              "value": "1..253"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "keyword": "description",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "text": "The domain-name type represents a DNS domain name.  The\nname SHOULD be fully qualified whenever possible.\n\nInternet domain names are only loosely specified.  Section\n3.5 of RFC 1034 recommends a syntax (modified in Section\n2.1 of RFC 1123).  The pattern above is intended to allow\nfor current practice in domain name use, and some possible\nfuture expansion.  It is designed to hold various types of\ndomain names, including names used for A or AAAA records\n(host names) and other records, such as SRV records.  Note\nthat Internet host names have a stricter syntax (described\nin RFC 952) than the DNS recommendations in RFCs 1034 and\n1123, and that systems that want to store host names in\nschema nodes using the domain-name type are recommended to\nadhere to this stricter standard to ensure interoperability.\n\nThe encoding of DNS names in the DNS protocol is limited\nto 255 characters.  Since the encoding consists of labels\nprefixed by a length bytes and there is a trailing NULL\nbyte, only 253 characters can appear in the textual dotted\nnotation.\n\nThe description clause of schema nodes using the domain-name\ntype MUST describe when and how these names are resolved to\nIP addresses.  Note that the resolution of a domain-name value\nmay require to query multiple DNS records (e.g., A for IPv4\nand AAAA for IPv6).  The order of the resolution process and\nwhich DNS record takes precedence can either be defined\nexplicitely or it may depend on the configuration of the\nresolver.\n\nDomain-name values use the US-ASCII encoding.  Their canonical\nformat uses lowercase US-ASCII characters.  Internationalized\ndomain names MUST be encoded in punycode as described in RFC\n3492"
+                                        },
+                                        {
+                                          "keyword": "reference",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "text": "RFC  952: DoD Internet Host Table Specification\nRFC 1034: Domain Names - Concepts and Facilities\nRFC 1123: Requirements for Internet Hosts -- Application\n          and Support\nRFC 2782: A DNS RR for specifying the location of services\n          (DNS SRV)\nRFC 3492: Punycode: A Bootstring encoding of Unicode for\n          Internationalized Domain Names in Applications\n          (IDNA)\nRFC 5891: Internationalizing Domain Names in Applications\n          (IDNA): Protocol"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "keyword": "description",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "text": "The host type represents either an IP address or a DNS\ndomain name."
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "ordered-by",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "value": "user"
+                    },
+                    {
+                      "keyword": "description",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "text": "Target addresses for the service route nexthop."
+                    }
+                  ]
+                },
+                {
+                  "keyword": "leaf",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "source-nat-pool",
+                  "children": [
+                    {
+                      "keyword": "type",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "authy:nat-pool-ref",
+                      "children": [
+                        {
+                          "keyword": "typedef",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "nat-pool-ref",
+                          "children": [
+                            {
+                              "keyword": "type",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "leafref",
+                              "children": [
+                                {
+                                  "keyword": "path",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "value": "/t128:config/authy:authority/authy:router/authy:nat-pool/authy:name"
+                                },
+                                {
+                                  "keyword": "type",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "t128ext:name-id",
+                                  "children": [
+                                    {
+                                      "keyword": "typedef",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "name": "name-id",
+                                      "children": [
+                                        {
+                                          "keyword": "description",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "text": "A string identifier which only uses alphanumerics, underscores,\nor dashes, and cannot exceed 63 characters."
+                                        },
+                                        {
+                                          "keyword": "type",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "name": "string",
+                                          "children": [
+                                            {
+                                              "keyword": "pattern",
+                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                              "value": "([a-zA-Z0-9]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]",
+                                              "children": [
+                                                {
+                                                  "keyword": "error-message",
+                                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                  "value": "Must contain only alphanumeric characters or any of the following: _ -"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "keyword": "length",
+                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                              "value": "0..63"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "keyword": "description",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "text": "This type is used by other entities that need to reference\nconfigured NAT pools."
+                            }
+                          ]
+                        },
+                        {
+                          "keyword": "type",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "t128ext:name-id",
+                          "children": [
+                            {
+                              "keyword": "typedef",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "name-id",
+                              "children": [
+                                {
+                                  "keyword": "description",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "text": "A string identifier which only uses alphanumerics, underscores,\nor dashes, and cannot exceed 63 characters."
+                                },
+                                {
+                                  "keyword": "type",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "string",
+                                  "children": [
+                                    {
+                                      "keyword": "pattern",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "value": "([a-zA-Z0-9]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]",
+                                      "children": [
+                                        {
+                                          "keyword": "error-message",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "value": "Must contain only alphanumeric characters or any of the following: _ -"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "keyword": "length",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "value": "0..63"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "description",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "text": "Apply source address (and optional port) translation for\nflows created towards the configured next-hop. This config\nwill override any source-nat on the network-interface."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "keyword": "case",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "peer-service-route",
+          "children": [
+            {
+              "keyword": "leaf",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "name": "peer",
+              "children": [
+                {
+                  "keyword": "type",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "leafref",
+                  "children": [
+                    {
+                      "keyword": "path",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "value": "../../authy:peer/authy:name"
+                    },
+                    {
+                      "keyword": "type",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "t128ext:peer-name",
+                      "children": [
+                        {
+                          "keyword": "typedef",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "peer-name",
+                          "children": [
+                            {
+                              "keyword": "description",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "text": "A string identifier for a peer, which uses alphanumerics, underscores,\ndots, or dashes, and cannot exceed 253 characters."
+                            },
+                            {
+                              "keyword": "type",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "string",
+                              "children": [
+                                {
+                                  "keyword": "pattern",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "value": "((([a-zA-Z0-9]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]\\.)*([a-zA-Z0-9]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9])?",
+                                  "children": [
+                                    {
+                                      "keyword": "error-message",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "value": "Must contain only alphanumeric characters or any of the following: - _ .\n(e.g., MyFirst-128T-Router)."
+                                    }
+                                  ]
+                                },
+                                {
+                                  "keyword": "length",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "value": "0..253"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "keyword": "help",
+                  "namespace": "http://128technology.com/t128-extensions",
+                  "nsmap": {
+                    "t128ext": "http://128technology.com/t128-extensions"
+                  },
+                  "text": "Peer router name"
+                },
+                {
+                  "keyword": "description",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "text": "Peer router to forward packets to for the service."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

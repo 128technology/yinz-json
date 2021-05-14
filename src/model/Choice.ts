@@ -1,11 +1,8 @@
-import { Element } from 'libxmljs2';
-
 import applyMixins from '../util/applyMixins';
-import { isElement } from '../util/xmlUtil';
-
 import { Statement, Whenable, WithRegistry } from './mixins';
 import { MandatoryParser } from './parsers';
 import { Model, Case, Visitor } from './';
+import YinElement from '../util/YinElement';
 
 function union<T>(iterables: Array<Map<string, T>>) {
   const set = new Map<string, T>();
@@ -20,10 +17,8 @@ function union<T>(iterables: Array<Map<string, T>>) {
 }
 
 export default class Choice implements Statement, Whenable, WithRegistry {
-  private static CASE_TYPES = new Set(['case', 'leaf', 'leaf-list', 'list', 'container']);
-
-  private static isCase(el: Element) {
-    return Choice.CASE_TYPES.has(el.name());
+  private static isCase(el: YinElement) {
+    return el.keyword === 'case';
   }
 
   public addStatementProps: Statement['addStatementProps'];
@@ -51,7 +46,7 @@ export default class Choice implements Statement, Whenable, WithRegistry {
   public mandatory: boolean;
   public modelType: string;
 
-  constructor(el: Element, parentModel: Model) {
+  constructor(el: YinElement, parentModel: Model) {
     this.modelType = 'choice';
     this.addStatementProps(el, parentModel);
     this.addWhenableProps(el);
@@ -80,12 +75,8 @@ export default class Choice implements Statement, Whenable, WithRegistry {
     });
   }
 
-  private buildCases(el: Element, parentModel: Model) {
-    return el
-      .childNodes()
-      .filter(isElement)
-      .filter(caseEl => Choice.isCase(caseEl))
-      .map(caseEl => new Case(caseEl, this, parentModel));
+  private buildCases(el: YinElement, parentModel: Model) {
+    return el.children.filter(caseEl => Choice.isCase(caseEl)).map(caseEl => new Case(caseEl, this, parentModel));
   }
 }
 

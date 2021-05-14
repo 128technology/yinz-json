@@ -1,51 +1,113 @@
 import { expect } from 'chai';
 
-import xmlUtil, { yinNS } from '../../__tests__/xmlUtil';
+import YinElement from '../../util/YinElement';
 import EnumerationMemberType from '../EnumerationMemberType';
 import { EnumerationType } from '../';
 
 describe('Enumeration Type', () => {
-  const typeEl = xmlUtil.toElement(`
-    <type ${yinNS} name="enumeration">
-      <yin:enum name="foo">
-        <yin:description>
-          <yin:text>This is a foo description.</yin:text>
-        </yin:description>
-        <yin:value value="0" />
-        <yin:reference>
-          <yin:text>This is a foo reference.</yin:text>
-        </yin:reference>
-        <yin:status value="deprecated" />
-      </yin:enum>
-      <yin:enum name="bar">
-        <yin:description>
-          <yin:text>This is a bar description.</yin:text>
-        </yin:description>
-        <yin:value value="1" />
-        <yin:reference>
-          <yin:text>This is a foo reference.</yin:text>
-        </yin:reference>
-      </yin:enum>
-    </type>
-  `);
+  const typeEl = new YinElement(
+    {
+      keyword: 'type',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'enumeration',
+      children: [
+        {
+          keyword: 'enum',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          name: 'foo',
+          children: [
+            {
+              keyword: 'description',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              text: 'This is a foo description.'
+            },
+            {
+              keyword: 'value',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              value: '0'
+            },
+            {
+              keyword: 'reference',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              text: 'This is a foo reference.'
+            },
+            {
+              keyword: 'status',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              value: 'deprecated'
+            }
+          ]
+        },
+        {
+          keyword: 'enum',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          name: 'bar',
+          children: [
+            {
+              keyword: 'description',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              text: 'This is a bar description.'
+            },
+            {
+              keyword: 'value',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              value: '1'
+            },
+            {
+              keyword: 'reference',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              text: 'This is a bar reference.'
+            }
+          ]
+        }
+      ]
+    },
+    null
+  );
 
-  const obsoleteTypeEl = xmlUtil.toElement(`
-    <type ${yinNS} name="enumeration">
-      <yin:enum name="foo">
-        <yin:status value="obsolete" />
-      </yin:enum>
-      <yin:enum name="bar" />
-    </type>
-  `);
+  const obsoleteTypeEl = new YinElement(
+    {
+      keyword: 'type',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'enumeration',
+      children: [
+        {
+          keyword: 'enum',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          name: 'foo',
+          children: [
+            {
+              keyword: 'status',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              value: 'obsolete'
+            }
+          ]
+        },
+        {
+          keyword: 'enum',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          name: 'bar'
+        }
+      ]
+    },
+    null
+  );
 
   it('should match a enumeration type', () => {
-    const name = typeEl.attr('name')!.value();
+    const name = typeEl.name!;
 
     expect(EnumerationType.matches(name)).to.equal(true);
   });
 
   it('should fail to parse if enums not present', () => {
-    const badTypeEl = xmlUtil.toElement(`<type ${yinNS} name="enumeration" />`);
+    const badTypeEl = new YinElement(
+      {
+        keyword: 'type',
+        namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+        name: 'enumeration'
+      },
+      null
+    );
 
     expect(() => new EnumerationType(badTypeEl)).to.throw('enumeration type must specify enum.');
   });
@@ -59,32 +121,64 @@ describe('Enumeration Type', () => {
   it('should parse members', () => {
     const type = new EnumerationType(typeEl);
     const fooMember = new EnumerationMemberType(
-      xmlUtil.toElement(`
-        <yin:enum ${yinNS} name="foo">
-          <yin:description>
-            <yin:text>This is a foo description.</yin:text>
-          </yin:description>
-          <yin:value>0</yin:value>
-          <yin:reference>
-            <yin:text>This is a foo reference.</yin:text>
-          </yin:reference>
-          <yin:status value="deprecated" />
-        </yin:enum>
-      `)
+      new YinElement(
+        {
+          keyword: 'enum',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          name: 'foo',
+          children: [
+            {
+              keyword: 'description',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              text: 'This is a foo description.'
+            },
+            {
+              keyword: 'value',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              value: '0'
+            },
+            {
+              keyword: 'reference',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              text: 'This is a foo reference.'
+            },
+            {
+              keyword: 'status',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              value: 'deprecated'
+            }
+          ]
+        },
+        null
+      )
     );
 
     const barMember = new EnumerationMemberType(
-      xmlUtil.toElement(`
-        <yin:enum ${yinNS} name="bar">
-          <yin:description>
-            <yin:text>This is a bar description.</yin:text>
-          </yin:description>
-          <yin:value>1</yin:value>
-          <yin:reference>
-            <yin:text>This is a foo reference.</yin:text>
-          </yin:reference>
-        </yin:enum>
-      `)
+      new YinElement(
+        {
+          keyword: 'enum',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          name: 'bar',
+          children: [
+            {
+              keyword: 'description',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              text: 'This is a bar description.'
+            },
+            {
+              keyword: 'value',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              value: '1'
+            },
+            {
+              keyword: 'reference',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              text: 'This is a bar reference.'
+            }
+          ]
+        },
+        null
+      )
     );
 
     expect(type.members).to.deep.equal(

@@ -3,28 +3,24 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as sinon from 'sinon';
 
-import xmlUtil from '../../__tests__/xmlUtil';
-
+import YinElement from '../../util/YinElement';
 import { Choice, Leaf, Case, Container } from '../';
 
 describe('Case', () => {
-  const explicitCaseText = fs.readFileSync(path.join(__dirname, './data/testExplicitCase.xml'), 'utf-8');
-  const explicitCase = xmlUtil.toElement(explicitCaseText);
+  const explicitCaseText = fs.readFileSync(path.join(__dirname, './data/testExplicitCase.json'), 'utf-8');
+  const explicitCase = new YinElement(JSON.parse(explicitCaseText), null);
 
-  const implicitCaseText = fs.readFileSync(path.join(__dirname, './data/testLeaf.xml'), 'utf-8');
-  const implicitCase = xmlUtil.toElement(implicitCaseText);
+  const emptyCaseText = fs.readFileSync(path.join(__dirname, './data/testEmptyCase.json'), 'utf-8');
+  const emptyCase = new YinElement(JSON.parse(emptyCaseText), null);
 
-  const emptyCaseText = fs.readFileSync(path.join(__dirname, './data/testEmptyCase.xml'), 'utf-8');
-  const emptyCase = xmlUtil.toElement(emptyCaseText);
+  const deprecatedCaseText = fs.readFileSync(path.join(__dirname, './data/testDeprecatedCase.json'), 'utf-8');
+  const deprecatedCase = new YinElement(JSON.parse(deprecatedCaseText), null);
 
-  const deprecatedCaseText = fs.readFileSync(path.join(__dirname, './data/testDeprecatedCase.xml'), 'utf-8');
-  const deprecatedCase = xmlUtil.toElement(deprecatedCaseText);
+  const obsoleteCaseText = fs.readFileSync(path.join(__dirname, './data/testObsoleteCase.json'), 'utf-8');
+  const obsoleteCase = new YinElement(JSON.parse(obsoleteCaseText), null);
 
-  const obsoleteCaseText = fs.readFileSync(path.join(__dirname, './data/testObsoleteCase.xml'), 'utf-8');
-  const obsoleteCase = xmlUtil.toElement(obsoleteCaseText);
-
-  const prototypeCaseText = fs.readFileSync(path.join(__dirname, './data/testPrototypeCase.xml'), 'utf-8');
-  const prototypeCase = xmlUtil.toElement(prototypeCaseText);
+  const prototypeCaseText = fs.readFileSync(path.join(__dirname, './data/testPrototypeCase.json'), 'utf-8');
+  const prototypeCase = new YinElement(JSON.parse(prototypeCaseText), null);
 
   const mockChoice = {} as Choice;
 
@@ -38,18 +34,6 @@ describe('Case', () => {
     const theCase = new Case(explicitCase, mockChoice, {} as Container);
 
     expect(theCase.children.get('peer')).to.be.an.instanceOf(Leaf);
-  });
-
-  it('should construct implicit cases', () => {
-    const theCase = new Case(implicitCase, mockChoice, {} as Container);
-
-    expect(theCase.name).to.equal('qp-value');
-  });
-
-  it('should construct children for implicit cases', () => {
-    const theCase = new Case(implicitCase, mockChoice, {} as Container);
-
-    expect(theCase.children.get('qp-value')).to.be.an.instanceOf(Leaf);
   });
 
   it('determine if case is not empty', () => {

@@ -1,42 +1,36 @@
 import * as _ from 'lodash';
-import { Element, Namespace } from 'libxmljs2';
 
-import ns from '../../util/ns';
 import { OrderedBy, Visibility, Status } from '../../enum';
 import { enumValueOf } from '../../enum/ContextNode';
-import { tokens } from '../../util/xPathParser';
-import { isElement, assertElement } from '../../util/xmlUtil';
+import YinElement from '../../util/YinElement';
+
 export { default as TypeParser } from '../../types/util/TypeParser';
 
-function getLocalName(name: string) {
-  return name.split(':').pop();
-}
-
 export class VisibilityParser {
-  public static parse(el: Element): Visibility | null {
-    const visibleElem = el.get('./t128-internal:visibility', ns);
-    return visibleElem ? Visibility[assertElement(visibleElem).text() as keyof typeof Visibility] : null;
+  public static parse(el: YinElement): Visibility | null {
+    const visibility = el.findChild('visibility');
+    return visibility ? Visibility[visibility.text as keyof typeof Visibility] : null;
   }
 }
 
 export class StatusParser {
-  public static parse(el: Element) {
-    const statusElem = el.get('./yin:status', ns);
-    return statusElem ? Status[assertElement(statusElem).attr('value')!.value() as keyof typeof Status] : null;
+  public static parse(el: YinElement) {
+    const status = el.findChild('status');
+    return status ? Status[status.value as keyof typeof Status] : null;
   }
 }
 
 export class MaxElementsParser {
-  public static parse(el: Element) {
-    const maxElemEl = el.get('./yin:max-elements', ns);
-    return maxElemEl ? parseInt(assertElement(maxElemEl).attr('value')!.value(), 10) : null;
+  public static parse(el: YinElement) {
+    const maxElem = el.findChild('max-elements');
+    return maxElem ? parseInt(maxElem.value!, 10) : null;
   }
 }
 
 export class MinElementsParser {
-  public static parse(el: Element) {
-    const minElemEl = el.get('./yin:min-elements', ns);
-    return minElemEl ? parseInt(assertElement(minElemEl).attr('value')!.value(), 10) : 0;
+  public static parse(el: YinElement) {
+    const minElem = el.findChild('min-elements');
+    return minElem ? parseInt(minElem.value!, 10) : 0;
   }
 }
 
@@ -45,19 +39,18 @@ export class DescriptionParser {
     return stringToReplace.replace(/(\r\n|\n|\r)/gm, ' ');
   }
 
-  public static parse(el: Element) {
-    const descriptionEl = el.get('./yin:description/yin:text', ns);
-    return descriptionEl ? DescriptionParser.convertNewlinesToSpaces(assertElement(descriptionEl).text()) : null;
+  public static parse(el: YinElement) {
+    const description = el.findChild('description')?.text;
+    return description ? DescriptionParser.convertNewlinesToSpaces(description) : null;
   }
 }
 
 export class UniqueParser {
-  public static parse(el: Element) {
-    const uniqueEls = el.find('./yin:unique', ns);
+  public static parse(el: YinElement) {
+    const uniqueEls = el.findChildren('unique');
     return uniqueEls
       ? uniqueEls
-          .filter(isElement)
-          .map(uniqueEl => uniqueEl.attr('tag')!.value())
+          .map(uniqueEl => uniqueEl.tag!)
           .reduce((acc, tag) => {
             const uniqueSet = tag.split(' ');
 
@@ -79,79 +72,64 @@ export class ReferenceParser {
     return stringToReplace.replace(/(\r\n|\n|\r)/gm, ' ');
   }
 
-  public static parse(el: Element) {
-    const referenceEl = el.get('./yin:reference/yin:text', ns);
-    return referenceEl ? ReferenceParser.convertNewlinesToSpaces(assertElement(referenceEl).text()) : null;
+  public static parse(el: YinElement) {
+    const reference = el.findChild('reference')?.text;
+    return reference ? ReferenceParser.convertNewlinesToSpaces(reference) : null;
   }
 }
 
 export class OrderedByParser {
-  public static parse(el: Element) {
-    const orderedByEl = el.get('./yin:ordered-by', ns);
-    return orderedByEl
-      ? OrderedBy[assertElement(orderedByEl).attr('value')!.value() as keyof typeof OrderedBy]
-      : OrderedBy.system;
+  public static parse(el: YinElement) {
+    const orderedBy = el.findChild('ordered-by');
+    return orderedBy ? OrderedBy[orderedBy.value as keyof typeof OrderedBy] : OrderedBy.system;
   }
 }
 
 export class MandatoryParser {
-  public static parse(el: Element) {
-    const mandatoryEl = el.get('./yin:mandatory', ns);
-
-    return mandatoryEl ? assertElement(mandatoryEl).attr('value')!.value() === 'true' : false;
+  public static parse(el: YinElement) {
+    const mandatory = el.findChild('mandatory');
+    return mandatory ? mandatory.value === 'true' : false;
   }
 }
 
 export class UnitsParser {
-  public static parse(el: Element) {
-    const unitsEl = el.get('./yin:units', ns);
-
-    return unitsEl ? assertElement(unitsEl).attr('name')!.value() : null;
+  public static parse(el: YinElement) {
+    const units = el.findChild('units');
+    return units ? units.name! : null;
   }
 }
 
 export class DefaultParser {
-  public static parse(el: Element) {
-    const defaultEl = el.get('./yin:default', ns);
-
-    return defaultEl ? assertElement(defaultEl).attr('value')!.value() : null;
+  public static parse(el: YinElement) {
+    const defaultEl = el.findChild('default');
+    return defaultEl ? defaultEl.value! : null;
   }
 }
 
 export class PresenceParser {
-  public static parse(el: Element) {
-    const presenceEl = el.get('./yin:presence', ns);
-
-    return presenceEl ? assertElement(presenceEl).attr('value')!.value() : null;
+  public static parse(el: YinElement) {
+    const presence = el.findChild('presence');
+    return presence ? presence.value! : null;
   }
 }
 
 export class NamespacesParser {
-  public static getModulePrefix(el: Element) {
-    const [prefix] = NamespacesParser.getNamespace(el);
-
-    return prefix;
-  }
-
-  public static getNamespace(el: Element): [string, string] {
-    const moduleEl = assertElement(el.get('./ancestor-or-self::yin:*[@module-prefix][1]', ns)!);
+  public static getNamespace(el: YinElement): [string, string] {
+    const moduleEl = el.getContainingModule()!;
     return this.getNamespaceFromModule(moduleEl);
   }
 
-  public static getNamespaceFromModule(el: Element): [string, string] {
-    const prefix = el.attr('module-prefix')!.value();
-    const href = el
-      .namespaces()
-      .find((namespace: Namespace) => namespace.prefix() === prefix)!
-      .href();
+  public static getNamespaceFromModule(el: YinElement): [string, string] {
+    const prefix = el.modulePrefix!;
+    const href = el.nsmap![prefix];
 
     return [prefix, href];
   }
 
-  public static parse(el: Element) {
-    const nsEls = el.find('descendant-or-self::yin:*[@module-prefix]', ns).filter(isElement);
+  public static parse(el: YinElement) {
+    const nsEls = el.collectChildModules();
 
-    return nsEls.reduce((acc: { [s: string]: string }, nsEl) => {
+    return nsEls.reduce<Record<string, string>>((acc, nsEl) => {
       const [prefix, href] = NamespacesParser.getNamespaceFromModule(nsEl);
       acc[prefix] = href;
       return acc;
@@ -160,63 +138,37 @@ export class NamespacesParser {
 }
 
 export class WhenParser {
-  public static parse(el: Element) {
-    const whenEls = el.find('./yin:when', ns).filter(isElement);
+  public static parse(el: YinElement) {
+    const whenEls = el.findChildren('when');
 
     if (whenEls && whenEls.length > 0) {
-      return whenEls.map(whenEl => {
-        const condition = whenEl.attr('condition')!.value();
-        const prefix = NamespacesParser.getModulePrefix(el);
-        const prefixed = WhenParser.ensureXPathNamesPrefixed(condition, prefix);
-
-        const contextNode = whenEl.attr('context-node');
-        const context = contextNode ? enumValueOf(contextNode.value()) : null;
-
-        return { condition: prefixed, context };
+      return whenEls.map(({ condition, contextNode }) => {
+        const context = contextNode ? enumValueOf(contextNode) : null;
+        return { condition: condition!, context };
       });
     } else {
       return null;
     }
   }
 
-  public static hasWhenAncestorOrSelf(el: Element) {
-    const result = el.get('./ancestor-or-self::yin:*[yin:when][1]', ns);
-    return !_.isNil(result);
-  }
-
-  public static ensureXPathNamesPrefixed(expression: string, prefix: string) {
-    const expressionTokens = tokens(expression);
-    const newTokens: string[] = [];
-
-    expressionTokens.forEach(([tokenType, token]) => {
-      if (tokenType === 'name' && token.indexOf(':') === -1) {
-        newTokens.push(`${prefix}:${token}`);
-      } else {
-        newTokens.push(token);
-      }
-    });
-
-    return newTokens.join('');
+  public static hasWhenAncestorOrSelf(el: YinElement) {
+    return el.hasWhenAncestorOrSelf;
   }
 }
 
 export class PropertiesParser {
-  public static isTextProperty(el: Element) {
-    const childNodes = el.childNodes();
-    return childNodes.length === 1 && childNodes[0].type() === 'text';
+  public static isTextProperty(el: YinElement) {
+    return el.children.length === 0 && el.text;
   }
 
-  public static isPresenceProperty(el: Element) {
-    const childNodes = el.childNodes();
-    return childNodes.length === 0 && el.attrs().length === 0;
+  public static isPresenceProperty(el: YinElement) {
+    return el.children.length === 0 && el.text === null;
   }
 
-  public static parse(el: Element, ignoreList: string[]) {
-    const children = el.find('./child::*', ns).filter(isElement);
-
-    return children
+  public static parse(el: YinElement, ignoreList: string[]) {
+    return el.children
       .filter(child => {
-        if (_.includes(ignoreList, getLocalName(child.name()))) {
+        if (_.includes(ignoreList, child.keyword)) {
           return false;
         }
 
@@ -227,10 +179,10 @@ export class PropertiesParser {
         return false;
       })
       .reduce((acc, child) => {
-        const name = _.camelCase(getLocalName(child.name()));
+        const name = _.camelCase(child.keyword);
 
         if (PropertiesParser.isTextProperty(child)) {
-          acc.set(name, child.text());
+          acc.set(name, child.text);
         } else if (PropertiesParser.isPresenceProperty(child)) {
           acc.set(name, true);
         }

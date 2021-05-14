@@ -1,0 +1,1183 @@
+{
+  "keyword": "module",
+  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+  "nsmap": {
+    "yin": "urn:ietf:params:xml:ns:yang:yin:1",
+    "user": "http://128technology.com/user",
+    "t128ext": "http://128technology.com/t128-extensions",
+    "t128-internal": "http://128technology.com/t128-internal-extensions"
+  },
+  "name": "user",
+  "module-prefix": "user",
+  "module-name": "user",
+  "children": [
+    {
+      "keyword": "namespace",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "uri": "http://128technology.com/user"
+    },
+    {
+      "keyword": "prefix",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "value": "user"
+    },
+    {
+      "keyword": "organization",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "text": "Juniper Networks, Inc."
+    },
+    {
+      "keyword": "contact",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "text": "Juniper Networks, Inc.\nPostal: 200 Summit Drive\n        Suite 600\n        Burlington, MA 01803\n        USA\nE-mail: support@128technology.com\nweb: www.128technology.com"
+    },
+    {
+      "keyword": "description",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "text": "128T User Configuration"
+    },
+    {
+      "keyword": "revision",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "date": "2021-03-03",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "128T Release 5.1.0"
+        }
+      ]
+    },
+    {
+      "keyword": "revision",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "date": "2020-07-15",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "128T Release 4.5.0"
+        }
+      ]
+    },
+    {
+      "keyword": "revision",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "date": "2019-10-31",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "128T Release 4.2.0"
+        }
+      ]
+    },
+    {
+      "keyword": "revision",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "date": "2018-06-21",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "128T Release 3.2.4"
+        }
+      ]
+    },
+    {
+      "keyword": "revision",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "date": "2018-05-14",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "128T Release 3.2.3"
+        }
+      ]
+    },
+    {
+      "keyword": "revision",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "date": "2018-04-10",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "128T Release 3.2.2"
+        }
+      ]
+    },
+    {
+      "keyword": "revision",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "date": "2018-02-21",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "128T Release 3.2.0"
+        }
+      ]
+    },
+    {
+      "keyword": "revision",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "date": "2017-08-11",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "128T Release 3.1.0"
+        }
+      ]
+    },
+    {
+      "keyword": "revision",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "date": "2017-03-07",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "128T Release 3.0.0"
+        }
+      ]
+    },
+    {
+      "keyword": "revision",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "date": "2016-11-21",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "128T Release 2.0.0 (Initial revision)"
+        }
+      ]
+    },
+    {
+      "keyword": "container",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "config",
+      "children": [
+        {
+          "keyword": "required",
+          "namespace": "http://128technology.com/t128-extensions",
+          "nsmap": {
+            "t128ext": "http://128technology.com/t128-extensions"
+          },
+          "text": "true"
+        },
+        {
+          "keyword": "container",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "authority",
+          "children": [
+            {
+              "keyword": "description",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "text": "Authority user configuration."
+            },
+            {
+              "keyword": "leaf",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "name": "name",
+              "children": [
+                {
+                  "keyword": "type",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "t128ext:name-id",
+                  "children": [
+                    {
+                      "keyword": "typedef",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "name-id",
+                      "children": [
+                        {
+                          "keyword": "description",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "text": "A string identifier which only uses alphanumerics, underscores,\nor dashes, and cannot exceed 63 characters."
+                        },
+                        {
+                          "keyword": "type",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "string",
+                          "children": [
+                            {
+                              "keyword": "pattern",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "value": "([a-zA-Z0-9]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]",
+                              "children": [
+                                {
+                                  "keyword": "error-message",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "value": "Must contain only alphanumeric characters or any of the following: _ -"
+                                }
+                              ]
+                            },
+                            {
+                              "keyword": "length",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "value": "0..63"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "keyword": "description",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "text": "The identifier for the Authority to which this user\nconfiguration applies."
+                }
+              ]
+            },
+            {
+              "keyword": "leaf",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "name": "mode",
+              "children": [
+                {
+                  "keyword": "description",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "text": "Password policy mode."
+                },
+                {
+                  "keyword": "type",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "enumeration",
+                  "children": [
+                    {
+                      "keyword": "enum",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "moderate",
+                      "children": [
+                        {
+                          "keyword": "description",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "text": "Moderate mode is the default level of password\nstrictness"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "keyword": "default",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "value": "moderate"
+                }
+              ]
+            },
+            {
+              "keyword": "list",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "name": "role",
+              "children": [
+                {
+                  "keyword": "status",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "value": "deprecated"
+                },
+                {
+                  "keyword": "key",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "value": "name"
+                },
+                {
+                  "keyword": "description",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "text": "A list of named roles that define a set of rules that\nmay be assigned to users."
+                },
+                {
+                  "keyword": "leaf",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "name",
+                  "children": [
+                    {
+                      "keyword": "status",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "value": "deprecated"
+                    },
+                    {
+                      "keyword": "type",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "unix-name",
+                      "children": [
+                        {
+                          "keyword": "typedef",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "unix-name",
+                          "children": [
+                            {
+                              "keyword": "type",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "string",
+                              "children": [
+                                {
+                                  "keyword": "length",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "value": "1..32"
+                                },
+                                {
+                                  "keyword": "pattern",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "value": "[a-z_][a-z0-9_\\-]*",
+                                  "children": [
+                                    {
+                                      "keyword": "error-message",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "value": "Must begin with a lower case character and contain lower case alphanumeric characters or the following: _ -"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "description",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "text": "A name that represents the role."
+                    }
+                  ]
+                },
+                {
+                  "keyword": "leaf-list",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "rule",
+                  "children": [
+                    {
+                      "keyword": "status",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "value": "deprecated"
+                    },
+                    {
+                      "keyword": "type",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "rule-ref",
+                      "children": [
+                        {
+                          "keyword": "typedef",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "rule-ref",
+                          "children": [
+                            {
+                              "keyword": "status",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "value": "deprecated"
+                            },
+                            {
+                              "keyword": "type",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "leafref",
+                              "children": [
+                                {
+                                  "keyword": "path",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "value": "/user:config/user:authority/user:rule/user:name"
+                                },
+                                {
+                                  "keyword": "type",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "t128ext:name-id",
+                                  "children": [
+                                    {
+                                      "keyword": "typedef",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "name": "name-id",
+                                      "children": [
+                                        {
+                                          "keyword": "description",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "text": "A string identifier which only uses alphanumerics, underscores,\nor dashes, and cannot exceed 63 characters."
+                                        },
+                                        {
+                                          "keyword": "type",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "name": "string",
+                                          "children": [
+                                            {
+                                              "keyword": "pattern",
+                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                              "value": "([a-zA-Z0-9]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]",
+                                              "children": [
+                                                {
+                                                  "keyword": "error-message",
+                                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                                  "value": "Must contain only alphanumeric characters or any of the following: _ -"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "keyword": "length",
+                                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                              "value": "0..63"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "keyword": "description",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "text": "This type is used by other entities that need to reference\nconfigured rules."
+                            }
+                          ]
+                        },
+                        {
+                          "keyword": "type",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "t128ext:name-id",
+                          "children": [
+                            {
+                              "keyword": "typedef",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "name-id",
+                              "children": [
+                                {
+                                  "keyword": "description",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "text": "A string identifier which only uses alphanumerics, underscores,\nor dashes, and cannot exceed 63 characters."
+                                },
+                                {
+                                  "keyword": "type",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "string",
+                                  "children": [
+                                    {
+                                      "keyword": "pattern",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "value": "([a-zA-Z0-9]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]",
+                                      "children": [
+                                        {
+                                          "keyword": "error-message",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "value": "Must contain only alphanumeric characters or any of the following: _ -"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "keyword": "length",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "value": "0..63"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "description",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "text": "The rules that apply to this role."
+                    },
+                    {
+                      "keyword": "min-elements",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "value": "1"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "keyword": "list",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "name": "rule",
+              "children": [
+                {
+                  "keyword": "status",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "value": "deprecated"
+                },
+                {
+                  "keyword": "key",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "value": "name"
+                },
+                {
+                  "keyword": "leaf",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "name",
+                  "children": [
+                    {
+                      "keyword": "status",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "value": "deprecated"
+                    },
+                    {
+                      "keyword": "type",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "t128ext:name-id",
+                      "children": [
+                        {
+                          "keyword": "typedef",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "name-id",
+                          "children": [
+                            {
+                              "keyword": "description",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "text": "A string identifier which only uses alphanumerics, underscores,\nor dashes, and cannot exceed 63 characters."
+                            },
+                            {
+                              "keyword": "type",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "string",
+                              "children": [
+                                {
+                                  "keyword": "pattern",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "value": "([a-zA-Z0-9]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]",
+                                  "children": [
+                                    {
+                                      "keyword": "error-message",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "value": "Must contain only alphanumeric characters or any of the following: _ -"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "keyword": "length",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "value": "0..63"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "description",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "text": "A name that represents the rule."
+                    }
+                  ]
+                },
+                {
+                  "keyword": "leaf",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "access",
+                  "children": [
+                    {
+                      "keyword": "status",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "value": "deprecated"
+                    },
+                    {
+                      "keyword": "description",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "text": "Whether to allow or deny access to the parameters\ndescribed by this rule."
+                    },
+                    {
+                      "keyword": "type",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "enumeration",
+                      "children": [
+                        {
+                          "keyword": "enum",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "allow",
+                          "children": [
+                            {
+                              "keyword": "description",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "text": "Access to the parameter(s) associated with\nthis rule is allowed."
+                            }
+                          ]
+                        },
+                        {
+                          "keyword": "enum",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "deny",
+                          "children": [
+                            {
+                              "keyword": "description",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "text": "Access to the parameter(s) associated with\nthis rule is denied."
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "keyword": "choice",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "parameters",
+                  "children": [
+                    {
+                      "keyword": "status",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "value": "deprecated"
+                    },
+                    {
+                      "keyword": "case",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "commands",
+                      "children": [
+                        {
+                          "keyword": "leaf",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "commands",
+                          "children": [
+                            {
+                              "keyword": "status",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "value": "deprecated"
+                            },
+                            {
+                              "keyword": "description",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "text": "A regular expression that defines a set of\ncommands."
+                            },
+                            {
+                              "keyword": "type",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "string"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "case",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "features",
+                      "children": [
+                        {
+                          "keyword": "leaf",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "features",
+                          "children": [
+                            {
+                              "keyword": "status",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "value": "deprecated"
+                            },
+                            {
+                              "keyword": "description",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "text": "A group of features to which this rule applies."
+                            },
+                            {
+                              "keyword": "type",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "bits",
+                              "children": [
+                                {
+                                  "keyword": "bit",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "configure",
+                                  "children": [
+                                    {
+                                      "keyword": "description",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "text": "The ability to configure the system."
+                                    }
+                                  ]
+                                },
+                                {
+                                  "keyword": "bit",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "show-commands",
+                                  "children": [
+                                    {
+                                      "keyword": "description",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "text": "The ability to execute commands\nthat show system state."
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "keyword": "list",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "name": "router",
+              "children": [
+                {
+                  "keyword": "key",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "value": "name"
+                },
+                {
+                  "keyword": "description",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "text": "User Account Configuration."
+                },
+                {
+                  "keyword": "leaf",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "name",
+                  "children": [
+                    {
+                      "keyword": "type",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "t128ext:name-id",
+                      "children": [
+                        {
+                          "keyword": "typedef",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "name-id",
+                          "children": [
+                            {
+                              "keyword": "description",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "text": "A string identifier which only uses alphanumerics, underscores,\nor dashes, and cannot exceed 63 characters."
+                            },
+                            {
+                              "keyword": "type",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "string",
+                              "children": [
+                                {
+                                  "keyword": "pattern",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "value": "([a-zA-Z0-9]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]",
+                                  "children": [
+                                    {
+                                      "keyword": "error-message",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "value": "Must contain only alphanumeric characters or any of the following: _ -"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "keyword": "length",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "value": "0..63"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "description",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "text": "An identifier for the router to which this user\nconfiguration applies."
+                    }
+                  ]
+                },
+                {
+                  "keyword": "list",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "user",
+                  "children": [
+                    {
+                      "keyword": "key",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "value": "name"
+                    },
+                    {
+                      "keyword": "description",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "text": "A list of users local to this router."
+                    },
+                    {
+                      "keyword": "must",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "condition": "password or authentication-type = 'remote'",
+                      "children": [
+                        {
+                          "keyword": "inspector-rule",
+                          "namespace": "http://128technology.com/t128-internal-extensions",
+                          "nsmap": {
+                            "t128-internal": "http://128technology.com/t128-internal-extensions"
+                          },
+                          "text": "UserPasswordAuthentication"
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "leaf",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "name",
+                      "children": [
+                        {
+                          "keyword": "description",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "text": "The name this user will use to authenticate."
+                        },
+                        {
+                          "keyword": "type",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "unix-name",
+                          "children": [
+                            {
+                              "keyword": "typedef",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "unix-name",
+                              "children": [
+                                {
+                                  "keyword": "type",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "string",
+                                  "children": [
+                                    {
+                                      "keyword": "length",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "value": "1..32"
+                                    },
+                                    {
+                                      "keyword": "pattern",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "value": "[a-z_][a-z0-9_\\-]*",
+                                      "children": [
+                                        {
+                                          "keyword": "error-message",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "value": "Must begin with a lower case character and contain lower case alphanumeric characters or the following: _ -"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "leaf",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "authentication-type",
+                      "children": [
+                        {
+                          "keyword": "type",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "enumeration",
+                          "children": [
+                            {
+                              "keyword": "enum",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "local",
+                              "children": [
+                                {
+                                  "keyword": "description",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "text": "Authenticated on the local system."
+                                }
+                              ]
+                            },
+                            {
+                              "keyword": "enum",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "remote",
+                              "children": [
+                                {
+                                  "keyword": "description",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "text": "Authenticated using a remote system."
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "keyword": "default",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "value": "local"
+                        },
+                        {
+                          "keyword": "description",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "text": "How the user will be authenticated."
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "leaf",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "full-name",
+                      "children": [
+                        {
+                          "keyword": "description",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "text": "The user's full name, for display purposes only."
+                        },
+                        {
+                          "keyword": "type",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "string",
+                          "children": [
+                            {
+                              "keyword": "pattern",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "value": "[^:,]*",
+                              "children": [
+                                {
+                                  "keyword": "error-message",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "value": "Must not contain colons or commas"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "leaf",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "enabled",
+                      "children": [
+                        {
+                          "keyword": "type",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "boolean"
+                        },
+                        {
+                          "keyword": "default",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "value": "true"
+                        },
+                        {
+                          "keyword": "description",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "text": "Enable or disable this user."
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "leaf",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "password",
+                      "children": [
+                        {
+                          "keyword": "type",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "t128ext:password",
+                          "children": [
+                            {
+                              "keyword": "typedef",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "password",
+                              "children": [
+                                {
+                                  "keyword": "description",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "text": "A password type that is hidden from the UI. The internal storage\nformat is dependent on the individual field."
+                                },
+                                {
+                                  "keyword": "type",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "string"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "keyword": "description",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "text": "The password this user will use to authenticate."
+                        },
+                        {
+                          "keyword": "secure",
+                          "namespace": "http://128technology.com/t128-internal-extensions",
+                          "nsmap": {
+                            "t128-internal": "http://128technology.com/t128-internal-extensions"
+                          },
+                          "text": null
+                        },
+                        {
+                          "keyword": "when",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "condition": "../authentication-type = 'local' or count(../authentication-type) = 0"
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "leaf-list",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "role",
+                      "children": [
+                        {
+                          "keyword": "type",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "t128ext:name-id",
+                          "children": [
+                            {
+                              "keyword": "typedef",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "name-id",
+                              "children": [
+                                {
+                                  "keyword": "description",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "text": "A string identifier which only uses alphanumerics, underscores,\nor dashes, and cannot exceed 63 characters."
+                                },
+                                {
+                                  "keyword": "type",
+                                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                  "name": "string",
+                                  "children": [
+                                    {
+                                      "keyword": "pattern",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "value": "([a-zA-Z0-9]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]",
+                                      "children": [
+                                        {
+                                          "keyword": "error-message",
+                                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                          "value": "Must contain only alphanumeric characters or any of the following: _ -"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "keyword": "length",
+                                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                                      "value": "0..63"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "keyword": "description",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "text": "A role identifier that corresponds with the roles within the resource-group in the main config store"
+                        },
+                        {
+                          "keyword": "when",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "condition": "../authentication-type = 'local' or count(../authentication-type) = 0"
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "container",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "pcli-preferences",
+                      "children": [
+                        {
+                          "keyword": "description",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "text": "The user's PCLI settings."
+                        },
+                        {
+                          "keyword": "leaf",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "prompt",
+                          "children": [
+                            {
+                              "keyword": "description",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "text": "The templated format string that appears before the user\nis prompted for a command in the PCLI."
+                            },
+                            {
+                              "keyword": "type",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "string"
+                            },
+                            {
+                              "keyword": "default",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "value": "[top-level?[context?({context}) :]:][uncommitted-config?*:]{user}[address?@{address}:][top-level?: ({location})]{privilege} "
+                            },
+                            {
+                              "keyword": "example",
+                              "namespace": "http://128technology.com/t128-extensions",
+                              "nsmap": {
+                                "t128ext": "http://128technology.com/t128-extensions"
+                              },
+                              "text": "{user}@{router}[path? ({path}):]{privilege} "
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "container",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "web-ui-preferences",
+                      "children": [
+                        {
+                          "keyword": "description",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "text": "The user's web UI settings."
+                        },
+                        {
+                          "keyword": "leaf",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "settings",
+                          "children": [
+                            {
+                              "keyword": "description",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "text": "The JSON string containing web UI settings."
+                            },
+                            {
+                              "keyword": "type",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "name": "string"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "keyword": "leaf",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "valid-since",
+                      "children": [
+                        {
+                          "keyword": "type",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "name": "int64"
+                        },
+                        {
+                          "keyword": "access-mode",
+                          "namespace": "http://128technology.com/t128-internal-extensions",
+                          "nsmap": {
+                            "t128-internal": "http://128technology.com/t128-internal-extensions"
+                          },
+                          "text": "read-only"
+                        },
+                        {
+                          "keyword": "visibility",
+                          "namespace": "http://128technology.com/t128-internal-extensions",
+                          "nsmap": {
+                            "t128-internal": "http://128technology.com/t128-internal-extensions"
+                          },
+                          "text": "hidden"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

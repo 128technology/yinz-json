@@ -1,12 +1,10 @@
-import { Element } from 'libxmljs2';
-
 import applyMixins from '../util/applyMixins';
 import { LeafListInstance, ListChildInstance, ContainerInstance } from '../instance';
 import { LeafListJSON } from '../instance/types';
 import { DerivedType, BuiltInType } from '../types';
-
 import { ListLike, Statement, Typed, Whenable, WithIdentities, WithRegistry, WithUnits } from './mixins';
 import { Model, Visitor } from './';
+import YinElement from '../util/YinElement';
 
 export default class LeafList implements ListLike, Statement, Typed, Whenable, WithIdentities, WithRegistry, WithUnits {
   public addDefinedUnits: WithUnits['addDefinedUnits'];
@@ -43,7 +41,7 @@ export default class LeafList implements ListLike, Statement, Typed, Whenable, W
   public keys: Set<string>;
   public modelType: string;
 
-  constructor(el: Element, parentModel: Model) {
+  constructor(el: YinElement, parentModel: Model) {
     this.modelType = 'leafList';
     this.addStatementProps(el, parentModel);
     this.addIdentityProps(parentModel);
@@ -59,7 +57,7 @@ export default class LeafList implements ListLike, Statement, Typed, Whenable, W
     return this.type instanceof DerivedType ? this.type.builtInType : this.type;
   }
 
-  public buildInstance(config: Element | LeafListJSON, parent: ListChildInstance | ContainerInstance) {
+  public buildInstance(config: LeafListJSON, parent: ListChildInstance | ContainerInstance) {
     return new LeafListInstance(this, config, parent);
   }
 

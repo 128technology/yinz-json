@@ -1,14 +1,13 @@
-import { Element } from 'libxmljs2';
 import * as _ from 'lodash';
 
 import applyMixins from '../util/applyMixins';
 import { LeafInstance, Parent } from '../instance';
 import { LeafJSON } from '../instance/types';
 import { DerivedType, BuiltInType } from '../types';
-
 import { MandatoryParser, DefaultParser } from './parsers';
 import { Statement, Typed, Whenable, WithIdentities, WithRegistry, WithUnits } from './mixins';
 import { List, Model, Visitor } from './';
+import YinElement from '../util/YinElement';
 
 export default class Leaf implements Statement, Typed, Whenable, WithIdentities, WithRegistry, WithUnits {
   public addDefinedUnits: WithUnits['addDefinedUnits'];
@@ -42,7 +41,7 @@ export default class Leaf implements Statement, Typed, Whenable, WithIdentities,
   public mandatory: boolean;
   public modelType: string;
 
-  constructor(el: Element, parentModel: Model) {
+  constructor(el: YinElement, parentModel: Model) {
     this.modelType = 'leaf';
     this.addStatementProps(el, parentModel);
     this.addIdentityProps(parentModel);
@@ -68,7 +67,7 @@ export default class Leaf implements Statement, Typed, Whenable, WithIdentities,
     return this.mandatory || this.isKey;
   }
 
-  public buildInstance(config: Element | LeafJSON, parent: Parent) {
+  public buildInstance(config: LeafJSON, parent: Parent) {
     return new LeafInstance(this, config, parent);
   }
 
@@ -80,7 +79,7 @@ export default class Leaf implements Statement, Typed, Whenable, WithIdentities,
     visitor(this);
   }
 
-  private parseDefault(el: Element) {
+  private parseDefault(el: YinElement) {
     const leafDefault = DefaultParser.parse(el);
 
     if (!_.isNil(leafDefault)) {

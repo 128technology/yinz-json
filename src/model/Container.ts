@@ -1,14 +1,13 @@
-import { Element } from 'libxmljs2';
 import * as _ from 'lodash';
 
 import applyMixins from '../util/applyMixins';
 import { ContainerInstance, Parent } from '../instance';
 import { ContainerJSON } from '../instance/types';
-
 import { PresenceParser } from './parsers';
 import { Statement, Whenable, WithRegistry } from './mixins';
 import { buildChildren } from './util/childBuilder';
 import { Model, Choice, Identities, ModelRegistry, Visitor } from './';
+import YinElement from '../util/YinElement';
 
 export default class Container implements Statement, Whenable, WithRegistry {
   public addStatementProps: Statement['addStatementProps'];
@@ -37,7 +36,12 @@ export default class Container implements Statement, Whenable, WithRegistry {
   public modelType: string;
   public presence: string | null;
 
-  constructor(el: Element, parentModel?: Model, public identities?: Identities, public modelRegistry?: ModelRegistry) {
+  constructor(
+    el: YinElement,
+    parentModel?: Model,
+    public identities?: Identities,
+    public modelRegistry?: ModelRegistry
+  ) {
     this.modelType = 'container';
     this.addStatementProps(el, parentModel || null);
     this.addWhenableProps(el);
@@ -80,7 +84,7 @@ export default class Container implements Statement, Whenable, WithRegistry {
     return this.children;
   }
 
-  public buildInstance(config: Element | ContainerJSON, parent: Parent | null) {
+  public buildInstance(config: ContainerJSON, parent: Parent | null) {
     return new ContainerInstance(this, config, parent);
   }
 

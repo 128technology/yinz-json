@@ -3,14 +3,14 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as sinon from 'sinon';
 
-import xmlUtil from '../../__tests__/xmlUtil';
+import YinElement from '../../util/YinElement';
 import { OrderedBy } from '../../enum';
 import { LeafList, Container } from '../';
 import { ContainerInstance } from '../../instance';
 
 describe('Leaf List Model', () => {
-  const modelText = fs.readFileSync(path.join(__dirname, './data/testLeafList.xml'), 'utf-8');
-  const model = xmlUtil.toElement(modelText);
+  const modelText = fs.readFileSync(path.join(__dirname, './data/testLeafList.json'), 'utf-8');
+  const model = new YinElement(JSON.parse(modelText), null);
 
   it('should get initalized', () => {
     const leafList = new LeafList(model, {} as Container);
@@ -19,13 +19,9 @@ describe('Leaf List Model', () => {
   });
 
   it('should build an instance of itself', () => {
-    const config = xmlUtil.toElement(`
-      <if:vector xmlns:if="http://128technology.com/t128/config/interface-config">foo</if:vector>
-    `);
-
     const leafList = new LeafList(model, {} as Container);
 
-    const instance = leafList.buildInstance(config, {} as ContainerInstance);
+    const instance = leafList.buildInstance(['foo'], {} as ContainerInstance);
     expect(instance.model).to.equal(leafList);
   });
 
@@ -62,15 +58,15 @@ describe('Leaf List Model', () => {
   });
 
   it('should parse derived types', () => {
-    const testXML = fs.readFileSync(path.join(__dirname, './data/testLeafListDerivedType.xml'), 'utf-8');
-    const testModel = xmlUtil.toElement(testXML);
+    const testJSON = fs.readFileSync(path.join(__dirname, './data/testLeafListDerivedType.json'), 'utf-8');
+    const testModel = new YinElement(JSON.parse(testJSON), null);
     const leafList = new LeafList(testModel, {} as Container);
     const expectedType = {
       baseType: {
         otherProps: new Map(),
         type: 'union',
         types: [
-          { type: 'uint32', range: { ranges: [{ min: 0, max: 999999999 }] }, otherProps: new Map() },
+          { type: 'uint32', range: { ranges: [{ min: 1, max: 999999 }] }, otherProps: new Map() },
           {
             members: new Map([
               [
@@ -92,8 +88,8 @@ describe('Leaf List Model', () => {
         ]
       },
       default: 'ordered',
-      description: 'A type for defining priorities for vector use',
-      type: 't128ext:vector-priority'
+      description: 'A type for defining priorities for vector use.',
+      type: 'vector-priority'
     };
 
     expect(leafList.type).to.deep.equal(expectedType);

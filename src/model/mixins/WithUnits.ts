@@ -1,5 +1,4 @@
-import { Element } from 'libxmljs2';
-
+import YinElement from '../../util/YinElement';
 import { Type, DerivedType } from '../../types';
 import { UnitsParser } from '../parsers';
 
@@ -7,7 +6,7 @@ export default class WithUnits {
   public definedUnits: string | null;
   public type: Type;
 
-  public addDefinedUnits(el: Element) {
+  public addDefinedUnits(el: YinElement) {
     this.definedUnits = UnitsParser.parse(el);
   }
 

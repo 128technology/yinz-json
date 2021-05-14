@@ -1,17 +1,27 @@
 import { expect } from 'chai';
 
-import xmlUtil, { yinNS } from '../../__tests__/xmlUtil';
+import YinElement from '../../util/YinElement';
 import { BinaryType, Range } from '../';
 
 describe('Binary Type', () => {
-  const typeEl = xmlUtil.toElement(`
-    <type ${yinNS} name="binary">
-      <yin:length value="0..63"/>
-    </type>
-  `);
+  const typeEl = new YinElement(
+    {
+      keyword: 'type',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'binary',
+      children: [
+        {
+          keyword: 'length',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          value: '0..63'
+        }
+      ]
+    },
+    null
+  );
 
   it('should match a binary type', () => {
-    const name = typeEl.attr('name')!.value();
+    const name = typeEl.name!;
 
     expect(BinaryType.matches(name)).to.equal(true);
   });

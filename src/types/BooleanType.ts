@@ -1,5 +1,4 @@
-import { Element } from 'libxmljs2';
-
+import YinElement from '../util/YinElement';
 import applyMixins from '../util/applyMixins';
 import BuiltInType, { enumValueOf } from '../enum/BuiltInType';
 import SerializationType, { convert, SerializationReturnType } from '../enum/SerializationType';
@@ -19,7 +18,7 @@ export default class BooleanType implements Named, WithCustomProperties {
   public addCustomProperties: WithCustomProperties['addCustomProperties'];
   public otherProps: WithCustomProperties['otherProps'];
 
-  constructor(el: Element) {
+  constructor(el: YinElement) {
     this.addNamedProps(el);
     this.addCustomProperties(el);
   }

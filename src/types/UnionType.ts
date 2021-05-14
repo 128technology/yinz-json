@@ -1,10 +1,7 @@
-import { Element } from 'libxmljs2';
-
+import YinElement from '../util/YinElement';
 import applyMixins from '../util/applyMixins';
 import BuiltInType, { enumValueOf } from '../enum/BuiltInType';
-import ns from '../util/ns';
 import { Identities } from '../model';
-import { isElement } from '../util/xmlUtil';
 
 import TypeParser from './util/TypeParser';
 import { Named, RequiredField, StringSerialize, Traversable, WithCustomProperties } from './mixins';
@@ -28,17 +25,14 @@ export default class UnionType implements Named, RequiredField, StringSerialize,
   public addCustomProperties: WithCustomProperties['addCustomProperties'];
   public otherProps: WithCustomProperties['otherProps'];
 
-  constructor(el: Element, identities: Identities) {
+  constructor(el: YinElement, identities: Identities) {
     this.addNamedProps(el);
     this.validateRequiredFields(el, ['type'], this.type);
     this.parseType(el, identities);
   }
 
-  public parseType(el: Element, identities: Identities) {
-    this.types = el
-      .find('./yin:type', ns)
-      .filter(isElement)
-      .map(typeEl => TypeParser.parse(typeEl, identities));
+  public parseType(el: YinElement, identities: Identities) {
+    this.types = el.findChildren('type').map(typeEl => TypeParser.parse(typeEl, identities));
     this.addCustomProperties(el, ['type']);
   }
 

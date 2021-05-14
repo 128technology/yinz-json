@@ -1,14 +1,13 @@
-import { Element } from 'libxmljs2';
-
 import applyMixins from '../util/applyMixins';
 import { isVisible } from '../enum/Visibility';
 import { Visibility, Status } from '../enum';
 import { EmptyType } from '../types';
 import { Whenable } from './mixins';
 import { IWhen } from './mixins/Whenable';
-import { buildChildren, buildChild } from './util/childBuilder';
+import { buildChildren } from './util/childBuilder';
 import { Model, Choice, Leaf, Visitor } from './';
 import { StatusParser, VisibilityParser } from './parsers';
+import YinElement from '../util/YinElement';
 
 export default class Case implements Whenable {
   public name: string;
@@ -19,21 +18,16 @@ export default class Case implements Whenable {
   public when: IWhen[];
   public visibility: Visibility | null;
   public hasWhenAncestorOrSelf: boolean;
+  public addWhenableProps: Whenable['addWhenableProps'];
 
-  public addWhenableProps: (el: Element) => void;
-
-  constructor(el: Element, public parentChoice: Choice, parentModel: Model) {
+  constructor(el: YinElement, public parentChoice: Choice, parentModel: Model) {
     this.modelType = 'case';
-    this.name = el.attr('name')!.value();
+    this.name = el.name!;
     this.status = StatusParser.parse(el);
     this.visibility = VisibilityParser.parse(el);
     this.addWhenableProps(el);
 
-    if (el.name() === 'case') {
-      this.buildChildrenFromCase(el, parentModel);
-    } else {
-      this.buildChildrenFromImplicitCase(el, parentModel);
-    }
+    this.buildChildrenFromCase(el, parentModel);
 
     [...this.children.values()].forEach(child => {
       child.choiceCase = this;
@@ -73,20 +67,10 @@ export default class Case implements Whenable {
     }
   }
 
-  private buildChildrenFromCase(el: Element, parentModel: Model) {
+  private buildChildrenFromCase(el: YinElement, parentModel: Model) {
     // TODO: Handle another choice nested in a case.
     const { children } = buildChildren(el, parentModel);
     this.children = children;
-  }
-
-  private buildChildrenFromImplicitCase(el: Element, parentModel: Model) {
-    const child = buildChild(el, parentModel);
-
-    if (child instanceof Choice) {
-      this.children = child.children;
-    } else if (child) {
-      this.children = new Map([[child.name, child]]);
-    }
   }
 }
 

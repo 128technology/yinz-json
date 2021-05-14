@@ -1,9 +1,6 @@
-import { Element } from 'libxmljs2';
-
+import YinElement from '../util/YinElement';
 import applyMixins from '../util/applyMixins';
 import BuiltInType, { enumValueOf } from '../enum/BuiltInType';
-import ns from '../util/ns';
-import { isElement } from '../util/xmlUtil';
 
 import EnumerationMemberType from './EnumerationMemberType';
 import { Named, RequiredField, StringSerialize, WithCustomProperties } from './mixins';
@@ -31,18 +28,17 @@ export default class EnumerationType implements Named, RequiredField, StringSeri
       .map(([key]) => key);
   }
 
-  constructor(el: Element) {
+  constructor(el: YinElement) {
     this.addNamedProps(el);
     this.validateRequiredFields(el, ['enum'], this.type);
     this.parseType(el);
   }
 
-  public parseType(el: Element) {
+  public parseType(el: YinElement) {
     this.members = el
-      .find('./yin:enum', ns)
-      .filter(isElement)
+      .findChildren('enum')
       .reduce(
-        (acc, enumEl) => acc.set(enumEl.attr('name')!.value(), new EnumerationMemberType(enumEl)),
+        (acc, enumEl) => acc.set(enumEl.name!, new EnumerationMemberType(enumEl)),
         new Map<string, EnumerationMemberType>()
       );
     this.addCustomProperties(el);

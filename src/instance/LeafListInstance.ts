@@ -1,16 +1,13 @@
-import { Element } from 'libxmljs2';
 import * as _ from 'lodash';
 
 import applyMixins from '../util/applyMixins';
 import { LeafList } from '../model';
-import { defineNamespaceOnRoot } from '../util/xmlUtil';
 
 import { Searchable } from './mixins';
 import {
   LeafListJSON,
   NoMatchHandler,
   Parent,
-  XMLSerializationOptions,
   Visitor,
   LeafJSON,
   LeafListJSONValue,
@@ -31,13 +28,9 @@ export default class LeafListInstance implements Searchable {
 
   private children: LeafListChildInstance[] = [];
 
-  constructor(public model: LeafList, config: Element | LeafListJSON, public parent: Parent) {
-    if (config instanceof Element) {
-      this.add(config);
-    } else {
-      for (const child of config) {
-        this.add(child);
-      }
+  constructor(public model: LeafList, config: LeafListJSON, public parent: Parent) {
+    for (const child of config) {
+      this.add(child);
     }
   }
 
@@ -53,7 +46,7 @@ export default class LeafListInstance implements Searchable {
     return this.children.map(child => child.getRawValue(authorized));
   }
 
-  public add(config: Element | LeafJSON) {
+  public add(config: LeafJSON) {
     this.children.push(new LeafListChildInstance(this.model, config, this));
   }
 
@@ -81,14 +74,6 @@ export default class LeafListInstance implements Searchable {
     options: MapToJSONOptions = { overrideOnKeyMap: false }
   ) {
     return map(this);
-  }
-
-  public toXML(parent: Element, options: XMLSerializationOptions = { includeAttributes: false }) {
-    const [prefix, href] = this.model.ns;
-    defineNamespaceOnRoot(parent, prefix, href);
-    this.children.forEach(child => {
-      child.toXML(parent, options);
-    });
   }
 
   public getInstance(path: Path, noMatchHandler: NoMatchHandler = this.handleNoMatch) {

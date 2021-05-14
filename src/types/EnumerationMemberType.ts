@@ -1,9 +1,6 @@
-import { Element } from 'libxmljs2';
-
-import ns from '../util/ns';
+import YinElement from '../util/YinElement';
 import { Status } from '../enum';
 import * as Parsers from '../model/parsers';
-import { assertElement } from '../util/xmlUtil';
 
 export default class EnumerationMemberType {
   public readonly description: string | null;
@@ -11,7 +8,7 @@ export default class EnumerationMemberType {
   public readonly reference: string | null;
   public readonly status: Status = Status.current;
 
-  constructor(enumEl: Element) {
+  constructor(enumEl: YinElement) {
     this.status = Parsers.StatusParser.parse(enumEl) || Status.current;
     this.description = Parsers.DescriptionParser.parse(enumEl);
     this.reference = Parsers.ReferenceParser.parse(enumEl);
@@ -20,10 +17,8 @@ export default class EnumerationMemberType {
 
   public isObsolete = () => this.status === Status.obsolete;
 
-  public parseValue(enumEl: Element) {
-    const valueEl = enumEl.get('./yin:value', ns);
-    return valueEl && assertElement(valueEl).attr('value')
-      ? parseInt(assertElement(valueEl).attr('value')!.value(), 10)
-      : null;
+  public parseValue(enumEl: YinElement) {
+    const valueEl = enumEl.findChild('value');
+    return valueEl && valueEl.value ? parseInt(valueEl.value, 10) : null;
   }
 }

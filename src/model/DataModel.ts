@@ -1,13 +1,9 @@
-import { Element } from 'libxmljs2';
-
-import ns from '../util/ns';
-import { assertElement } from '../util/xmlUtil';
-
 import { NamespacesParser } from './parsers';
 import { Container, Model, Choice, Identities, ModelRegistry, Visitor } from './';
+import YinElement, { RawYinElement } from '../util/YinElement';
 
-function parseConsolidatedModel(modelXML: Element, identities: Identities, modelRegistry: ModelRegistry) {
-  const rootContainer = new Container(modelXML, undefined, identities, modelRegistry);
+function parseConsolidatedModel(model: YinElement, identities: Identities, modelRegistry: ModelRegistry) {
+  const rootContainer = new Container(model, undefined, identities, modelRegistry);
 
   const root = new Map();
   root.set(rootContainer.name, rootContainer);
@@ -16,8 +12,8 @@ function parseConsolidatedModel(modelXML: Element, identities: Identities, model
 }
 
 export interface IOptions {
-  modelElement: Element;
-  rootPath: string;
+  modelElement: RawYinElement;
+  getRoot: (document: YinElement) => YinElement;
 }
 
 export default class DataModel {
@@ -27,15 +23,15 @@ export default class DataModel {
   public modelRegistry: ModelRegistry;
 
   constructor(options: IOptions) {
-    const { modelElement, rootPath } = options;
+    const { modelElement, getRoot } = options;
+    const modelYinElement = new YinElement(modelElement, null);
+    const rootYinElement = getRoot(modelYinElement);
 
-    const rootEl = rootPath ? assertElement(modelElement.get(rootPath, ns)!) : modelElement;
-
-    this.identities = new Identities(modelElement);
-    this.namespaces = NamespacesParser.parse(modelElement);
+    this.identities = new Identities(modelYinElement);
+    this.namespaces = NamespacesParser.parse(modelYinElement);
     this.modelRegistry = new ModelRegistry();
 
-    this.root = parseConsolidatedModel(rootEl, this.identities, this.modelRegistry);
+    this.root = parseConsolidatedModel(rootYinElement, this.identities, this.modelRegistry);
   }
 
   public getModelForPath(path: string): Model | Choice {

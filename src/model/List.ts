@@ -1,20 +1,17 @@
-import { Element } from 'libxmljs2';
 import * as _ from 'lodash';
 
 import applyMixins from '../util/applyMixins';
-import ns from '../util/ns';
 import { ListInstance, ListChildInstance, ContainerInstance } from '../instance';
 import { ListJSON } from '../instance/types';
-import { assertElement } from '../util/xmlUtil';
-
 import { Statement, ListLike, Whenable, WithRegistry } from './mixins';
 import { buildChildren } from './util/childBuilder';
 import { Model, Choice, Identities, Visitor } from './';
 import { UniqueParser } from './parsers';
+import YinElement from '../util/YinElement';
 
 export default class List implements ListLike, Statement, Whenable, WithRegistry {
-  private static getKeys(el: Element) {
-    const keyString = assertElement(el.get('./yin:key', ns)!).attr('value')!.value();
+  private static getKeys(el: YinElement) {
+    const keyString = el.findChild('key')!.value!;
     return keyString.split(' ');
   }
 
@@ -50,7 +47,7 @@ export default class List implements ListLike, Statement, Whenable, WithRegistry
   public unique: Map<string, string[]>;
   public keyList: string[];
 
-  constructor(el: Element, parentModel: Model, public identities?: Identities) {
+  constructor(el: YinElement, parentModel: Model, public identities?: Identities) {
     this.modelType = 'list';
     this.addStatementProps(el, parentModel);
 
@@ -72,7 +69,7 @@ export default class List implements ListLike, Statement, Whenable, WithRegistry
     this.register(parentModel, this);
   }
 
-  public parseUnique(el: Element) {
+  public parseUnique(el: YinElement) {
     this.unique = UniqueParser.parse(el);
   }
 
@@ -92,7 +89,7 @@ export default class List implements ListLike, Statement, Whenable, WithRegistry
     return [...this.keys.values()].map(key => this.children.get(key)!);
   }
 
-  public buildInstance(config: Element | ListJSON, parent: ListChildInstance | ContainerInstance) {
+  public buildInstance(config: ListJSON, parent: ListChildInstance | ContainerInstance) {
     return new ListInstance(this, config, parent);
   }
 

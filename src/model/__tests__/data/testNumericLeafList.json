@@ -1,0 +1,14 @@
+{
+  "keyword": "leaf-list",
+  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+  "name": "numbers",
+  "module-prefix": "test",
+  "nsmap": { "test": "http://foo.bar" },
+  "children": [
+    {
+      "keyword": "type",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "int32"
+    }
+  ]
+}

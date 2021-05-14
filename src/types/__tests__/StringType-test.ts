@@ -1,20 +1,42 @@
 import { expect } from 'chai';
 
-import xmlUtil, { yinNS } from '../../__tests__/xmlUtil';
+import YinElement from '../../util/YinElement';
 import { StringType, Range } from '../';
 
 describe('String Type', () => {
-  const typeEl = xmlUtil.toElement(`
-    <type ${yinNS} name="string">
-      <yin:length value="0..253" />
-      <yin:pattern value="*" />
-      <foo>bar</foo>
-      <moo/>
-    </type>
-  `);
+  const typeEl = new YinElement(
+    {
+      keyword: 'type',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'string',
+      children: [
+        {
+          keyword: 'pattern',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          value: '*'
+        },
+        {
+          keyword: 'length',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          value: '0..253'
+        },
+        {
+          keyword: 'foo',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          text: 'bar'
+        },
+        {
+          keyword: 'moo',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          text: null
+        }
+      ]
+    },
+    null
+  );
 
   it('should match a string type', () => {
-    const name = typeEl.attr('name')!.value();
+    const name = typeEl.name!;
 
     expect(StringType.matches(name)).to.equal(true);
   });

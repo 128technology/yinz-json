@@ -1,0 +1,57 @@
+{
+  "keyword": "leaf",
+  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+  "name": "test",
+  "module-prefix": "test",
+  "nsmap": { "test": "http://foo.bar" },
+  "children": [
+    {
+      "keyword": "type",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "t128ext:name-id",
+      "children": [
+        {
+          "keyword": "typedef",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "name-id",
+          "children": [
+            {
+              "keyword": "default",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "value": "moocow"
+            },
+            {
+              "keyword": "description",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "text": "A string identifier which only uses alphanumerics, underscores,\nor dashes, and cannot exceed 63 characters."
+            },
+            {
+              "keyword": "type",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "name": "string",
+              "children": [
+                {
+                  "keyword": "pattern",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "value": "([a-zA-Z0-9]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]",
+                  "children": [
+                    {
+                      "keyword": "error-message",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "value": "Must contain only alphanumeric characters or any of the following: _ -"
+                    }
+                  ]
+                },
+                {
+                  "keyword": "length",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "value": "0..63"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

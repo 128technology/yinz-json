@@ -1,5 +1,4 @@
 import * as _ from 'lodash';
-import { Element } from 'libxmljs2';
 
 import applyMixins from '../util/applyMixins';
 import { List } from '../model';
@@ -11,7 +10,6 @@ import {
   NoMatchHandler,
   Parent,
   ShouldSkip,
-  XMLSerializationOptions,
   ListChildJSON,
   ListJSONValue,
   Authorized,
@@ -33,13 +31,9 @@ export default class ListInstance implements Searchable {
 
   private children: Map<Key, ListChildInstance> = new Map();
 
-  constructor(public model: List, config: Element | ListJSON, public parent: Parent) {
-    if (config instanceof Element) {
-      this.add(config);
-    } else {
-      for (const child of config) {
-        this.add(child);
-      }
+  constructor(public model: List, config: ListJSON, public parent: Parent) {
+    for (const child of config) {
+      this.add(child);
     }
   }
 
@@ -55,7 +49,7 @@ export default class ListInstance implements Searchable {
     return children;
   }
 
-  public add(config: Element | ListChildJSON) {
+  public add(config: ListChildJSON) {
     const newChild = new ListChildInstance(this.model, config, this.parent, this);
 
     this.children.set(newChild.keyString, newChild);
@@ -106,12 +100,6 @@ export default class ListInstance implements Searchable {
           [this.model.getName()]: value
         }
       : {};
-  }
-
-  public toXML(parent: Element, options: XMLSerializationOptions = { includeAttributes: false }) {
-    Array.from(this.children.values()).forEach(child => {
-      child.toXML(parent, options);
-    });
   }
 
   public getInstance(path: Path, noMatchHandler: NoMatchHandler = this.handleNoMatch) {

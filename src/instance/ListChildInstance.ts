@@ -1,9 +1,7 @@
 import * as _ from 'lodash';
-import { Element } from 'libxmljs2';
 
 import applyMixins from '../util/applyMixins';
 import { List, Leaf, Container, LeafList } from '../model';
-import { isElement, defineNamespaceOnRoot } from '../util/xmlUtil';
 
 import { Searchable, WithAttributes } from './mixins';
 import {
@@ -11,7 +9,6 @@ import {
   ListChildJSON,
   LeafJSON,
   LeafListJSON,
-  XMLSerializationOptions,
   Visitor,
   NoMatchHandler,
   Parent,
@@ -37,11 +34,9 @@ export default class ListChildInstance implements Searchable, WithAttributes {
   public activeChoices: Map<ChoiceName, SelectedCaseName> = new Map();
 
   public customAttributes: WithAttributes['customAttributes'];
-  public parseAttributesFromXML: WithAttributes['parseAttributesFromXML'];
   public parseAttributesFromJSON: WithAttributes['parseAttributesFromJSON'];
   public hasAttributes: WithAttributes['hasAttributes'];
   public rawAttributes: WithAttributes['rawAttributes'];
-  public addAttributes: WithAttributes['addAttributes'];
   public getValueFromJSON: WithAttributes['getValueFromJSON'];
   public addOperation: WithAttributes['addOperation'];
   public addPosition: WithAttributes['addPosition'];
@@ -54,20 +49,9 @@ export default class ListChildInstance implements Searchable, WithAttributes {
   private instance: Map<ChildName, Instance> = new Map();
   private config?: Element;
 
-  constructor(
-    public model: List,
-    config: Element | ListChildJSON,
-    public parent: Parent,
-    public listParent: ListInstance
-  ) {
-    if (config instanceof Element) {
-      this.config = config;
-      this.injestConfigXML(config);
-      this.parseAttributesFromXML(config);
-    } else {
-      this.injestConfigJSON(config);
-      this.parseAttributesFromJSON(config);
-    }
+  constructor(public model: List, config: ListChildJSON, public parent: Parent, public listParent: ListInstance) {
+    this.injestConfigJSON(config);
+    this.parseAttributesFromJSON(config);
   }
 
   public getConfig(authorized: Authorized) {
@@ -166,33 +150,6 @@ export default class ListChildInstance implements Searchable, WithAttributes {
     }
   }
 
-  public injestConfigXML(config: Element) {
-    config
-      .childNodes()
-      .filter(isElement)
-      .forEach(el => {
-        const localName = el.name();
-
-        if (this.model.hasChild(localName)) {
-          if (this.instance.has(localName)) {
-            const child = this.instance.get(localName);
-
-            if (child instanceof ListInstance || child instanceof LeafListInstance) {
-              child.add(el);
-            }
-          } else {
-            const childModel = this.model.getChild(localName)!;
-
-            if (childModel.choiceCase) {
-              this.activeChoices.set(childModel.choiceCase.parentChoice.name, childModel.choiceCase.name);
-            }
-
-            this.instance.set(localName, childModel.buildInstance(el, this));
-          }
-        }
-      });
-  }
-
   public toJSON(
     authorized: Authorized,
     camelCase = false,
@@ -238,21 +195,6 @@ export default class ListChildInstance implements Searchable, WithAttributes {
     } else {
       return _.size(inner) > 0 ? [Object.assign(this.getKeys(authorized), inner)] : null;
     }
-  }
-
-  public toXML(parent: Element, options: XMLSerializationOptions = { includeAttributes: false }) {
-    const [prefix, href] = this.model.ns;
-    defineNamespaceOnRoot(parent, prefix, href);
-    const outer = parent.node(this.model.name);
-    outer.namespace(prefix);
-
-    if (options.includeAttributes && this.hasAttributes) {
-      this.addAttributes(outer);
-    }
-
-    Array.from(this.instance.values()).forEach(child => {
-      child.toXML(outer, options);
-    });
   }
 
   public getInstance(

@@ -3,14 +3,14 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as sinon from 'sinon';
 
-import xmlUtil from '../../__tests__/xmlUtil';
+import YinElement from '../../util/YinElement';
 import { OrderedBy } from '../../enum';
 import { List, Leaf, LeafList, Container } from '../';
 import { ContainerInstance } from '../../instance';
 
 describe('List Model', () => {
-  const modelText = fs.readFileSync(path.join(__dirname, './data/testList.xml'), 'utf-8');
-  const model = xmlUtil.toElement(modelText);
+  const modelText = fs.readFileSync(path.join(__dirname, './data/testList.json'), 'utf-8');
+  const model = new YinElement(JSON.parse(modelText), null);
 
   it('should get initalized', () => {
     const list = new List(model, {} as Container);
@@ -27,15 +27,9 @@ describe('List Model', () => {
   });
 
   it('should build an instance of itself', () => {
-    const config = xmlUtil.toElement(`
-      <authy:peer xmlns:authy="http://128technology.com/t128/config/authority-config" >
-        <authy:name>foo</authy:name>
-      </authy:peer>
-    `);
-
     const list = new List(model, {} as Container);
 
-    const instance = list.buildInstance(config, {} as ContainerInstance);
+    const instance = list.buildInstance([{ name: 'foo' }], {} as ContainerInstance);
     expect(instance.model).to.equal(list);
   });
 
@@ -72,8 +66,8 @@ describe('List Model', () => {
   });
 
   it('should handle multiple keys', () => {
-    const modelTextMK = fs.readFileSync(path.join(__dirname, './data/testListMultipleKeys.xml'), 'utf-8');
-    const modelMK = xmlUtil.toElement(modelTextMK);
+    const modelTextMK = fs.readFileSync(path.join(__dirname, './data/testListMultipleKeys.json'), 'utf-8');
+    const modelMK = new YinElement(JSON.parse(modelTextMK), null);
 
     const list = new List(modelMK, {} as Container);
     const keys = [...list.keys];

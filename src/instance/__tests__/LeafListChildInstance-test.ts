@@ -2,37 +2,31 @@ import { expect } from 'chai';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import xmlUtil from '../../__tests__/xmlUtil';
+import YinElement from '../../util/YinElement';
 import { LeafList, Container } from '../../model';
 
 import { LeafListChildInstance, LeafListInstance } from '../';
 
 describe('Leaf List Child Instance', () => {
-  function buildLeafList(modelXmlPath: string) {
-    const modelText = fs.readFileSync(path.join(__dirname, modelXmlPath), 'utf-8');
-    const model = xmlUtil.toElement(modelText);
+  function buildLeafList(modelPath: string) {
+    const modelText = fs.readFileSync(path.join(__dirname, modelPath), 'utf-8');
+    const model = new YinElement(JSON.parse(modelText), null);
     return new LeafList(model, {} as Container);
   }
-  const leafListModel = buildLeafList('../../model/__tests__/data/testLeafList.xml');
-  const numericLeafListModel = buildLeafList('../../model/__tests__/data/testNumericLeafList.xml');
+  const leafListModel = buildLeafList('../../model/__tests__/data/testLeafList.json');
+  const numericLeafListModel = buildLeafList('../../model/__tests__/data/testNumericLeafList.json');
 
-  const mockConfig = `
-    <if:vector xmlns:if="http://128technology.com/t128/config/interface-config">foo</if:vector>
-  `;
-  const mockConfigXML = xmlUtil.toElement(mockConfig);
+  const mockConfig = 'foo';
 
   it('should get initialized with a value', () => {
-    const instance = new LeafListChildInstance(leafListModel, mockConfigXML, {} as LeafListInstance);
+    const instance = new LeafListChildInstance(leafListModel, mockConfig, {} as LeafListInstance);
 
     expect(instance.value).to.equal('foo');
   });
 
   it('should get a value with the converted type', () => {
-    const mockNumericConfig = `
-    <if:numbers xmlns:if="http://128technology.com/t128/config/interface-config">5</if:numbers>
-  `;
-    const mockNumericConfigXML = xmlUtil.toElement(mockNumericConfig);
-    const instance = new LeafListChildInstance(numericLeafListModel, mockNumericConfigXML, {} as LeafListInstance);
+    const mockNumericConfig = '5';
+    const instance = new LeafListChildInstance(numericLeafListModel, mockNumericConfig, {} as LeafListInstance);
 
     expect(instance.value).to.equal(5);
   });
