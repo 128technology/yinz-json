@@ -2,12 +2,11 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { expect } from 'chai';
 
-import xmlUtil from '../../__tests__/xmlUtil';
 import DataModel, { Choice, Leaf, Container } from '../';
 
 export const configModel = new DataModel({
-  modelElement: xmlUtil.toElement(fs.readFileSync(path.join(__dirname, './data/consolidatedT128Model.xml'), 'utf-8')),
-  rootPath: '//yin:container[@name="authority"]'
+  modelElement: JSON.parse(fs.readFileSync(path.join(__dirname, './data/consolidatedT128Model.json'), 'utf-8')),
+  getRoot: doc => doc.children!.find(x => x.name === 'config')!.children!.find(x => x.name === 'authority')!
 });
 
 describe('Data Model', () => {
@@ -20,33 +19,19 @@ describe('Data Model', () => {
       expect(configModel.namespaces).to.deep.equal({
         al: 'http://128technology.com/t128/analytics',
         alarm: 'http://128technology.com/t128/config/alarm-config',
-        as: 'http://128technology.com/t128/state/asset-state',
         authy: 'http://128technology.com/t128/config/authority-config',
-        bc: 'http://128technology.com/t128/state/backup-config',
         bgp: 'http://128technology.com/t128/config/bgp-config',
-        conn: 'http://128technology.com/t128/state/connection-state',
-        dis: 'http://128technology.com/t128/state/device-interface-state',
-        ec: 'http://128technology.com/t128/state/export-config',
-        er: 'http://128technology.com/t128/event-records',
+        gen: 'http://128technology.com/t128/config/generated-config',
         if: 'http://128technology.com/t128/config/interface-config',
-        is: 'http://128technology.com/t128/state/interface-state',
-        ldap: 'http://128technology.com/t128/state/ldap-state',
-        nis: 'http://128technology.com/t128/state/network-interface-state',
-        ns: 'http://128technology.com/t128/state/node-state',
+        ospf: 'http://128technology.com/t128/config/ospf-config',
         pf: 'http://128technology.com/t128/packet-forwarding',
-        pps: 'http://128technology.com/t128/state/peer-path-state',
-        ps: 'http://128technology.com/t128/state/platform-state',
         rp: 'http://128technology.com/t128/config/routing-policy-config',
-        rs: 'http://128technology.com/t128/state/router-state',
         rt: 'http://128technology.com/t128/config/routing-config',
-        sks: 'http://128technology.com/t128/state/security-key-state',
-        ss: 'http://128technology.com/t128/state/system-state',
         svc: 'http://128technology.com/t128/config/service-config',
         sys: 'http://128technology.com/t128/config/system-config',
         'sys-svcs': 'http://128technology.com/t128/config/system-config/services',
-        system: 'http://128technology.com/t128/state/system',
         t128: 'http://128technology.com/t128',
-        tunn: 'http://128technology.com/t128/state/tunnel-state'
+        't128-access': 'http://128technology.com/t128/access-control'
       });
     });
 
@@ -71,15 +56,13 @@ describe('Data Model', () => {
   });
 
   describe('Stats Model', () => {
-    const modelText = fs.readFileSync(path.join(__dirname, './data/consolidatedStatsModel.xml'), 'utf-8');
-    const modelElement = xmlUtil.toElement(modelText);
+    const modelText = fs.readFileSync(path.join(__dirname, './data/consolidatedStatsModel.json'), 'utf-8');
+    const modelElement = JSON.parse(modelText);
 
-    const options = {
+    const dataModel = new DataModel({
       modelElement,
-      rootPath: '//yin:container[@name="stats"]'
-    };
-
-    const dataModel = new DataModel(options);
+      getRoot: doc => doc.children!.find(x => x.name === 'stats')!
+    });
 
     it('should parse a data model', () => {
       expect(dataModel.root.size).to.equal(1);

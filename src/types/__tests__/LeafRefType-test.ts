@@ -1,25 +1,46 @@
 import { expect } from 'chai';
 
-import xmlUtil, { yinNS } from '../../__tests__/xmlUtil';
+import YinElement from '../../util/YinElement';
 import { LeafRefType } from '../';
 import { Identities } from '../../model';
 
 describe('LeafRef Type', () => {
-  const typeEl = xmlUtil.toElement(`
-    <type ${yinNS} name="leafref">
-      <yin:path value="/t128:config/authy:authority/authy:security/authy:name" />
-      <yin:type name="int32" />
-    </type>
-  `);
+  const typeEl = new YinElement(
+    {
+      keyword: 'type',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'leafref',
+      children: [
+        {
+          keyword: 'path',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          value: '/t128:config/authy:authority/authy:security/authy:name'
+        },
+        {
+          keyword: 'type',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          name: 'int32'
+        }
+      ]
+    },
+    null
+  );
 
   it('should match a leafref type', () => {
-    const name = typeEl.attr('name')!.value();
+    const name = typeEl.name!;
 
     expect(LeafRefType.matches(name)).to.equal(true);
   });
 
   it('should fail to parse if no path', () => {
-    const badTypeEl = xmlUtil.toElement(`<type ${yinNS} name="leafref" />`);
+    const badTypeEl = new YinElement(
+      {
+        keyword: 'type',
+        namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+        name: 'leafref'
+      },
+      null
+    );
 
     expect(() => new LeafRefType(badTypeEl, {} as Identities)).to.throw('leafref');
   });

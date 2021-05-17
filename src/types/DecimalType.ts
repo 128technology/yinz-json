@@ -1,10 +1,7 @@
-import { Element } from 'libxmljs2';
-
+import YinElement from '../util/YinElement';
 import applyMixins from '../util/applyMixins';
 import BuiltInType, { enumValueOf } from '../enum/BuiltInType';
-import ns from '../util/ns';
 import SerializationType, { convert, SerializationReturnType } from '../enum/SerializationType';
-import { assertElement } from '../util/xmlUtil';
 
 import Range from './Range';
 import { Named, RequiredField, WithCustomProperties } from './mixins';
@@ -27,21 +24,21 @@ export default class DecimalType implements Named, RequiredField, WithCustomProp
   public addCustomProperties: WithCustomProperties['addCustomProperties'];
   public otherProps: WithCustomProperties['otherProps'];
 
-  constructor(el: Element) {
+  constructor(el: YinElement) {
     this.addNamedProps(el);
     this.validateRequiredFields(el, ['fraction-digits'], this.type);
     this.parseType(el);
   }
 
-  public parseType(el: Element) {
-    const rangeEl = el.get('./yin:range', ns);
-    const fractionDigitsEl = assertElement(el.get('./yin:fraction-digits', ns)!);
+  public parseType(el: YinElement) {
+    const rangeEl = el.findChild('range');
+    const fractionDigitsEl = el.findChild('fraction-digits')!;
 
     if (rangeEl) {
-      this.range = new Range(assertElement(rangeEl));
+      this.range = new Range(rangeEl);
     }
 
-    this.fractionDigits = parseInt(fractionDigitsEl.attr('value')!.value(), 10);
+    this.fractionDigits = parseInt(fractionDigitsEl.value!, 10);
 
     this.addCustomProperties(el, ['range', 'fraction-digits']);
   }

@@ -1,11 +1,8 @@
-import { Element } from 'libxmljs2';
-
+import YinElement from '../util/YinElement';
 import applyMixins from '../util/applyMixins';
 import BuiltInType, { enumValueOf } from '../enum/BuiltInType';
-import ns from '../util/ns';
 import { Identities } from '../model';
 import { SerializationReturnType } from '../enum/SerializationType';
-import { assertElement } from '../util/xmlUtil';
 
 import TypeParser from './util/TypeParser';
 import { Named, RequiredField, WithCustomProperties } from './mixins';
@@ -28,16 +25,16 @@ export default class LeafRefType implements Named, RequiredField, WithCustomProp
   public addCustomProperties: WithCustomProperties['addCustomProperties'];
   public otherProps: WithCustomProperties['otherProps'];
 
-  constructor(el: Element, identities: Identities) {
+  constructor(el: YinElement, identities: Identities) {
     this.addNamedProps(el);
     this.validateRequiredFields(el, ['path'], this.type);
     this.parseType(el, identities);
   }
 
-  public parseType(el: Element, identities: Identities) {
-    const typeEl = assertElement(el.get('./yin:type', ns)!);
+  public parseType(el: YinElement, identities: Identities) {
+    const typeEl = el.findChild('type')!;
     this.refType = TypeParser.parse(typeEl, identities);
-    this.path = assertElement(el.get('./yin:path', ns)!).attr('value')!.value();
+    this.path = el.findChild('path')!.value!;
 
     this.addCustomProperties(el, ['type', 'path']);
   }

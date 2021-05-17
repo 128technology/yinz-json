@@ -1,23 +1,40 @@
 import { expect } from 'chai';
 
-import xmlUtil, { yinNS } from '../../__tests__/xmlUtil';
+import YinElement from '../../util/YinElement';
 import { DecimalType } from '../';
 
 describe('Decimal Type', () => {
-  const typeEl = xmlUtil.toElement(`
-    <type ${yinNS} name="decimal64">
-      <yin:fraction-digits value="3" />
-    </type>
-  `);
+  const typeEl = new YinElement(
+    {
+      keyword: 'type',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'decimal64',
+      children: [
+        {
+          keyword: 'fraction-digits',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          value: '3'
+        }
+      ]
+    },
+    null
+  );
 
   it('should match a decimal type', () => {
-    const name = typeEl.attr('name')!.value();
+    const name = typeEl.name!;
 
     expect(DecimalType.matches(name)).to.equal(true);
   });
 
   it('should throw on parse if no fraction-digits', () => {
-    const badTypeEl = xmlUtil.toElement(`<type ${yinNS} name="decimal64" />`);
+    const badTypeEl = new YinElement(
+      {
+        keyword: 'type',
+        namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+        name: 'decimal64'
+      },
+      null
+    );
     expect(() => new DecimalType(badTypeEl)).to.throw('decimal64 type must specify fraction-digits.');
   });
 

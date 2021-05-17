@@ -1,48 +1,59 @@
 import { expect } from 'chai';
 
-import xmlUtil, { yinNS, t128InternalNS } from '../../../__tests__/xmlUtil';
+import YinElement from '../../../util/YinElement';
 import { Visibility, OrderedBy, ContextNode, Status } from '../../../enum';
-import ns from '../../../util/ns';
-import { assertElement } from '../../../util/xmlUtil';
 
 import * as Parsers from '../';
 
 describe('Model Parsers', () => {
   describe('Visibility Parser', () => {
     it('should parse hidden nodes', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${t128InternalNS}>
-          <t128-internal:visibility>hidden</t128-internal:visibility>
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'visibility', namespace: 'mock', text: 'hidden' }]
+        },
+        null
+      );
 
       expect(Parsers.VisibilityParser.parse(el)).to.equal(Visibility.hidden);
     });
 
     it('should parse advanced nodes', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${t128InternalNS}>
-          <t128-internal:visibility>advanced</t128-internal:visibility>
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'visibility', namespace: 'mock', text: 'advanced' }]
+        },
+        null
+      );
 
       expect(Parsers.VisibilityParser.parse(el)).to.equal(Visibility.advanced);
     });
 
     it('should parse visible nodes', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${t128InternalNS}>
-          <t128-internal:visibility>visible</t128-internal:visibility>
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'visibility', namespace: 'mock', text: 'visible' }]
+        },
+        null
+      );
 
       expect(Parsers.VisibilityParser.parse(el)).to.equal(Visibility.visible);
     });
 
     it('should parse nodes with missing visibility', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${t128InternalNS}></mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock'
+        },
+        null
+      );
 
       expect(Parsers.VisibilityParser.parse(el)).to.equal(null);
     });
@@ -50,39 +61,52 @@ describe('Model Parsers', () => {
 
   describe('Status Parser', () => {
     it('should parse current nodes', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:status value="current" />
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'status', namespace: 'mock', value: 'current' }]
+        },
+        null
+      );
 
       expect(Parsers.StatusParser.parse(el)).to.equal(Status.current);
     });
 
     it('should parse deprecated nodes', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:status value="deprecated" />
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'status', namespace: 'mock', value: 'deprecated' }]
+        },
+        null
+      );
 
       expect(Parsers.StatusParser.parse(el)).to.equal(Status.deprecated);
     });
 
     it('should parse obsolete nodes', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:status value="obsolete" />
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'status', namespace: 'mock', value: 'obsolete' }]
+        },
+        null
+      );
 
       expect(Parsers.StatusParser.parse(el)).to.equal(Status.obsolete);
     });
 
     it('should parse nodes with no status', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS} />
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock'
+        },
+        null
+      );
 
       expect(Parsers.StatusParser.parse(el)).to.equal(null);
     });
@@ -90,19 +114,26 @@ describe('Model Parsers', () => {
 
   describe('Max Elements Parser', () => {
     it('should parse max elements nodes', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:max-elements value="10"/>
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'max-elements', namespace: 'mock', value: '10' }]
+        },
+        null
+      );
 
       expect(Parsers.MaxElementsParser.parse(el)).to.equal(10);
     });
 
     it('should parse missing max elements nodes', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}></mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock'
+        },
+        null
+      );
 
       expect(Parsers.MaxElementsParser.parse(el)).to.equal(null);
     });
@@ -110,71 +141,82 @@ describe('Model Parsers', () => {
 
   describe('Min Elements Parser', () => {
     it('should parse min elements nodes', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:min-elements value="3"/>
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'min-elements', namespace: 'mock', value: '3' }]
+        },
+        null
+      );
 
       expect(Parsers.MinElementsParser.parse(el)).to.equal(3);
     });
 
     it('should parse missing min elements nodes', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}></mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock'
+        },
+        null
+      );
 
       expect(Parsers.MinElementsParser.parse(el)).to.equal(0);
     });
   });
 
   describe('Description Parser', () => {
-    it('should parse min elements nodes', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:description>
-            <yin:text>This cow moos.</yin:text>
-          </yin:description>
-        </mock>
-      `);
+    it('should parse description nodes', () => {
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'description', namespace: 'mock', text: 'This cow moos.' }]
+        },
+        null
+      );
 
       expect(Parsers.DescriptionParser.parse(el)).to.equal('This cow moos.');
     });
 
     it('should convert newlines to spaces', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:description>
-            <yin:text>This cow\npoos.</yin:text>
-          </yin:description>
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'description', namespace: 'mock', text: 'This cow\npoos.' }]
+        },
+        null
+      );
 
       expect(Parsers.DescriptionParser.parse(el)).to.equal('This cow poos.');
     });
   });
 
   describe('Reference Parser', () => {
-    it('should parse min elements nodes', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:reference>
-            <yin:text>RFC1997</yin:text>
-          </yin:reference>
-        </mock>
-      `);
+    it('should parse reference nodes', () => {
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'reference', namespace: 'mock', text: 'RFC1997' }]
+        },
+        null
+      );
 
       expect(Parsers.ReferenceParser.parse(el)).to.equal('RFC1997');
     });
 
     it('should convert newlines to spaces', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:reference>
-            <yin:text>RFC\npoos.</yin:text>
-          </yin:reference>
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'reference', namespace: 'mock', text: 'RFC\npoos.' }]
+        },
+        null
+      );
 
       expect(Parsers.ReferenceParser.parse(el)).to.equal('RFC poos.');
     });
@@ -182,29 +224,39 @@ describe('Model Parsers', () => {
 
   describe('Ordered By Parser', () => {
     it('should parse user nodes', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:ordered-by value="user"/>
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'ordered-by', namespace: 'mock', value: 'user' }]
+        },
+        null
+      );
 
       expect(Parsers.OrderedByParser.parse(el)).to.equal(OrderedBy.user);
     });
 
     it('should parse system nodes', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:ordered-by value="system"/>
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'ordered-by', namespace: 'mock', value: 'system' }]
+        },
+        null
+      );
 
       expect(Parsers.OrderedByParser.parse(el)).to.equal(OrderedBy.system);
     });
 
     it('should parse nodes with missing ordered by', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}></mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock'
+        },
+        null
+      );
 
       expect(Parsers.OrderedByParser.parse(el)).to.equal(OrderedBy.system);
     });
@@ -212,29 +264,39 @@ describe('Model Parsers', () => {
 
   describe('Mandatory Parser', () => {
     it('should parse mandatory true nodes', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:mandatory value="true"/>
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'mandatory', namespace: 'mock', value: 'true' }]
+        },
+        null
+      );
 
       expect(Parsers.MandatoryParser.parse(el)).to.equal(true);
     });
 
     it('should parse mandatory false nodes', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:mandatory value="false"/>
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'mandatory', namespace: 'mock', value: 'false' }]
+        },
+        null
+      );
 
       expect(Parsers.MandatoryParser.parse(el)).to.equal(false);
     });
 
     it('should parse missing mandatory node', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}></mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock'
+        },
+        null
+      );
 
       expect(Parsers.MandatoryParser.parse(el)).to.equal(false);
     });
@@ -242,162 +304,201 @@ describe('Model Parsers', () => {
 
   describe('Units Parser', () => {
     it('should parse nodes with units', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:units name="seconds"/>
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'units', namespace: 'mock', name: 'seconds' }]
+        },
+        null
+      );
 
       expect(Parsers.UnitsParser.parse(el)).to.equal('seconds');
     });
 
     it('should parse nodes without units', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS} />
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock'
+        },
+        null
+      );
 
       expect(Parsers.UnitsParser.parse(el)).to.equal(null);
     });
   });
 
   describe('When Parser', () => {
-    it('should add prefixes', () => {
-      const el = xmlUtil.toElement(`
-        <yin:container ${yinNS} xmlns:ps="http://128technology.com/t128/popsickle-sticks" name="popsickle" module-prefix="ps">
-          <yin:when condition="count(../type) = 1"/>
-        </yin:container>
-      `);
-
-      expect(Parsers.WhenParser.parse(el)).to.deep.equal([{ condition: 'count(../ps:type) = 1', context: null }]);
-    });
-
     it('should parse the context node', () => {
-      const el = xmlUtil.toElement(`
-        <yin:container ${yinNS} xmlns:ps="http://128technology.com/t128/popsickle-sticks" name="popsickle" module-prefix="ps">
-          <yin:when condition="count(../type) = 1" context-node="parent"/>
-        </yin:container>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'when', namespace: 'mock', condition: 'count(../type) = 1', 'context-node': 'parent' }]
+        },
+        null
+      );
 
       expect(Parsers.WhenParser.parse(el)).to.deep.equal([
-        { condition: 'count(../ps:type) = 1', context: ContextNode.parent }
+        { condition: 'count(../type) = 1', context: ContextNode.parent }
       ]);
     });
 
-    it('should do nothing if name already has prefix', () => {
-      const el = xmlUtil.toElement(`
-        <yin:container ${yinNS} xmlns:ps="http://128technology.com/t128/popsickle-sticks" name="popsickle" module-prefix="ps">
-          <yin:when condition="count(../sys:type) = 1"/>
-        </yin:container>
-      `);
-
-      expect(Parsers.WhenParser.parse(el)).to.deep.equal([{ condition: 'count(../sys:type) = 1', context: null }]);
-    });
-
     it('should parse multiple when nodes', () => {
-      const el = xmlUtil.toElement(`
-        <yin:container ${yinNS} xmlns:ps="http://128technology.com/t128/popsickle-sticks" name="popsickle" module-prefix="ps">
-          <yin:when condition="../type = 'foo'"/>
-          <yin:when condition="../type = 'bar'"/>
-        </yin:container>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [
+            { keyword: 'when', namespace: 'mock', condition: "../type = 'foo'" },
+            { keyword: 'when', namespace: 'mock', condition: "../type = 'bar'" }
+          ]
+        },
+        null
+      );
 
       expect(Parsers.WhenParser.parse(el)).to.deep.equal([
-        { condition: "../ps:type = 'foo'", context: null },
-        { condition: "../ps:type = 'bar'", context: null }
+        { condition: "../type = 'foo'", context: null },
+        { condition: "../type = 'bar'", context: null }
       ]);
     });
 
     it('should parse no when nodes', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS} />
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock'
+        },
+        null
+      );
 
       expect(Parsers.WhenParser.parse(el)).to.equal(null);
     });
 
     it('should detect if element self has a when statement', () => {
-      const el = xmlUtil.toElement(`
-        <yin:container ${yinNS} xmlns:ps="http://128technology.com/t128/popsickle-sticks" name="popsickle" module-prefix="ps">
-          <yin:when condition="../type = 'foo'"/>
-        </yin:container>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'when', namespace: 'mock', condition: "../type = 'foo'" }]
+        },
+        null
+      );
 
       expect(Parsers.WhenParser.hasWhenAncestorOrSelf(el)).to.equal(true);
     });
 
     it('should detect if element self has no when statement', () => {
-      const el = xmlUtil.toElement(`
-        <yin:container ${yinNS} xmlns:ps="http://128technology.com/t128/popsickle-sticks" name="popsickle" module-prefix="ps" />
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock'
+        },
+        null
+      );
 
       expect(Parsers.WhenParser.hasWhenAncestorOrSelf(el)).to.equal(false);
     });
 
     it('should detect if element ancestor has a when statement', () => {
-      const el = xmlUtil.toElement(`
-        <yin:container ${yinNS} xmlns:ps="http://128technology.com/t128/popsickle-sticks" name="popsickle" module-prefix="ps">
-          <yin:when condition="../type = 'foo'"/>
-          <yin:container name="stout">
-            <yin:container name="porter" />
-          </yin:container>
-        </yin:container>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [
+            { keyword: 'when', namespace: 'mock', condition: "../type = 'foo'" },
+            {
+              keyword: 'mock',
+              namespace: 'mock',
+              children: [
+                {
+                  keyword: 'mock',
+                  namespace: 'mock'
+                }
+              ]
+            }
+          ]
+        },
+        null
+      );
 
-      expect(
-        Parsers.WhenParser.hasWhenAncestorOrSelf(assertElement(el.get('//yin:container[@name="porter"]', ns)!))
-      ).to.equal(true);
+      expect(Parsers.WhenParser.hasWhenAncestorOrSelf(el.children[1].children[0]!)).to.equal(true);
     });
 
     it('should detect if element ancestor has no when statement', () => {
-      const el = xmlUtil.toElement(`
-        <yin:container ${yinNS} xmlns:ps="http://128technology.com/t128/popsickle-sticks" name="popsickle" module-prefix="ps">
-          <yin:container name="stout">
-            <yin:container name="porter" />
-          </yin:container>
-        </yin:container>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [
+            {
+              keyword: 'mock',
+              namespace: 'mock',
+              children: [
+                {
+                  keyword: 'mock',
+                  namespace: 'mock'
+                }
+              ]
+            }
+          ]
+        },
+        null
+      );
 
-      expect(
-        Parsers.WhenParser.hasWhenAncestorOrSelf(assertElement(el.get('//yin:container[@name="porter"]', ns)!))
-      ).to.equal(false);
+      expect(Parsers.WhenParser.hasWhenAncestorOrSelf(el.children[0].children[0]!)).to.equal(false);
     });
   });
 
   describe('Presence Parser', () => {
     it('should parse presence true nodes', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:presence value="The reason."/>
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'presence', namespace: 'mock', value: 'The reason.' }]
+        },
+        null
+      );
 
       expect(Parsers.PresenceParser.parse(el)).to.equal('The reason.');
     });
 
     it('should parse nodes that have no presence', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS} />
-      `);
-
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock'
+        },
+        null
+      );
       expect(Parsers.PresenceParser.parse(el)).to.equal(null);
     });
   });
 
   describe('Default Parser', () => {
     it('should parse default values if they exist', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:default value="0"/>
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'default', namespace: 'mock', value: '0' }]
+        },
+        null
+      );
 
       expect(Parsers.DefaultParser.parse(el)).to.equal('0');
     });
 
     it('should return null if default node does not exist', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS} />
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock'
+        },
+        null
+      );
 
       expect(Parsers.DefaultParser.parse(el)).to.equal(null);
     });
@@ -405,22 +506,30 @@ describe('Model Parsers', () => {
 
   describe('Unique Parser', () => {
     it('should parse one unique node with one child tag', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:unique tag="foo"/>
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [{ keyword: 'unique', namespace: 'mock', tag: 'foo' }]
+        },
+        null
+      );
 
       expect(Array.from(Parsers.UniqueParser.parse(el).entries())).to.deep.equal([['foo', []]]);
     });
 
     it('should parse multiple unique nodes with one child tag', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:unique tag="foo"/>
-          <yin:unique tag="bar"/>
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [
+            { keyword: 'unique', namespace: 'mock', tag: 'foo' },
+            { keyword: 'unique', namespace: 'mock', tag: 'bar' }
+          ]
+        },
+        null
+      );
 
       expect(Array.from(Parsers.UniqueParser.parse(el).entries())).to.deep.equal([
         ['foo', []],
@@ -429,12 +538,17 @@ describe('Model Parsers', () => {
     });
 
     it('should parse multiple unique nodes with multiple child tags', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:unique tag="foo bizz"/>
-          <yin:unique tag="bar"/>
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [
+            { keyword: 'unique', namespace: 'mock', tag: 'foo bizz' },
+            { keyword: 'unique', namespace: 'mock', tag: 'bar' }
+          ]
+        },
+        null
+      );
 
       expect(Array.from(Parsers.UniqueParser.parse(el).entries())).to.deep.equal([
         ['foo', ['bizz']],
@@ -444,9 +558,13 @@ describe('Model Parsers', () => {
     });
 
     it('should parse no unique element', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS} />
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock'
+        },
+        null
+      );
 
       expect(Array.from(Parsers.UniqueParser.parse(el).entries())).to.deep.equal([]);
     });
@@ -454,14 +572,35 @@ describe('Model Parsers', () => {
 
   describe('Namespaces Parser', () => {
     it('should aggregate all namespaces from a model', () => {
-      const el = xmlUtil.toElement(`
-        <mock ${yinNS}>
-          <yin:container xmlns:ps="http://128technology.com/t128/popsickle-sticks" name="popsickle" module-prefix="ps">
-            <yin:container xmlns:ss="http://128technology.com/t128/swizzle-sticks" name="swizzle" module-prefix="ss" />
-          </yin:container>
-          <yin:list xmlns:ws="http://128technology.com/t128/walking-sticks" name="walking" module-prefix="ws" />
-        </mock>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'mock',
+          namespace: 'mock',
+          children: [
+            {
+              keyword: 'container',
+              namespace: 'mock',
+              nsmap: { ps: 'http://128technology.com/t128/popsickle-sticks' },
+              'module-prefix': 'ps',
+              children: [
+                {
+                  keyword: 'container',
+                  namespace: 'mock',
+                  nsmap: { ss: 'http://128technology.com/t128/swizzle-sticks' },
+                  'module-prefix': 'ss'
+                }
+              ]
+            },
+            {
+              keyword: 'list',
+              namespace: 'mock',
+              nsmap: { ws: 'http://128technology.com/t128/walking-sticks' },
+              'module-prefix': 'ws'
+            }
+          ]
+        },
+        null
+      );
 
       expect(Parsers.NamespacesParser.parse(el)).to.deep.equal({
         ps: 'http://128technology.com/t128/popsickle-sticks',
@@ -471,11 +610,23 @@ describe('Model Parsers', () => {
     });
 
     it('should get namespace from a module', () => {
-      const el = xmlUtil.toElement(`
-        <yin:container xmlns:ps="http://128technology.com/t128/popsickle-sticks" name="popsickle" module-prefix="ps">
-          <yin:container xmlns:ss="http://128technology.com/t128/swizzle-sticks" name="swizzle" module-prefix="ss" />
-        </yin:container>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'container',
+          namespace: 'mock',
+          nsmap: { ps: 'http://128technology.com/t128/popsickle-sticks' },
+          'module-prefix': 'ps',
+          children: [
+            {
+              keyword: 'container',
+              namespace: 'mock',
+              nsmap: { ps: 'http://128technology.com/t128/swizzle-sticks' },
+              'module-prefix': 'ss'
+            }
+          ]
+        },
+        null
+      );
 
       expect(Parsers.NamespacesParser.getNamespaceFromModule(el)).to.deep.equal([
         'ps',
@@ -484,30 +635,32 @@ describe('Model Parsers', () => {
     });
 
     it('should get namespace for a field in a module', () => {
-      const el = xmlUtil.toElement(`
-        <yin:container ${yinNS} xmlns:ps="http://128technology.com/t128/popsickle-sticks" name="popsickle" module-prefix="ps">
-          <yin:container name="foo">
-            <yin:leaf name="bar">test</yin:leaf>
-          </yin:container>
-        </yin:container>
-      `);
+      const el = new YinElement(
+        {
+          keyword: 'container',
+          namespace: 'mock',
+          nsmap: { ps: 'http://128technology.com/t128/popsickle-sticks' },
+          'module-prefix': 'ps',
+          children: [
+            {
+              keyword: 'container',
+              namespace: 'mock',
+              children: [
+                {
+                  keyword: 'leaf',
+                  namespace: 'mock'
+                }
+              ]
+            }
+          ]
+        },
+        null
+      );
 
-      expect(Parsers.NamespacesParser.getNamespace(assertElement(el.get('//yin:leaf', ns)!))).to.deep.equal([
+      expect(Parsers.NamespacesParser.getNamespace(el.children[0].children[0])).to.deep.equal([
         'ps',
         'http://128technology.com/t128/popsickle-sticks'
       ]);
-    });
-
-    it('should get prefix for a field in a module', () => {
-      const el = xmlUtil.toElement(`
-        <yin:container ${yinNS} xmlns:ps="http://128technology.com/t128/popsickle-sticks" name="popsickle" module-prefix="ps">
-          <yin:container name="foo">
-            <yin:leaf name="bar">test</yin:leaf>
-          </yin:container>
-        </yin:container>
-      `);
-
-      expect(Parsers.NamespacesParser.getModulePrefix(assertElement(el.get('//yin:leaf', ns)!))).to.equal('ps');
     });
   });
 });

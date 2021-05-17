@@ -1,26 +1,49 @@
 import { expect } from 'chai';
 
-import xmlUtil, { yinNS } from '../../__tests__/xmlUtil';
+import YinElement from '../../util/YinElement';
 import { EnumerationMemberType } from '../';
 import { Status } from '../../enum';
 
 describe('Enumeration Member Type', () => {
-  const typeEl = xmlUtil.toElement(`
-    <yin:enum ${yinNS} name="foo">
-      <yin:description>
-        <yin:text>This is a foo description.</yin:text>
-      </yin:description>
-      <yin:value value="0" />
-      <yin:reference>
-        <yin:text>RFC1997</yin:text>
-      </yin:reference>
-      <yin:status value="deprecated" />
-    </yin:enum>
-  `);
+  const typeEl = new YinElement(
+    {
+      keyword: 'enum',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'foo',
+      children: [
+        {
+          keyword: 'description',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          text: 'This is a foo description.'
+        },
+        {
+          keyword: 'value',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          value: '0'
+        },
+        {
+          keyword: 'reference',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          text: 'RFC1997'
+        },
+        {
+          keyword: 'status',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          value: 'deprecated'
+        }
+      ]
+    },
+    null
+  );
 
-  const typeElEmpty = xmlUtil.toElement(`
-    <yin:enum name="foo" />
-  `);
+  const typeElEmpty = new YinElement(
+    {
+      keyword: 'enum',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'bar'
+    },
+    null
+  );
 
   it('should parse', () => {
     const type = new EnumerationMemberType(typeEl);

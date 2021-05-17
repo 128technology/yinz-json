@@ -1,5 +1,4 @@
-import { Element } from 'libxmljs2';
-
+import YinElement from '../../util/YinElement';
 import { Identities } from '../../model';
 import { Type } from '../';
 import {
@@ -18,7 +17,7 @@ import {
   UnionType
 } from '../';
 
-type IConstructable = new (el: Element, identities: Identities) => Type;
+type IConstructable = new (el: YinElement, identities: Identities) => Type;
 
 function getTypeConstructor(typeName: string): IConstructable {
   const TYPE_REGISTRY = [
@@ -47,8 +46,8 @@ function getTypeConstructor(typeName: string): IConstructable {
 }
 
 export default class TypeParser {
-  public static parse(typeEl: Element, identities: Identities): Type {
-    const typeName = typeEl.attr('name')!.value();
+  public static parse(typeEl: YinElement, identities: Identities): Type {
+    const typeName = typeEl.name!;
     const MatchedType = getTypeConstructor(typeName);
 
     return new MatchedType(typeEl, identities);

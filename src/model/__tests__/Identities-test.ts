@@ -2,23 +2,23 @@ import { expect } from 'chai';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import xmlUtil from '../../__tests__/xmlUtil';
+import YinElement from '../../util/YinElement';
 import { Identities } from '../';
 
 describe('Identities', () => {
-  const idenText = fs.readFileSync(path.join(__dirname, './data/testIdentities.xml'), 'utf-8');
-  const idenEl = xmlUtil.toElement(idenText);
+  const idenText = fs.readFileSync(path.join(__dirname, './data/testIdentities.json'), 'utf-8');
+  const idenEl = new YinElement(JSON.parse(idenText), null);
 
   it('should parse all bases', () => {
     const identities = new Identities(idenEl);
 
-    expect(identities.identities.size).to.equal(9);
+    expect(identities.identities.size).to.equal(10);
   });
 
   it('should parse all extensions to a base', () => {
     const identities = new Identities(idenEl);
 
-    expect(identities.identities.get('action-type')!.length).to.equal(18);
+    expect(identities.identities.get('action-type')!.length).to.equal(15);
   });
 
   it('should get options for a given base', () => {
@@ -26,23 +26,20 @@ describe('Identities', () => {
 
     expect(identities.getOptions('action-type')).to.deep.equal([
       'rp:set-aggregator',
-      'rp:set-community',
-      'rp:set-atomic-aggregate',
-      'rp:set-extended-community',
-      'rp:filter-on-community',
-      'rp:modify-metric',
-      'rp:call',
       'rp:modify-as-path',
+      'rp:set-atomic-aggregate',
+      'rp:set-community',
+      'rp:remove-community',
+      'rp:set-extended-community',
+      'rp:set-next-hop',
+      'rp:set-local-preference',
+      'rp:modify-metric',
+      'rp:set-originator-id',
+      'rp:set-origin',
       'rp:set-tag',
       'rp:set-bgp-weight',
-      'rp:set-originator-id',
-      'rp:set-source',
-      'rp:set-next-hop',
-      'rp:remove-community',
       'rp:continue',
-      'rp:set-origin',
-      'rp:set-metric-type',
-      'rp:set-local-preference'
+      'rp:call'
     ]);
   });
 

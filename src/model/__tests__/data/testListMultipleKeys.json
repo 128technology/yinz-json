@@ -1,0 +1,75 @@
+{
+  "keyword": "list",
+  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+  "name": "peer",
+  "module-prefix": "test",
+  "nsmap": { "test": "http://foo.bar" },
+  "children": [
+    {
+      "keyword": "key",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "value": "name otherKey"
+    },
+    {
+      "keyword": "unique",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "tag": "authority-name router-name"
+    },
+    {
+      "keyword": "unique",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "tag": "id"
+    },
+    {
+      "keyword": "max-elements",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "value": "5"
+    },
+    {
+      "keyword": "min-elements",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "value": "2"
+    },
+    {
+      "keyword": "ordered-by",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "value": "user"
+    },
+    {
+      "keyword": "leaf",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "name",
+      "children": [
+        {
+          "keyword": "type",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "string"
+        }
+      ]
+    },
+    {
+      "keyword": "leaf",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "otherKey",
+      "children": [
+        {
+          "keyword": "type",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "string"
+        }
+      ]
+    },
+    {
+      "keyword": "leaf-list",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "service-filter",
+      "children": [
+        {
+          "keyword": "type",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "string"
+        }
+      ]
+    }
+  ]
+}

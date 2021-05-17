@@ -5,8 +5,6 @@ import * as _ from 'lodash';
 
 import DataModelInstance from '..';
 import { readDataModel } from './DataModelInstance-test';
-import xmlUtil from '../../__tests__/xmlUtil';
-import { assertElement } from '../../util/xmlUtil';
 
 function accessToRouter(routerName: string) {
   return (i: any) => {
@@ -18,20 +16,14 @@ function accessToRouter(routerName: string) {
   };
 }
 
-const userModel = readDataModel('../../model/__tests__/data/consolidatedUserModel.xml');
+const userModel = readDataModel('../../model/__tests__/data/consolidatedUserModel.json');
 
 describe('Authorization Test', () => {
   const instanceRawJSON = JSON.parse(fs.readFileSync(path.join(__dirname, './data/userAuthInstance.json'), 'utf8'));
-  const instance = xmlUtil.toElement(fs.readFileSync(path.join(__dirname, './data/userAuthInstance.xml'), 'utf8'));
-  const config = instance.get('//user:config', { user: 'http://128technology.com/user' })!;
   let dataModelInstance: DataModelInstance;
 
   beforeEach(() => {
-    dataModelInstance = new DataModelInstance(userModel, assertElement(config));
-  });
-
-  it('should be constructable from JSON', () => {
-    expect(dataModelInstance.toJSON(() => true)).to.deep.equal(instanceRawJSON);
+    dataModelInstance = new DataModelInstance(userModel, instanceRawJSON);
   });
 
   it('should restrict return value based on authorization', () => {

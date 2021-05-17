@@ -1,12 +1,11 @@
-import { Element } from 'libxmljs2';
 import * as _ from 'lodash';
 
-import ns from '../../util/ns';
+import YinElement from '../../util/YinElement';
 
 export default class RequiredField {
-  public validateRequiredFields(el: Element, fields: string[] = [], type: string) {
+  public validateRequiredFields(el: YinElement, fields: string[] = [], type: string) {
     fields.forEach(field => {
-      const fieldEl = el.get(`./yin:${field}`, ns);
+      const fieldEl = el.findChild(field);
 
       if (_.isNil(fieldEl)) {
         throw new Error(`${type || 'The given'} type must specify ${field}.`);

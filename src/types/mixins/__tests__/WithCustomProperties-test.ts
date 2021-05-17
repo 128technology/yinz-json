@@ -1,21 +1,39 @@
 import { expect } from 'chai';
-import { Element } from 'libxmljs2';
+
+import YinElement from '../../../util/YinElement';
 import applyMixins from '../../../util/applyMixins';
-import xmlUtil, { yinNS } from '../../../__tests__/xmlUtil';
 import { WithCustomProperties } from '../';
 
 describe('Custom Properties Mixin', () => {
-  const typeEl = xmlUtil.toElement(`
-    <type ${yinNS} name="string">
-      <foo>bar</foo>
-      <moo/>
-      <zoo/>
-    </type>
-  `);
+  const typeEl = new YinElement(
+    {
+      keyword: 'type',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'string',
+      children: [
+        {
+          keyword: 'foo',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          text: 'bar'
+        },
+        {
+          keyword: 'moo',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          text: null
+        },
+        {
+          keyword: 'zoo',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          text: null
+        }
+      ]
+    },
+    null
+  );
 
   class Test implements WithCustomProperties {
     public otherProps: Map<string, string | boolean>;
-    public addCustomProperties: (el: Element, ignoreList: string[]) => void;
+    public addCustomProperties: (el: YinElement, ignoreList: string[]) => void;
   }
 
   applyMixins(Test, [WithCustomProperties]);

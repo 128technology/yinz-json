@@ -1,10 +1,7 @@
-import { Element } from 'libxmljs2';
-
+import YinElement from '../util/YinElement';
 import applyMixins from '../util/applyMixins';
 import BuiltInType, { enumValueOf } from '../enum/BuiltInType';
-import ns from '../util/ns';
 import { Identities } from '../model';
-import { assertElement } from '../util/xmlUtil';
 
 import { Named, RequiredField, StringSerialize, WithCustomProperties } from './mixins';
 
@@ -25,14 +22,14 @@ export default class IdentityRefType implements Named, StringSerialize, Required
   public addCustomProperties: WithCustomProperties['addCustomProperties'];
   public otherProps: WithCustomProperties['otherProps'];
 
-  constructor(el: Element, identities: Identities) {
+  constructor(el: YinElement, identities: Identities) {
     this.addNamedProps(el);
     this.validateRequiredFields(el, ['base'], this.type);
     this.parseType(el, identities);
   }
 
-  public parseType(el: Element, identities: Identities) {
-    const splitVal = assertElement(el.get('./yin:base', ns)!).attr('name')!.value().split(':');
+  public parseType(el: YinElement, identities: Identities) {
+    const splitVal = el.findChild('base')!.name!.split(':');
     const base = splitVal.length > 1 ? splitVal[1] : splitVal[0];
 
     this.options = identities.getOptions(base);

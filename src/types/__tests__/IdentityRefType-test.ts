@@ -1,53 +1,133 @@
 import { expect } from 'chai';
 
-import xmlUtil, { yinNS } from '../../__tests__/xmlUtil';
+import YinElement from '../../util/YinElement';
 import Identities from '../../model/Identities';
 import { IdentityRefType } from '../';
 
 describe('IdentityRef Type', () => {
-  const typeEl = xmlUtil.toElement(`
-    <type ${yinNS} name="identityref">
-      <yin:base name="action-type" />
-    </type>
-  `);
-  const typeWithPrefixEl = xmlUtil.toElement(`
-    <type ${yinNS} name="identityref">
-      <yin:base name="t128-access:capability-type"/>
-    </type>
-  `);
-  const mockIdentitiesEl = xmlUtil.toElement(`
-    <mock ${yinNS}>
-      <yin:identity name="modify-metric" module-prefix="rp">
-        <yin:base name="action-type" />
-        <yin:description>
-          <yin:text>an action which sets the metric</yin:text>
-        </yin:description>
-      </yin:identity>
-      <yin:identity name="bgp" module-prefix="rt">
-        <yin:base name="rt:routing-protocol" />
-        <yin:description>
-          <yin:text>bgp routing protocol</yin:text>
-        </yin:description>
-      </yin:identity>
-      <yin:identity name="config-read" module-prefix="t128-access">
-        <yin:base name="capability-type"/>
-        <yin:description>
-          <yin:text>Configuration Read Capability</yin:text>
-        </yin:description>
-      </yin:identity>
-    </mock>
-  `);
+  const typeEl = new YinElement(
+    {
+      keyword: 'type',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'identityref',
+      children: [
+        {
+          keyword: 'base',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          name: 'action-type'
+        }
+      ]
+    },
+    null
+  );
+  const typeWithPrefixEl = new YinElement(
+    {
+      keyword: 'type',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'identityref',
+      children: [
+        {
+          keyword: 'base',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          name: 't128-access:capability-type'
+        }
+      ]
+    },
+    null
+  );
+  const mockIdentitiesEl = new YinElement(
+    {
+      keyword: 'mock',
+      namespace: 'mock',
+      children: [
+        {
+          keyword: 'identity',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          nsmap: {
+            rp: 'http://128technology.com/t128/config/routing-policy-config'
+          },
+          name: 'modify-metric',
+          'module-prefix': 'rp',
+          'module-name': 'routing-policy-config',
+          children: [
+            {
+              keyword: 'base',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              name: 'action-type'
+            },
+            {
+              keyword: 'description',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              text: 'An action which sets the metric'
+            }
+          ]
+        },
+        {
+          keyword: 'identity',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          nsmap: {
+            rt: 'http://128technology.com/t128/config/routing-config'
+          },
+          name: 'bgp',
+          'module-prefix': 'rt',
+          'module-name': 'routing-config',
+          children: [
+            {
+              keyword: 'base',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              name: 'rt:routing-protocol'
+            },
+            {
+              keyword: 'description',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              text: 'BGP routing protocol'
+            }
+          ]
+        },
+        {
+          keyword: 'identity',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          nsmap: {
+            't128-access': 'http://128technology.com/t128/access-control'
+          },
+          name: 'config-read',
+          'module-prefix': 't128-access',
+          'module-name': 't128-access-control',
+          children: [
+            {
+              keyword: 'base',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              name: 'capability-type'
+            },
+            {
+              keyword: 'description',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              text: 'Configuration Read Capability'
+            }
+          ]
+        }
+      ]
+    },
+    null
+  );
   const emptyIdentities = new Identities();
   const mockIdentities = new Identities(mockIdentitiesEl);
 
   it('should match a identityref type', () => {
-    const name = typeEl.attr('name')!.value();
+    const name = typeEl.name!;
 
     expect(IdentityRefType.matches(name)).to.equal(true);
   });
 
   it('should fail to parse if base is not specified', () => {
-    const badTypeEl = xmlUtil.toElement(`<type ${yinNS} name="identityref" />`);
+    const badTypeEl = new YinElement(
+      {
+        keyword: 'type',
+        namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+        name: 'identityref'
+      },
+      null
+    );
 
     expect(() => new IdentityRefType(badTypeEl, emptyIdentities)).to.throw('identityref type must specify base.');
   });

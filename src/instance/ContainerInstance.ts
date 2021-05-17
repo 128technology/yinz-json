@@ -1,9 +1,7 @@
 import * as _ from 'lodash';
-import { Element } from 'libxmljs2';
 
 import applyMixins from '../util/applyMixins';
 import { Container, Leaf, LeafList, List } from '../model';
-import { isElement, defineNamespaceOnRoot } from '../util/xmlUtil';
 
 import { Searchable, WithAttributes } from './mixins';
 import {
@@ -14,7 +12,6 @@ import {
   Visitor,
   NoMatchHandler,
   Parent,
-  XMLSerializationOptions,
   ShouldSkip,
   ContainerJSONValue,
   Authorized,
@@ -22,17 +19,15 @@ import {
   MapToJSONOptions
 } from './types';
 import { getDefaultMapper } from './util';
-import { Path, Instance, ListInstance, LeafListInstance, LeafListChildInstance } from './';
+import { Path, Instance, LeafListChildInstance } from './';
 
 export default class ContainerInstance implements Searchable, WithAttributes {
   public activeChoices: Map<string, string> = new Map();
 
   public customAttributes: WithAttributes['customAttributes'];
-  public parseAttributesFromXML: WithAttributes['parseAttributesFromXML'];
   public parseAttributesFromJSON: WithAttributes['parseAttributesFromJSON'];
   public hasAttributes: WithAttributes['hasAttributes'];
   public rawAttributes: WithAttributes['rawAttributes'];
-  public addAttributes: WithAttributes['addAttributes'];
   public getValueFromJSON: WithAttributes['getValueFromJSON'];
   public addOperation: WithAttributes['addOperation'];
   public addPosition: WithAttributes['addPosition'];
@@ -45,15 +40,9 @@ export default class ContainerInstance implements Searchable, WithAttributes {
   private config?: Element;
   private children: Map<string, Instance> = new Map();
 
-  constructor(public model: Container, config: Element | ContainerJSON, public parent: Parent | null) {
-    if (config instanceof Element) {
-      this.config = config;
-      this.injestConfigXML(config);
-      this.parseAttributesFromXML(config);
-    } else {
-      this.injestConfigJSON(config);
-      this.parseAttributesFromJSON(config);
-    }
+  constructor(public model: Container, config: ContainerJSON, public parent: Parent | null) {
+    this.injestConfigJSON(config);
+    this.parseAttributesFromJSON(config);
   }
 
   public getConfig(authorized: Authorized) {
@@ -128,21 +117,6 @@ export default class ContainerInstance implements Searchable, WithAttributes {
       : {};
   }
 
-  public toXML(parent: Element, options: XMLSerializationOptions = { includeAttributes: false }) {
-    const [prefix, href] = this.model.ns;
-    const outer = parent.node(this.model.name);
-    defineNamespaceOnRoot(parent, prefix, href);
-    outer.namespace(prefix);
-
-    if (options.includeAttributes && this.hasAttributes) {
-      this.addAttributes(outer);
-    }
-
-    for (const child of this.children.values()) {
-      child.toXML(outer, options);
-    }
-  }
-
   public getInstance(
     path: Path,
     noMatchHandler: NoMatchHandler = this.handleNoMatch
@@ -199,34 +173,6 @@ export default class ContainerInstance implements Searchable, WithAttributes {
         this.children.set(childModel.name, instance);
       }
     }
-  }
-
-  private injestConfigXML(config: Element) {
-    config
-      .childNodes()
-      .filter(isElement)
-      .forEach(el => {
-        const localName = el.name();
-
-        if (this.model.hasChild(localName)) {
-          if (this.children.has(localName)) {
-            const child = this.children.get(localName);
-
-            if (child instanceof ListInstance || child instanceof LeafListInstance) {
-              child.add(el);
-            }
-          } else {
-            const childModel = this.model.getChild(localName)!;
-
-            // Note: This does not support nested choices
-            if (childModel.choiceCase) {
-              this.activeChoices.set(childModel.choiceCase.parentChoice.name, childModel.choiceCase.name);
-            }
-
-            this.children.set(localName, childModel.buildInstance(el, this));
-          }
-        }
-      });
   }
 }
 

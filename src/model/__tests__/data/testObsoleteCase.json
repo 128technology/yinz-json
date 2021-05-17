@@ -1,0 +1,89 @@
+{
+  "keyword": "case",
+  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+  "name": "peer-service-route",
+  "module-prefix": "test",
+  "nsmap": { "test": "http://foo.bar" },
+  "children": [
+    {
+      "keyword": "status",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "value": "obsolete"
+    },
+    {
+      "keyword": "leaf",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "peer",
+      "children": [
+        {
+          "keyword": "type",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "leafref",
+          "children": [
+            {
+              "keyword": "path",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "value": "../../authy:peer/authy:name"
+            },
+            {
+              "keyword": "type",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "name": "t128ext:peer-name",
+              "children": [
+                {
+                  "keyword": "typedef",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "name": "peer-name",
+                  "children": [
+                    {
+                      "keyword": "description",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "text": "A string identifier for a peer, which uses alphanumerics, underscores,\ndots, or dashes, and cannot exceed 253 characters."
+                    },
+                    {
+                      "keyword": "type",
+                      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                      "name": "string",
+                      "children": [
+                        {
+                          "keyword": "pattern",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "value": "((([a-zA-Z0-9]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]\\.)*([a-zA-Z0-9]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9])?",
+                          "children": [
+                            {
+                              "keyword": "error-message",
+                              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                              "value": "Must contain only alphanumeric characters or any of the following: - _ .\n(e.g., MyFirst-128T-Router)."
+                            }
+                          ]
+                        },
+                        {
+                          "keyword": "length",
+                          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                          "value": "0..253"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "keyword": "help",
+          "namespace": "http://128technology.com/t128-extensions",
+          "nsmap": {
+            "t128ext": "http://128technology.com/t128-extensions"
+          },
+          "text": "Peer router name"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Peer router to forward packets to for the service."
+        }
+      ]
+    }
+  ]
+}

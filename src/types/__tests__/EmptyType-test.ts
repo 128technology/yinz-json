@@ -1,13 +1,20 @@
 import { expect } from 'chai';
 
-import xmlUtil, { yinNS } from '../../__tests__/xmlUtil';
+import YinElement from '../../util/YinElement';
 import { EmptyType } from '../';
 
 describe('Empty Type', () => {
-  const typeEl = xmlUtil.toElement(`<type ${yinNS} name="empty" />`);
+  const typeEl = new YinElement(
+    {
+      keyword: 'type',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'empty'
+    },
+    null
+  );
 
   it('should match a empty type', () => {
-    const name = typeEl.attr('name')!.value();
+    const name = typeEl.name!;
 
     expect(EmptyType.matches(name)).to.equal(true);
   });

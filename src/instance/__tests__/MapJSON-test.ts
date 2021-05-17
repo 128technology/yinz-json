@@ -2,34 +2,15 @@ import { expect } from 'chai';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import xmlUtil from '../../__tests__/xmlUtil';
-import DataModel from '../../model';
 import DataModelInstance, { LeafInstance, LeafListInstance, ListChildInstance } from '../';
 import { allow } from '../util';
-import { assertElement } from '../../util/xmlUtil';
+import { readDataModel } from './DataModelInstance-test';
 
-export function readDataModel(filepath: string) {
-  const modelText = fs.readFileSync(path.join(__dirname, filepath), 'utf-8');
-
-  const options = {
-    modelElement: xmlUtil.toElement(modelText),
-    rootPath: '//yin:container[@name="authority"]'
-  };
-
-  return new DataModel(options);
-}
-
-export const dataModel = readDataModel('../../model/__tests__/data/consolidatedT128Model.xml');
+export const dataModel = readDataModel('../../model/__tests__/data/consolidatedT128Model.json');
 
 describe('Mapping Instance Data to JSON', () => {
-  function readConfigFile(filepath: string) {
-    const instanceText = fs.readFileSync(path.join(__dirname, filepath), 'utf-8');
-    return xmlUtil.toElement(instanceText);
-  }
-
   function getInstance(instancePath: string) {
-    const instance = readConfigFile(instancePath);
-    const config = assertElement(instance.get('//t128:config', { t128: 'http://128technology.com/t128' })!);
+    const config = readJSON(instancePath);
     return new DataModelInstance(dataModel, config);
   }
 
@@ -40,9 +21,7 @@ describe('Mapping Instance Data to JSON', () => {
 
   describe('Passing Through', () => {
     it('should serialize an instance to JSON', () => {
-      const instanceJSON = readJSON('./data/instance.json');
-      const dataModelInstance = getInstance('./data/instance.xml');
-      expect(dataModelInstance.mapToJSON(allow)).to.deep.equal(instanceJSON);
+      expect(getInstance('./data/instance.json').mapToJSON(allow)).to.deep.equal(readJSON('./data/instance.json'));
     });
   });
 
@@ -50,7 +29,7 @@ describe('Mapping Instance Data to JSON', () => {
     let dataModelInstance: DataModelInstance;
 
     beforeEach(() => {
-      dataModelInstance = getInstance('./data/instance.xml');
+      dataModelInstance = getInstance('./data/instance.json');
     });
 
     it('should replace enabled with disabled', () => {
@@ -199,7 +178,7 @@ describe('Mapping Instance Data to JSON', () => {
 
       expect(result).to.deep.equal({
         authority: {
-          router: [{ name: 'Fabric128', group: ['group100', 'group2'] }]
+          router: [{ name: 'Fabric128', 'router-group': ['group100', 'group2'] }]
         }
       });
     });

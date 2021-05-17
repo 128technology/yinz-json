@@ -1,0 +1,70 @@
+{
+  "keyword": "leaf",
+  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+  "name": "rekey-interval",
+  "module-prefix": "test",
+  "nsmap": { "test": "http://foo.bar" },
+  "children": [
+    {
+      "keyword": "type",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "union",
+      "children": [
+        {
+          "keyword": "type",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "uint32",
+          "children": [
+            {
+              "keyword": "range",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "value": "1..720"
+            }
+          ]
+        },
+        {
+          "keyword": "type",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "enumeration",
+          "children": [
+            {
+              "keyword": "enum",
+              "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+              "name": "never",
+              "children": [
+                {
+                  "keyword": "description",
+                  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+                  "text": "Never regenerate security keys"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "keyword": "description",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "text": "Hours between security key regeneration.\nRecommended value 24 hours."
+    },
+    {
+      "keyword": "units",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "hours"
+    },
+    {
+      "keyword": "default",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "value": "never"
+    },
+    {
+      "keyword": "type",
+      "namespace": "http://128technology.com/t128-codegen-extensions",
+      "nsmap": {
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "text": "string"
+    }
+  ]
+}

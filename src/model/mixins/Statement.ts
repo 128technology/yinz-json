@@ -1,9 +1,8 @@
 import * as _ from 'lodash';
-import { Element } from 'libxmljs2';
 
+import YinElement from '../../util/YinElement';
 import { isVisible } from '../../enum/Visibility';
 import { Visibility, Status } from '../../enum';
-
 import { DescriptionParser, VisibilityParser, PropertiesParser, NamespacesParser, StatusParser } from '../parsers';
 import { Model, Case } from '../';
 
@@ -17,8 +16,8 @@ export default class Statement {
   public visibility: Visibility | null;
   public choiceCase: Case;
 
-  public addStatementProps(el: Element, parentModel: Model | null) {
-    this.name = el.attr('name')!.value();
+  public addStatementProps(el: YinElement, parentModel: Model | null) {
+    this.name = el.name!;
     this.ns = NamespacesParser.getNamespace(el);
     this.parentModel = parentModel;
 

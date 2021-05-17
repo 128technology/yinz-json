@@ -1,24 +1,40 @@
 import { expect } from 'chai';
 
-import xmlUtil, { yinNS } from '../../__tests__/xmlUtil';
+import YinElement from '../../util/YinElement';
 import { BitsType } from '../';
 
 describe('Bits Type', () => {
-  const typeEl = xmlUtil.toElement(`
-    <type ${yinNS} name="bits">
-      <yin:bit>foo</yin:bit>
-      <yin:bit position="1">bar</yin:bit>
-    </type>
-  `);
+  const typeEl = new YinElement(
+    {
+      keyword: 'type',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'bits',
+      children: [
+        {
+          keyword: 'bit',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          text: 'foo'
+        }
+      ]
+    },
+    null
+  );
 
   it('should match a bits type', () => {
-    const name = typeEl.attr('name')!.value();
+    const name = typeEl.name!;
 
     expect(BitsType.matches(name)).to.equal(true);
   });
 
   it('should fail to parse if bit is not present', () => {
-    const badTypeEl = xmlUtil.toElement(`<type ${yinNS} name="bits" />`);
+    const badTypeEl = new YinElement(
+      {
+        keyword: 'type',
+        namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+        name: 'bits'
+      },
+      null
+    );
 
     expect(() => new BitsType(badTypeEl)).to.throw('bits type must specify bit.');
   });

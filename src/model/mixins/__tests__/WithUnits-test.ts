@@ -1,7 +1,6 @@
 import { expect } from 'chai';
-import { Element } from 'libxmljs2';
 
-import xmlUtil, { yinNS } from '../../../__tests__/xmlUtil';
+import YinElement from '../../../util/YinElement';
 import applyMixins from '../../../util/applyMixins';
 import { Type } from '../../../types';
 
@@ -14,10 +13,10 @@ describe('With Units Mixin', () => {
     public type: Type;
     public units: string;
 
-    public addDefinedUnits: (el: Element) => void;
-    public addTypeProps: (el: Element, identities: Identities) => void;
+    public addDefinedUnits: (el: YinElement) => void;
+    public addTypeProps: (el: YinElement, identities: Identities) => void;
 
-    constructor(el: Element) {
+    constructor(el: YinElement) {
       this.addTypeProps(el, new Identities());
       this.addDefinedUnits(el);
     }
@@ -25,45 +24,103 @@ describe('With Units Mixin', () => {
 
   applyMixins(Test, [WithUnits, Typed]);
 
-  const withTypeDefUnits = xmlUtil.toElement(`
-    <yin:leaf name="name" ${yinNS}>
-      <yin:type name="t128ext:tenant-name">
-        <yin:typedef name="tenant-name">
-          <yin:units name="floops" />
-          <yin:type name="string">
-            <yin:length value="0..253"/>
-          </yin:type>
-        </yin:typedef>
-      </yin:type>
-    </yin:leaf>
-  `);
+  const withTypeDefUnits = new YinElement(
+    {
+      keyword: 'leaf',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'name',
+      children: [
+        {
+          keyword: 'type',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          name: 't128ext:tenant-name',
+          children: [
+            {
+              keyword: 'typedef',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              name: 'tenant-name',
+              children: [
+                { keyword: 'units', namespace: 'urn:ietf:params:xml:ns:yang:yin:1', name: 'floops' },
+                {
+                  keyword: 'type',
+                  namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+                  name: 'string',
+                  children: [{ keyword: 'length', namespace: 'urn:ietf:params:xml:ns:yang:yin:1', value: '0..253' }]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    null
+  );
 
-  const withBothUnits = xmlUtil.toElement(`
-    <yin:leaf name="name" ${yinNS}>
-      <yin:units name="boops" />
-      <yin:type name="t128ext:tenant-name">
-        <yin:typedef name="tenant-name">
-          <yin:units name="floops" />
-          <yin:type name="string">
-            <yin:length value="0..253"/>
-          </yin:type>
-        </yin:typedef>
-      </yin:type>
-    </yin:leaf>
-  `);
+  const withBothUnits = new YinElement(
+    {
+      keyword: 'leaf',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'name',
+      children: [
+        { keyword: 'units', namespace: 'urn:ietf:params:xml:ns:yang:yin:1', name: 'boops' },
+        {
+          keyword: 'type',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          name: 't128ext:tenant-name',
+          children: [
+            {
+              keyword: 'typedef',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              name: 'tenant-name',
+              children: [
+                { keyword: 'units', namespace: 'urn:ietf:params:xml:ns:yang:yin:1', name: 'floops' },
+                {
+                  keyword: 'type',
+                  namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+                  name: 'string',
+                  children: [{ keyword: 'length', namespace: 'urn:ietf:params:xml:ns:yang:yin:1', value: '0..253' }]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    null
+  );
 
-  const withLeafUnits = xmlUtil.toElement(`
-    <yin:leaf name="name" ${yinNS}>
-      <yin:units name="flops" />
-      <yin:type name="string" />
-    </yin:leaf>
-  `);
+  const withLeafUnits = new YinElement(
+    {
+      keyword: 'leaf',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'name',
+      children: [
+        { keyword: 'units', namespace: 'urn:ietf:params:xml:ns:yang:yin:1', name: 'flops' },
+        {
+          keyword: 'type',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          name: 'string'
+        }
+      ]
+    },
+    null
+  );
 
-  const noUnits = xmlUtil.toElement(`
-    <yin:leaf name="name" ${yinNS}>
-      <yin:type name="string" />
-    </yin:leaf>
-  `);
+  const noUnits = new YinElement(
+    {
+      keyword: 'leaf',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'name',
+      children: [
+        {
+          keyword: 'type',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          name: 'string'
+        }
+      ]
+    },
+    null
+  );
 
   it('should add the defined units to the object', () => {
     const model = new Test(withLeafUnits);

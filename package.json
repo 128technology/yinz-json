@@ -1,11 +1,11 @@
 {
-  "name": "@128technology/yinz",
-  "version": "5.0.0-alpha.6",
+  "name": "@128technology/yinz-json",
+  "version": "6.0.0-alpha.0",
   "description": "A module for injesting a YIN datamodel and handling instance data.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "mocha --require ts-node/register 'src/__tests__/setup.ts' 'src/**/__tests__/*.ts'",
+    "test": "mocha --require ts-node/register 'src/**/__tests__/*.ts'",
     "lint": "tslint --project . 'src/**/*.ts' 'src/**/*-test.ts'",
     "validate": "npm run lint && npm run test",
     "clean": "rm -rf dist",
@@ -28,18 +28,15 @@
     "netconf"
   ],
   "dependencies": {
-    "libxmljs2": "^0.26.7",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@types/chai": "^4.0.1",
-    "@types/chai-xml": "^0.3.1",
     "@types/lodash": "^4.14.105",
     "@types/mocha": "^2.2.41",
     "@types/node": "^8.10.54",
     "@types/sinon": "^5.0.1",
     "chai": "^3.5.0",
-    "chai-xml": "^0.3.1",
     "mocha": "^6.2.0",
     "prettier": "^2.0.2",
     "sinon": "^6.3.5",

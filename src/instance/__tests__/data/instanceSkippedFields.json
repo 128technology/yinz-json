@@ -408,7 +408,7 @@
       {
         "name": "Fabric128",
         "interNodeSecurity": "internal",
-        "group": ["group1", "group2"],
+        "routerGroup": ["group1", "group2"],
         "id": "00000000-0000-0000-0000-000000000000",
         "system": {
           "services": {

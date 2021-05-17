@@ -1,13 +1,20 @@
 import { expect } from 'chai';
 
-import xmlUtil, { yinNS } from '../../__tests__/xmlUtil';
+import YinElement from '../../util/YinElement';
 import { BooleanType } from '../';
 
 describe('Boolean Type', () => {
-  const typeEl = xmlUtil.toElement(`<type ${yinNS} name="boolean" />`);
+  const typeEl = new YinElement(
+    {
+      keyword: 'type',
+      namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+      name: 'boolean'
+    },
+    null
+  );
 
   it('should match a boolean type', () => {
-    const name = typeEl.attr('name')!.value();
+    const name = typeEl.name!;
 
     expect(BooleanType.matches(name)).to.equal(true);
   });

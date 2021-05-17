@@ -1,23 +1,17 @@
-import { Element } from 'libxmljs2';
-
-import ns from '../../util/ns';
-import { isElement, assertElement } from '../../util/xmlUtil';
-
 import { Container, Leaf, LeafList, List, Choice, Model } from '../';
+import YinElement from '../../util/YinElement';
 
 export interface IChildren {
   children: Map<string, Model>;
   choices: Map<string, Choice>;
 }
 
-export function buildChildren(parentEl: Element, parentModel: Model): IChildren {
-  return parentEl
-    .childNodes()
-    .filter(isElement)
+export function buildChildren(parentEl: YinElement, parentModel: Model): IChildren {
+  return parentEl.children
     .filter(el => {
-      const isConfig = el.get('./yin:config', ns);
+      const isConfig = el.findChild('config');
 
-      return isConfig ? assertElement(isConfig).attr('value')!.value() !== 'false' : true;
+      return isConfig ? isConfig.value !== 'false' : true;
     })
     .reduce(
       ({ children, choices }, el) => {
@@ -41,8 +35,8 @@ export function buildChildren(parentEl: Element, parentModel: Model): IChildren 
     );
 }
 
-export function buildChild(el: Element, parentModel: Model) {
-  switch (el.name()) {
+export function buildChild(el: YinElement, parentModel: Model) {
+  switch (el.keyword) {
     case 'leaf': {
       return new Leaf(el, parentModel);
     }

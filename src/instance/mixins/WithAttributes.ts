@@ -1,9 +1,7 @@
-import { Element } from 'libxmljs2';
 import * as _ from 'lodash';
 
 import { IAttribute, NetconfOperation, Position, JSONConfigNode, hasAttributes } from '../types';
 import UnreachableCaseError from '../../util/unreachableCaseError';
-import { defineNamespaceSafe } from '../../util/xmlUtil';
 import { Model, List, LeafList } from '../../model';
 
 function mapOperationToAttribute(operation: NetconfOperation): IAttribute {
@@ -83,19 +81,6 @@ export default class WithAttributes {
   public rawAttributes: IAttribute[];
   public model: Model;
 
-  public parseAttributesFromXML(config: Element) {
-    this.rawAttributes = config.attrs().reduce<IAttribute[]>((acc, attr) => {
-      acc.push({
-        href: attr.namespace()?.href(),
-        name: attr.name(),
-        prefix: attr.namespace()?.prefix(),
-        value: attr.value()
-      });
-
-      return acc;
-    }, []);
-  }
-
   public parseAttributesFromJSON(config: JSONConfigNode) {
     this.rawAttributes = [];
 
@@ -128,17 +113,6 @@ export default class WithAttributes {
 
   public get hasAttributes() {
     return this.rawAttributes.length > 0;
-  }
-
-  public addAttributes(el: Element) {
-    this.rawAttributes.forEach(({ name, value, prefix, href }) => {
-      if (prefix && href) {
-        defineNamespaceSafe(el, prefix, href);
-        el.attr({ [`${prefix}:${name}`]: value });
-      } else {
-        el.attr({ [name]: value });
-      }
-    });
   }
 
   public addOperation(operation: NetconfOperation) {

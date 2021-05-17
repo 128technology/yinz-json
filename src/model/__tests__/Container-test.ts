@@ -3,19 +3,18 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as sinon from 'sinon';
 
-import xmlUtil from '../../__tests__/xmlUtil';
-
+import YinElement from '../../util/YinElement';
 import { Container, Leaf } from '../';
 
 describe('Container Model', () => {
-  const modelText = fs.readFileSync(path.join(__dirname, './data/testContainer.xml'), 'utf-8');
-  const model = xmlUtil.toElement(modelText);
+  const modelText = fs.readFileSync(path.join(__dirname, './data/testContainer.json'), 'utf-8');
+  const model = new YinElement(JSON.parse(modelText), null);
 
-  const presenceModelText = fs.readFileSync(path.join(__dirname, './data/testPresenceContainer.xml'), 'utf-8');
-  const presenceModel = xmlUtil.toElement(presenceModelText);
+  const presenceModelText = fs.readFileSync(path.join(__dirname, './data/testPresenceContainer.json'), 'utf-8');
+  const presenceModel = new YinElement(JSON.parse(presenceModelText), null);
 
-  const withChoiceText = fs.readFileSync(path.join(__dirname, './data/testContainerWithChoice.xml'), 'utf-8');
-  const withChoice = xmlUtil.toElement(withChoiceText);
+  const withChoiceText = fs.readFileSync(path.join(__dirname, './data/testContainerWithChoice.json'), 'utf-8');
+  const withChoice = new YinElement(JSON.parse(withChoiceText), null);
 
   it('should get initalized', () => {
     const container = new Container(model);
@@ -32,11 +31,7 @@ describe('Container Model', () => {
   });
 
   it('should build an instance of itself', () => {
-    const config = xmlUtil.toElement(`
-      <authy:bfd xmlns:authy="http://128technology.com/t128/config/authority-config">
-        <authy:state>enabled</authy:state>
-      </authy:bfd>
-    `);
+    const config = { state: 'enabled' };
 
     const container = new Container(model);
 
@@ -107,6 +102,6 @@ describe('Container Model', () => {
     const container = new Container(withChoice);
     container.visit(spy);
 
-    expect(spy.callCount).to.equal(12);
+    expect(spy.callCount).to.equal(15);
   });
 });

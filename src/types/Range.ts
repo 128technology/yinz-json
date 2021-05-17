@@ -1,5 +1,6 @@
-import { Element } from 'libxmljs2';
 import * as _ from 'lodash';
+
+import YinElement from '../util/YinElement';
 
 export type IRangeBound = string | number;
 
@@ -17,12 +18,12 @@ function parse(bound: string) {
 export default class Range {
   public ranges: IRange[];
 
-  constructor(el: Element) {
+  constructor(el: YinElement) {
     this.parseRange(el);
   }
 
-  public parseRange(el: Element) {
-    const value = el.attr('value')!.value();
+  public parseRange(el: YinElement) {
+    const value = el.value!;
     this.ranges = value
       .split('|')
       .map(range => range.trim())

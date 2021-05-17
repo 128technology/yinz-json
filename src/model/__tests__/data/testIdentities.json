@@ -1,0 +1,1687 @@
+{
+  "keyword": "mock",
+  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+  "children": [
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "t128-access": "http://128technology.com/t128/access-control"
+      },
+      "name": "capability-type",
+      "module-prefix": "t128-access",
+      "module-name": "t128-access-control",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Base Access Control Capability type"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "t128-access": "http://128technology.com/t128/access-control"
+      },
+      "name": "config-read",
+      "module-prefix": "t128-access",
+      "module-name": "t128-access-control",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "capability-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Configuration Read Capability"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "t128-access": "http://128technology.com/t128/access-control"
+      },
+      "name": "config-write",
+      "module-prefix": "t128-access",
+      "module-name": "t128-access-control",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "capability-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Configuration Write Capability"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "t128-access": "http://128technology.com/t128/access-control"
+      },
+      "name": "provisioning",
+      "module-prefix": "t128-access",
+      "module-name": "t128-access-control",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "capability-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Asset Provisioning Capability"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "bgp": "http://128technology.com/t128/config/bgp-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "t128": "http://128technology.com/t128",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "rt": "http://128technology.com/t128/config/routing-config",
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "t128ext": "http://128technology.com/t128-extensions"
+      },
+      "name": "bgp-capability",
+      "module-prefix": "bgp",
+      "module-name": "bgp-config",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Base identity for a BGP capability"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "bgp": "http://128technology.com/t128/config/bgp-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "t128": "http://128technology.com/t128",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "rt": "http://128technology.com/t128/config/routing-config",
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "t128ext": "http://128technology.com/t128-extensions"
+      },
+      "name": "mpbgp",
+      "module-prefix": "bgp",
+      "module-name": "bgp-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "bgp-capability"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "BGP Multi-protocol extensions functionality"
+        },
+        {
+          "keyword": "reference",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "RFC2858"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "bgp": "http://128technology.com/t128/config/bgp-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "t128": "http://128technology.com/t128",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "rt": "http://128technology.com/t128/config/routing-config",
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "t128ext": "http://128technology.com/t128-extensions"
+      },
+      "name": "route-refresh",
+      "module-prefix": "bgp",
+      "module-name": "bgp-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "bgp-capability"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "BGP route-refresh functionality"
+        },
+        {
+          "keyword": "reference",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "RFC2918"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "bgp": "http://128technology.com/t128/config/bgp-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "t128": "http://128technology.com/t128",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "rt": "http://128technology.com/t128/config/routing-config",
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "t128ext": "http://128technology.com/t128-extensions"
+      },
+      "name": "asn32",
+      "module-prefix": "bgp",
+      "module-name": "bgp-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "bgp-capability"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "BGP 4-byte (32-bit) AS number functionality"
+        },
+        {
+          "keyword": "reference",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "RFC6793"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "bgp": "http://128technology.com/t128/config/bgp-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "t128": "http://128technology.com/t128",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "rt": "http://128technology.com/t128/config/routing-config",
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "t128ext": "http://128technology.com/t128-extensions"
+      },
+      "name": "graceful-restart",
+      "module-prefix": "bgp",
+      "module-name": "bgp-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "bgp-capability"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "BGP Graceful restart functionality"
+        },
+        {
+          "keyword": "reference",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "RFC4724"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "bgp": "http://128technology.com/t128/config/bgp-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "t128": "http://128technology.com/t128",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "rt": "http://128technology.com/t128/config/routing-config",
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "t128ext": "http://128technology.com/t128-extensions"
+      },
+      "name": "add-paths",
+      "module-prefix": "bgp",
+      "module-name": "bgp-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "bgp-capability"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "BGP add-paths functionality"
+        },
+        {
+          "keyword": "reference",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "draft-ietf-idr-add-paths"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "bgp": "http://128technology.com/t128/config/bgp-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "t128": "http://128technology.com/t128",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "rt": "http://128technology.com/t128/config/routing-config",
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "t128ext": "http://128technology.com/t128-extensions"
+      },
+      "name": "afi-safi-type",
+      "module-prefix": "bgp",
+      "module-name": "bgp-config",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Base identity type for AFI,SAFI tuples for BGP-4"
+        },
+        {
+          "keyword": "reference",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "RFC4760 - multiprotocol extensions for BGP-4"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "bgp": "http://128technology.com/t128/config/bgp-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "t128": "http://128technology.com/t128",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "rt": "http://128technology.com/t128/config/routing-config",
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "t128ext": "http://128technology.com/t128-extensions"
+      },
+      "name": "ipv4-unicast",
+      "module-prefix": "bgp",
+      "module-name": "bgp-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "afi-safi-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "IPv4 unicast (AFI,SAFI = 1,1)"
+        },
+        {
+          "keyword": "reference",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "RFC4760"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "bgp": "http://128technology.com/t128/config/bgp-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "t128": "http://128technology.com/t128",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "rt": "http://128technology.com/t128/config/routing-config",
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "t128ext": "http://128technology.com/t128-extensions"
+      },
+      "name": "bgp-well-known-std-community",
+      "module-prefix": "bgp",
+      "module-name": "bgp-config",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Reserved communities within the standard community space\ndefined by RFC1997. These communities must fall within the\nrange 0x00000000 to 0xFFFFFFFF"
+        },
+        {
+          "keyword": "reference",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "RFC1997"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "bgp": "http://128technology.com/t128/config/bgp-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "t128": "http://128technology.com/t128",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "rt": "http://128technology.com/t128/config/routing-config",
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "t128ext": "http://128technology.com/t128-extensions"
+      },
+      "name": "no_export",
+      "module-prefix": "bgp",
+      "module-name": "bgp-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "bgp-well-known-std-community"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Do not export NLRI received carrying this community outside\nthe bounds of this autonomous system, or this confederation if\nthe local autonomous system is a confederation member AS. This\ncommunity has a value of 0xFFFFFF01."
+        },
+        {
+          "keyword": "reference",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "RFC1997"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "bgp": "http://128technology.com/t128/config/bgp-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "t128": "http://128technology.com/t128",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "rt": "http://128technology.com/t128/config/routing-config",
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "t128ext": "http://128technology.com/t128-extensions"
+      },
+      "name": "no_advertise",
+      "module-prefix": "bgp",
+      "module-name": "bgp-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "bgp-well-known-std-community"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "All NLRI received carrying this community must not be\nadvertised to other BGP neighbors. This community has a value of\n0xFFFFFF02."
+        },
+        {
+          "keyword": "reference",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "RFC1997"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "bgp": "http://128technology.com/t128/config/bgp-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "t128": "http://128technology.com/t128",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "rt": "http://128technology.com/t128/config/routing-config",
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "t128ext": "http://128technology.com/t128-extensions"
+      },
+      "name": "no_export_subconfed",
+      "module-prefix": "bgp",
+      "module-name": "bgp-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "bgp-well-known-std-community"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "All NLRI received carrying this community must not be\nadvertised to external BGP neighbors - including over confederation\nsub-AS boundaries. This community has a value of 0xFFFFFF03."
+        },
+        {
+          "keyword": "reference",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "RFC1997"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "bgp": "http://128technology.com/t128/config/bgp-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "t128": "http://128technology.com/t128",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "rt": "http://128technology.com/t128/config/routing-config",
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "t128ext": "http://128technology.com/t128-extensions"
+      },
+      "name": "no_neighbor",
+      "module-prefix": "bgp",
+      "module-name": "bgp-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "bgp-well-known-std-community"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "An autonomous system receiving NLRI tagged with this community\nis advised not to readvertise the NLRI to external bi-lateral\nneighbor autonomous systems. An AS may also filter received NLRI\nfrom bilateral neighbor sessions when they are tagged with this\ncommunity value"
+        },
+        {
+          "keyword": "reference",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "RFC3765"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "bgp": "http://128technology.com/t128/config/bgp-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "t128": "http://128technology.com/t128",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "rt": "http://128technology.com/t128/config/routing-config",
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "t128ext": "http://128technology.com/t128-extensions"
+      },
+      "name": "internet",
+      "module-prefix": "bgp",
+      "module-name": "bgp-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "bgp-well-known-std-community"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "A community used by some implementations with the value 0:0\nwhich represents all possible community values."
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rt": "http://128technology.com/t128/config/routing-config",
+        "yang": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128": "http://128technology.com/t128",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "routing-instance-type",
+      "module-prefix": "rt",
+      "module-name": "routing-config",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Base identity from which identities describing routing\ninstance types are derived.\n\nIt is primarily intended for discriminating among different\ntypes of logical routers or router virtualization."
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rt": "http://128technology.com/t128/config/routing-config",
+        "yang": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128": "http://128technology.com/t128",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "default-instance",
+      "module-prefix": "rt",
+      "module-name": "routing-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "routing-instance-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "This identity represents a default routing instance."
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rt": "http://128technology.com/t128/config/routing-config",
+        "yang": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128": "http://128technology.com/t128",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "routing-protocol",
+      "module-prefix": "rt",
+      "module-name": "routing-config",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Base identity from which routing protocol identities are\nderived."
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rt": "http://128technology.com/t128/config/routing-config",
+        "yang": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128": "http://128technology.com/t128",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "bgp",
+      "module-prefix": "rt",
+      "module-name": "routing-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "rt:routing-protocol"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "BGP routing protocol"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "filter-type",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Base filter type"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "prefix-filter",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "filter-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Filter based on prefixes within a given range"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "as-path-filter",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "filter-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Filter based on the BGP AS path"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "community-filter",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "filter-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Filter based on the BGP community value"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "extended-community-filter",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "filter-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Filter based on the BGP extended community value"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "condition-type",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Base condition type"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "address-prefix-filter-condition",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "condition-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "A prefix filter condition on address"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "next-hop-prefix-filter-condition",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "condition-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "A prefix filter condition on next hop"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "source-prefix-filter-condition",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "condition-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "A prefix filter condition on route source"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "as-path-filter-condition",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "condition-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "An autonomous path filter condition"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "community-filter-condition",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "condition-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "A community filter condition"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "extended-community-filter-condition",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "condition-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "An extended community filter condition"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "next-hop-interface-condition",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "condition-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "A next hop interface condition"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "metric-condition",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "condition-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "A metric condition"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "origin-condition",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "condition-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "An origin condition"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "peer-condition",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "condition-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "A peer condition"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "probability-condition",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "condition-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "A probablity condition"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "tag-condition",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "condition-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "A tag condition"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "action-type",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "Base action type"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "set-aggregator",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "action-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "An action which sets the BGP aggregator"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "modify-as-path",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "action-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "An action which changes the BGP as-path"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "set-atomic-aggregate",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "action-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "An action which sets the BGP atomic aggregate attribute"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "set-community",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "action-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "An action which sets the BGP community attribute"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "remove-community",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "action-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "An action which removes the BGP community attribute"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "set-extended-community",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "action-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "An action which sets the BGP extended community attribute"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "set-next-hop",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "action-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "An action which sets the next hop"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "set-local-preference",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "action-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "An action which sets the BGP local preference"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "modify-metric",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "action-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "An action which sets the metric"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "set-originator-id",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "action-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "An action which sets the originator id"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "set-origin",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "action-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "An action which sets the origin"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "set-tag",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "action-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "An action which sets the tag"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "set-bgp-weight",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "action-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "An action which sets the BGP weight"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "continue",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "action-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "A flow action that advances to the next (or specified) entry in\nthe policy"
+        }
+      ]
+    },
+    {
+      "keyword": "identity",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "nsmap": {
+        "rp": "http://128technology.com/t128/config/routing-policy-config",
+        "authy": "http://128technology.com/t128/config/authority-config",
+        "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "if": "http://128technology.com/t128/config/interface-config",
+        "t128": "http://128technology.com/t128",
+        "sys": "http://128technology.com/t128/config/system-config",
+        "t128ext": "http://128technology.com/t128-extensions",
+        "t128-internal": "http://128technology.com/t128-internal-extensions",
+        "t128-codegen": "http://128technology.com/t128-codegen-extensions"
+      },
+      "name": "call",
+      "module-prefix": "rp",
+      "module-name": "routing-policy-config",
+      "children": [
+        {
+          "keyword": "base",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "action-type"
+        },
+        {
+          "keyword": "description",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "text": "A flow action calls the given policy"
+        }
+      ]
+    }
+  ]
+}

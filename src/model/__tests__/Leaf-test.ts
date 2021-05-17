@@ -3,25 +3,38 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as sinon from 'sinon';
 
-import xmlUtil from '../../__tests__/xmlUtil';
-
+import YinElement from '../../util/YinElement';
 import { Leaf, List, Container } from '../';
 import { UnionType, DerivedType } from '../../types';
 
 describe('Leaf Model', () => {
-  const modelText = fs.readFileSync(path.join(__dirname, './data/testLeaf.xml'), 'utf-8');
-  const model = xmlUtil.toElement(modelText);
+  const modelText = fs.readFileSync(path.join(__dirname, './data/testLeaf.json'), 'utf-8');
+  const model = new YinElement(JSON.parse(modelText), null);
 
-  const mandatoryModelText = fs.readFileSync(path.join(__dirname, './data/testMandatoryLeaf.xml'), 'utf-8');
-  const mandatoryModel = xmlUtil.toElement(mandatoryModelText);
+  const mandatoryModelText = fs.readFileSync(path.join(__dirname, './data/testMandatoryLeaf.json'), 'utf-8');
+  const mandatoryModel = new YinElement(JSON.parse(mandatoryModelText), null);
 
-  const defaultedModelText = fs.readFileSync(path.join(__dirname, './data/testDefaultTypeLeaf.xml'), 'utf-8');
-  const defaultedModel = xmlUtil.toElement(defaultedModelText);
+  const defaultedModelText = fs.readFileSync(path.join(__dirname, './data/testDefaultTypeLeaf.json'), 'utf-8');
+  const defaultedModel = new YinElement(JSON.parse(defaultedModelText), null);
 
   function getList() {
     return new List(
-      xmlUtil.toElement(
-        `<yin:list name="bar" xmlns:yin="urn:ietf:params:xml:ns:yang:yin:1" xmlns:test="http://foo.bar" module-prefix="test"><yin:key value="foo"/></yin:list>`
+      new YinElement(
+        {
+          keyword: 'list',
+          namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+          name: 'bar',
+          'module-prefix': 'test',
+          nsmap: { test: 'http://foo.bar' },
+          children: [
+            {
+              keyword: 'key',
+              namespace: 'urn:ietf:params:xml:ns:yang:yin:1',
+              value: 'foo'
+            }
+          ]
+        },
+        null
       ),
       {} as Container
     );
@@ -34,13 +47,9 @@ describe('Leaf Model', () => {
   });
 
   it('should build an instance of itself', () => {
-    const config = xmlUtil.toElement(`
-      <if:qp-value xmlns:if="http://128technology.com/t128/config/interface-config">1</if:qp-value>
-    `);
-
     const leaf = new Leaf(model, {} as Container);
 
-    const instance = leaf.buildInstance(config, {} as any);
+    const instance = leaf.buildInstance('1', {} as any);
     expect(instance.model).to.equal(leaf);
   });
 
@@ -120,8 +129,8 @@ describe('Leaf Model', () => {
     });
 
     it('should parse union types', () => {
-      const testXML = fs.readFileSync(path.join(__dirname, './data/testLeafUnionType.xml'), 'utf-8');
-      const testModel = xmlUtil.toElement(testXML);
+      const testJSON = fs.readFileSync(path.join(__dirname, './data/testLeafUnionType.json'), 'utf-8');
+      const testModel = new YinElement(JSON.parse(testJSON), null);
       const leaf = new Leaf(testModel, {} as Container);
       expect(leaf.name).to.equal('rekey-interval');
       const expectedType = {
@@ -151,8 +160,8 @@ describe('Leaf Model', () => {
     });
 
     it('should parse derived types', () => {
-      const testXML = fs.readFileSync(path.join(__dirname, './data/testLeafDerivedType.xml'), 'utf-8');
-      const testModel = xmlUtil.toElement(testXML);
+      const testJSON = fs.readFileSync(path.join(__dirname, './data/testLeafDerivedType.json'), 'utf-8');
+      const testModel = new YinElement(JSON.parse(testJSON), null);
       const leaf = new Leaf(testModel, {} as Container);
       expect(leaf.name).to.equal('priority');
       const expectedType = {
@@ -160,7 +169,7 @@ describe('Leaf Model', () => {
           otherProps: new Map(),
           type: 'union',
           types: [
-            { type: 'uint32', range: { ranges: [{ min: 0, max: 999999999 }] }, otherProps: new Map() },
+            { type: 'uint32', range: { ranges: [{ min: 1, max: 999999 }] }, otherProps: new Map() },
             {
               members: new Map([
                 [
@@ -182,8 +191,8 @@ describe('Leaf Model', () => {
           ]
         },
         default: 'ordered',
-        description: 'A type for defining priorities for vector use',
-        type: 't128ext:vector-priority'
+        description: 'A type for defining priorities for vector use.',
+        type: 'vector-priority'
       };
 
       expect(leaf.type).to.deep.equal(expectedType);
@@ -195,8 +204,8 @@ describe('Leaf Model', () => {
     });
 
     it('should parse extension types', () => {
-      const testXML = fs.readFileSync(path.join(__dirname, './data/testLeafExtensionType.xml'), 'utf-8');
-      const testModel = xmlUtil.toElement(testXML);
+      const testJSON = fs.readFileSync(path.join(__dirname, './data/testLeafExtensionType.json'), 'utf-8');
+      const testModel = new YinElement(JSON.parse(testJSON), null);
       const leaf = new Leaf(testModel, {} as Container);
       expect(leaf.name).to.equal('neighborhood');
       const expectedType = {

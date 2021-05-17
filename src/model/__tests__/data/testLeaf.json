@@ -1,0 +1,29 @@
+{
+  "keyword": "leaf",
+  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+  "name": "qp-value",
+  "module-prefix": "test",
+  "nsmap": { "test": "http://foo.bar" },
+  "children": [
+    {
+      "keyword": "type",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "uint32"
+    },
+    {
+      "keyword": "units",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "points"
+    },
+    {
+      "keyword": "default",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "value": "0"
+    },
+    {
+      "keyword": "description",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "text": "Quality points value that represents the 'quality' of the the links\nto adjacent routers in the neighborhood. Used for selecting egress\ninterface based on the service class required minimum quality points."
+    }
+  ]
+}
