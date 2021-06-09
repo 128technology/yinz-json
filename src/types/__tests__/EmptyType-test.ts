@@ -28,6 +28,6 @@ describe('Empty Type', () => {
   it('should serialize', () => {
     const type = new EmptyType(typeEl);
 
-    expect(type.serialize('')).to.equal(true);
+    expect(type.serialize('')).to.equal('');
   });
 });

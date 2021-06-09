@@ -23,8 +23,7 @@ export default class EmptyType implements Named, WithCustomProperties {
   }
 
   public serialize(val: string): SerializationReturnType {
-    // If this is called, the empty type must have existed, thus returning true.
-    return true;
+    return '';
   }
 }
 

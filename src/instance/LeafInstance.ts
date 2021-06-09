@@ -60,7 +60,7 @@ export default class LeafInstance implements Searchable, WithAttributes {
       return null;
     }
 
-    return this.value ? this.model.type.serialize(this.value) : null;
+    return this.value !== null ? this.model.type.serialize(this.value) : null;
   }
 
   public toJSON(authorized: Authorized, camelCase = false, convert = true): { [name: string]: LeafJSONValue } {
