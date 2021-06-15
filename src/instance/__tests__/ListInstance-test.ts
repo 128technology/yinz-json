@@ -55,6 +55,18 @@ describe('List Instance', () => {
     });
   });
 
+  it('should be able to delete a child instance', () => {
+    const instance = new ListInstance(listModel, [{ name: 'foo' }, { name: 'bar' }], {} as ContainerInstance);
+
+    instance.visit(x => {
+      if (x instanceof ListChildInstance) {
+        instance.deleteInstance(allow, x);
+      }
+    });
+
+    expect(instance.getChildren(allow).size).to.equal(0);
+  });
+
   it('should serialize to JSON', () => {
     const instance = new ListInstance(listModel, mockConfig, {} as ContainerInstance);
 
