@@ -41,6 +41,14 @@ describe('Leaf List Instance', () => {
     expect(instance.toJSON(allow).vector).to.deep.equal(['bar']);
   });
 
+  it('should be able to filter', () => {
+    const instance = new LeafListInstance(leafListModel, ['foo', 'baz', 'bar'], {} as ContainerInstance);
+
+    instance.filter(allow, c => c.getRawValue(allow)?.includes('ba')!);
+
+    expect(instance.toJSON(allow).vector).to.deep.equal(['baz', 'bar']);
+  });
+
   it('should serialize to JSON', () => {
     const instance = new LeafListInstance(leafListModel, mockConfig, {} as ContainerInstance);
 

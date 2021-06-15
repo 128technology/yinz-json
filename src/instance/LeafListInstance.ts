@@ -58,6 +58,14 @@ export default class LeafListInstance implements Searchable {
     this.children = this.children.filter(leafListItem => leafListItem.getRawValue(authorized) !== value);
   }
 
+  public filter(authorized: Authorized, filter: (child: LeafListChildInstance) => boolean) {
+    if (!authorized(this)) {
+      throw new Error('Unauthorized');
+    }
+
+    this.children = this.children.filter(filter);
+  }
+
   public toJSON(authorized: Authorized, camelCase = false, convert = true): { [name: string]: LeafListJSONValue } {
     if (!authorized(this)) {
       return {};

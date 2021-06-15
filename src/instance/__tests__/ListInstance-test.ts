@@ -45,6 +45,16 @@ describe('List Instance', () => {
     expect(instance.getChildren(allow).size).to.equal(1);
   });
 
+  it('should be able to filter', () => {
+    const instance = new ListInstance(listModel, [{ name: 'foo' }, { name: 'bar' }], {} as ContainerInstance);
+
+    instance.filter(allow, c => c.keyString === 'foo');
+
+    expect(instance.toJSON(allow)).to.deep.equal({
+      peer: [{ name: 'foo' }]
+    });
+  });
+
   it('should serialize to JSON', () => {
     const instance = new ListInstance(listModel, mockConfig, {} as ContainerInstance);
 
