@@ -59,6 +59,20 @@ export default class ListInstance implements Searchable {
     this.children.delete(key);
   }
 
+  public filter(authorized: Authorized, filter: (child: ListChildInstance) => boolean) {
+    if (!authorized(this)) {
+      throw new Error('Unauthorized');
+    }
+
+    this.children = Array.from(this.children.entries()).reduce<Map<Key, ListChildInstance>>((acc, [k, v]) => {
+      if (filter(v)) {
+        acc.set(k, v);
+      }
+
+      return acc;
+    }, new Map());
+  }
+
   public toJSON(
     authorized: Authorized,
     camelCase = false,
