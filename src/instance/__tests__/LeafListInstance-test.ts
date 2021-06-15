@@ -49,6 +49,15 @@ describe('Leaf List Instance', () => {
     expect(instance.toJSON(allow).vector).to.deep.equal(['baz', 'bar']);
   });
 
+  it('should be able to delete a child instance', () => {
+    const instance = new LeafListInstance(leafListModel, ['foo', 'baz', 'bar'], {} as ContainerInstance);
+    const bazInstance = instance.getChildren(allow)[1];
+
+    instance.deleteInstance(allow, bazInstance);
+
+    expect(instance.toJSON(allow).vector).to.deep.equal(['foo', 'bar']);
+  });
+
   it('should serialize to JSON', () => {
     const instance = new LeafListInstance(leafListModel, mockConfig, {} as ContainerInstance);
 
