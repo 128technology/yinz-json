@@ -48,7 +48,7 @@ describe('List Instance', () => {
   it('should be able to filter', () => {
     const instance = new ListInstance(listModel, [{ name: 'foo' }, { name: 'bar' }], {} as ContainerInstance);
 
-    instance.filter(allow, c => c.keyString === 'foo');
+    instance.filter(c => c.keyString === 'foo');
 
     expect(instance.toJSON(allow)).to.deep.equal({
       peer: [{ name: 'foo' }]
@@ -60,7 +60,7 @@ describe('List Instance', () => {
 
     instance.visit(x => {
       if (x instanceof ListChildInstance) {
-        instance.deleteInstance(allow, x);
+        instance.deleteInstance(x);
       }
     });
 
