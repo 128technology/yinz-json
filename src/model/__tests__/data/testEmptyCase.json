@@ -30,6 +30,18 @@
           ]
         }
       ]
+    },
+    {
+      "keyword": "leaf",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "extra",
+      "children": [
+        {
+          "keyword": "type",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "uint32"
+        }
+      ]
     }
   ]
 }
