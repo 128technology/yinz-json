@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 
-import DataModel, { Model } from '../model';
+import DataModel, { Choice } from '../model';
 import Path from './Path';
 import { ContainerInstance, Visitor, NoMatchHandler, ShouldSkip } from './';
 import { ContainerJSON, JSONMapper, MapToJSONOptions, Authorized, IInstanceOptions } from './types';
@@ -44,12 +44,15 @@ export default class DataModelInstance {
   }
 
   public async evaluateWhenCondition(path: Path, context?: unknown) {
-    const model = this.model.getModelForPath(path.map(({ name }) => name).join('.')) as Model;
+    const model = this.model.getModelForPath(path.map(({ name }) => name).join('.'));
+    let evaluationPath = path;
     if (!model.hasWhenAncestorOrSelf) {
       return true;
+    } else if (model instanceof Choice) {
+      evaluationPath = _.initial(path);
     }
 
-    return this.options.jsonMode.evaluateWhenCondition(path, context);
+    return this.options.jsonMode.evaluateWhenCondition(evaluationPath, context);
   }
 
   public async evaluateLeafRef(path: Path, context?: unknown) {
