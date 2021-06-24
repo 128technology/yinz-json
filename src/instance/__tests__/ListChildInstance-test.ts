@@ -4,7 +4,7 @@ import * as path from 'path';
 
 import YinElement from '../../util/YinElement';
 import { List, Container } from '../../model';
-import { ListChildInstance, LeafInstance, ListInstance } from '../';
+import { ListChildInstance, LeafInstance, ListInstance, LeafListInstance } from '../';
 import { allow } from '../util';
 
 describe('List Child Instance', () => {
@@ -58,7 +58,7 @@ describe('List Child Instance', () => {
   it('should delete a child that exists', () => {
     const instance = new ListChildInstance(
       listModel,
-      { name: 'foo', 'service-filter': 'foo' },
+      { name: 'foo', 'service-filter': ['foo'] },
       {} as any,
       {} as ListInstance
     );
@@ -66,9 +66,25 @@ describe('List Child Instance', () => {
     expect(instance.toJSON(allow)).to.deep.equal({ name: 'foo' });
   });
 
-  it('should throw if child does not exist', () => {
+  it('should throw if trying to delete a child that does not exist', () => {
     const instance = new ListChildInstance(listModel, mockConfig, {} as any, {} as ListInstance);
     expect(() => instance.delete('foo')).to.throw();
+  });
+
+  it('should get a child that exists', () => {
+    const instance = new ListChildInstance(
+      listModel,
+      { name: 'foo', 'service-filter': ['foo'] },
+      {} as any,
+      {} as ListInstance
+    );
+    const child = instance.getChild(allow, 'service-filter');
+    expect(child).to.be.an.instanceOf(LeafListInstance);
+  });
+
+  it('should throw if getting a child that does not exist', () => {
+    const instance = new ListChildInstance(listModel, mockConfig, {} as any, {} as ListInstance);
+    expect(() => instance.getChild(allow, 'foo')).to.throw();
   });
 
   it('should throw if key', () => {

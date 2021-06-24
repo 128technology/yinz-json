@@ -37,24 +37,11 @@ export default class ContainerInstance implements Searchable, WithAttributes {
   public isMatch: Searchable['isMatch'];
   public handleNoMatch: Searchable['handleNoMatch'];
 
-  private config?: Element;
   private children: Map<string, Instance> = new Map();
 
   constructor(public model: Container, config: ContainerJSON, public parent: Parent | null) {
     this.injestConfigJSON(config);
     this.parseAttributesFromJSON(config);
-  }
-
-  public getConfig(authorized: Authorized) {
-    if (authorized(this)) {
-      return this.config;
-    } else {
-      throw new Error('Unauthorized');
-    }
-  }
-
-  public setConfig(el: Element) {
-    this.config = el;
   }
 
   public getChildren(authorized: Authorized) {
@@ -67,6 +54,16 @@ export default class ContainerInstance implements Searchable, WithAttributes {
     }
 
     return children;
+  }
+
+  public getChild(authorized: Authorized, name: string) {
+    const child = this.children.get(name);
+
+    if (child && authorized(child)) {
+      return child;
+    } else {
+      throw new Error(`Child ${name} not found on container ${this.model.name}.`);
+    }
   }
 
   public delete(childName: string) {

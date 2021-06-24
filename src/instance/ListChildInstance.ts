@@ -47,23 +47,10 @@ export default class ListChildInstance implements Searchable, WithAttributes {
   public handleNoMatch: Searchable['handleNoMatch'];
 
   private instance: Map<ChildName, Instance> = new Map();
-  private config?: Element;
 
   constructor(public model: List, config: ListChildJSON, public parent: Parent, public listParent: ListInstance) {
     this.injestConfigJSON(config);
     this.parseAttributesFromJSON(config);
-  }
-
-  public getConfig(authorized: Authorized) {
-    if (authorized(this)) {
-      return this.config;
-    } else {
-      throw new Error('Unauthorized');
-    }
-  }
-
-  public setConfig(el: Element) {
-    this.config = el;
   }
 
   public getChildren(authorized: Authorized) {
@@ -76,6 +63,16 @@ export default class ListChildInstance implements Searchable, WithAttributes {
     }
 
     return children;
+  }
+
+  public getChild(authorized: Authorized, name: string) {
+    const child = this.instance.get(name);
+
+    if (child && authorized(child)) {
+      return child;
+    } else {
+      throw new Error(`Child ${name} not found on list instance ${this.model.name}.`);
+    }
   }
 
   public delete(childName: string) {

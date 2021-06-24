@@ -43,8 +43,19 @@ describe('Container Instance', () => {
     });
   });
 
-  it('should throw if child does not exist', () => {
+  it('should throw if trying to delete a child that does not exist', () => {
     const instance = new ContainerInstance(containerModel, mockConfig, null);
     expect(() => instance.delete('foo')).to.throw();
+  });
+
+  it('should get a child that exists', () => {
+    const instance = new ContainerInstance(containerModel, mockConfig, null);
+    const child = instance.getChild(allow, 'state');
+    expect(child).to.be.an.instanceOf(LeafInstance);
+  });
+
+  it('should throw if getting a child that does not exist', () => {
+    const instance = new ContainerInstance(containerModel, mockConfig, null);
+    expect(() => instance.getChild(allow, 'foo')).to.throw();
   });
 });
