@@ -14,24 +14,11 @@ export default class LeafListChildInstance implements WithAttributes {
   public addOperation: WithAttributes['addOperation'];
   public addPosition: WithAttributes['addPosition'];
 
-  private config?: Element;
   private rawValue: string;
 
   constructor(public model: LeafList, config: LeafJSON, public parent: LeafListInstance) {
     this.injestConfigJSON(config);
     this.parseAttributesFromJSON(config);
-  }
-
-  public getConfig(authorized: Authorized) {
-    if (authorized(this)) {
-      return this.config;
-    } else {
-      throw new Error('Unauthorized');
-    }
-  }
-
-  public setConfig(el: Element) {
-    this.config = el;
   }
 
   public getRawValue(authorized: Authorized) {

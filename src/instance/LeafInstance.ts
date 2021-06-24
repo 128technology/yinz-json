@@ -31,24 +31,11 @@ export default class LeafInstance implements Searchable, WithAttributes {
   public isMatch: Searchable['isMatch'];
   public handleNoMatch: Searchable['handleNoMatch'];
 
-  private config?: Element;
   private value: string | null;
 
   constructor(public model: Leaf, config: LeafJSON, public parent: Parent) {
     this.injestConfigJSON(config);
     this.parseAttributesFromJSON(config);
-  }
-
-  public getConfig(authorized: Authorized) {
-    if (authorized(this)) {
-      return this.config;
-    } else {
-      throw new Error('Unauthorized');
-    }
-  }
-
-  public setConfig(el: Element) {
-    this.config = el;
   }
 
   public getValue(authorized: Authorized) {
