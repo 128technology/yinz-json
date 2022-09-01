@@ -1,0 +1,49 @@
+{
+  "keyword": "case",
+  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+  "name": "peer-service-route",
+  "module-prefix": "test",
+  "nsmap": { "test": "http://foo.bar" },
+  "children": [
+    {
+      "keyword": "leaf",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "peer",
+      "children": [
+        {
+          "keyword": "visibility",
+          "namespace": "http://128technology.com/t128-internal-extensions",
+          "nsmap": {
+            "t128-internal": "http://128technology.com/t128-internal-extensions"
+          },
+          "text": "prototype"
+        },
+        {
+          "keyword": "type",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "string"
+        }
+      ]
+    },
+    {
+      "keyword": "leaf",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "name",
+      "children": [
+        {
+          "keyword": "visibility",
+          "namespace": "http://128technology.com/t128-internal-extensions",
+          "nsmap": {
+            "t128-internal": "http://128technology.com/t128-internal-extensions"
+          },
+          "text": "deprecated"
+        },
+        {
+          "keyword": "type",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "string"
+        }
+      ]
+    }
+  ]
+}

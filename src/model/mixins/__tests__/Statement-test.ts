@@ -249,14 +249,14 @@ describe('Statement Mixin', () => {
 
     it('should determine its visibility if not specified and parent case hidden', () => {
       const statement = new Test(withoutDescription, null);
-      statement.choiceCase = { isVisible: false } as Case;
+      statement.choiceCase = { visibility: Visibility.hidden } as Case;
 
       expect(statement.isVisible).to.equal(false);
     });
 
     it('should determine its visibility if not specified and parent case visible', () => {
       const statement = new Test(withoutDescription, null);
-      statement.choiceCase = { isVisible: true } as Case;
+      statement.choiceCase = { visibility: Visibility.visible } as Case;
 
       expect(statement.isVisible).to.equal(true);
     });

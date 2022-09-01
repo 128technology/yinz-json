@@ -37,49 +37,41 @@ export default class Statement {
   get isVisible(): boolean {
     if (this.visibility !== null) {
       return isVisible(this.visibility);
-    } else {
-      if (this.choiceCase) {
-        return this.choiceCase.isVisible;
-      } else {
-        return _.get(this, 'parentModel.isVisible', true);
-      }
     }
+    if (this.choiceCase && this.choiceCase.visibility !== null) {
+      return isVisible(this.choiceCase.visibility);
+    }
+    return this.parentModel?.isVisible ?? true;
   }
 
   get isPrototype(): boolean {
     if (this.visibility !== null) {
       return this.visibility === Visibility.prototype;
-    } else {
-      if (this.choiceCase) {
-        return this.choiceCase.isPrototype;
-      } else {
-        return _.get(this, 'parentModel.isPrototype', false);
-      }
     }
+    if (this.choiceCase && this.choiceCase.visibility !== null) {
+      return this.choiceCase.visibility !== Visibility.prototype;
+    }
+    return this.parentModel?.isPrototype ?? false;
   }
 
   get isObsolete(): boolean {
     if (this.status !== null) {
       return this.status === Status.obsolete;
-    } else {
-      if (this.choiceCase) {
-        return this.choiceCase.isObsolete;
-      } else {
-        return _.get(this, 'parentModel.isObsolete', false);
-      }
     }
+    if (this.choiceCase && this.choiceCase.visibility !== null) {
+      return this.choiceCase.status !== Status.obsolete;
+    }
+    return this.parentModel?.isObsolete ?? false;
   }
 
   get isDeprecated(): boolean {
     if (this.status !== null) {
       return this.status === Status.deprecated;
-    } else {
-      if (this.choiceCase) {
-        return this.choiceCase.isDeprecated;
-      } else {
-        return _.get(this, 'parentModel.isDeprecated', false);
-      }
     }
+    if (this.choiceCase && this.choiceCase.status !== null) {
+      return this.choiceCase.status !== Status.deprecated;
+    }
+    return this.parentModel?.isDeprecated ?? false;
   }
 
   public getName(camelCase = false) {
