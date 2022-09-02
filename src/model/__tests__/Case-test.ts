@@ -7,20 +7,28 @@ import YinElement from '../../util/YinElement';
 import { Choice, Leaf, Case, Container } from '../';
 
 describe('Case', () => {
-  const explicitCaseText = fs.readFileSync(path.join(__dirname, './data/testExplicitCase.json'), 'utf-8');
-  const explicitCase = new YinElement(JSON.parse(explicitCaseText), null);
+  const loaded = new Set<string>();
 
-  const emptyCaseText = fs.readFileSync(path.join(__dirname, './data/testEmptyCase.json'), 'utf-8');
-  const emptyCase = new YinElement(JSON.parse(emptyCaseText), null);
+  const load = (filename: string) => {
+    // sanity check to make sure we don't load the same file twice which is likely a copy-paste error.
+    expect(loaded.has(filename)).to.equal(false);
+    loaded.add(filename);
 
-  const deprecatedCaseText = fs.readFileSync(path.join(__dirname, './data/testDeprecatedCase.json'), 'utf-8');
-  const deprecatedCase = new YinElement(JSON.parse(deprecatedCaseText), null);
+    const text = fs.readFileSync(path.join(__dirname, `./data/${filename}.json`), 'utf-8');
+    return new YinElement(JSON.parse(text), null);
+  };
 
-  const obsoleteCaseText = fs.readFileSync(path.join(__dirname, './data/testObsoleteCase.json'), 'utf-8');
-  const obsoleteCase = new YinElement(JSON.parse(obsoleteCaseText), null);
-
-  const prototypeCaseText = fs.readFileSync(path.join(__dirname, './data/testPrototypeCase.json'), 'utf-8');
-  const prototypeCase = new YinElement(JSON.parse(prototypeCaseText), null);
+  const explicitCase = load('testExplicitCase');
+  const emptyCase = load('testEmptyCase');
+  const deprecatedCase = load('testDeprecatedCase');
+  const deprecatedChildrenCase = load('testDeprecatedChildrenCase');
+  const deprecatedOneChildCase = load('testDeprecatedOneChildCase');
+  const obsoleteCase = load('testObsoleteCase');
+  const obsoleteChildrenCase = load('testObsoleteChildrenCase');
+  const obsoleteOneChildCase = load('testObsoleteOneChildCase');
+  const prototypeCase = load('testPrototypeCase');
+  const prototypeChildrenCase = load('testPrototypeChildrenCase');
+  const prototypeOneChildCase = load('testPrototypeOneChildCase');
 
   const mockChoice = {} as Choice;
 
@@ -54,16 +62,52 @@ describe('Case', () => {
     expect(theCase.isDeprecated).to.equal(true);
   });
 
+  it('determine if case is deprecated when all children are', () => {
+    const theCase = new Case(deprecatedChildrenCase, mockChoice, {} as Container);
+
+    expect(theCase.isDeprecated).to.equal(true);
+  });
+
+  it('determine if case is deprecated when one children is', () => {
+    const theCase = new Case(deprecatedOneChildCase, mockChoice, {} as Container);
+
+    expect(theCase.isDeprecated).to.equal(false);
+  });
+
   it('determine if case is obsolete', () => {
     const theCase = new Case(obsoleteCase, mockChoice, {} as Container);
 
     expect(theCase.isObsolete).to.equal(true);
   });
 
+  it('determine if case is obsolete when all children are', () => {
+    const theCase = new Case(obsoleteChildrenCase, mockChoice, {} as Container);
+
+    expect(theCase.isObsolete).to.equal(true);
+  });
+
+  it('determine if case is obsolete when one child is', () => {
+    const theCase = new Case(obsoleteOneChildCase, mockChoice, {} as Container);
+
+    expect(theCase.isObsolete).to.equal(false);
+  });
+
   it('determine if case is a prototype', () => {
     const theCase = new Case(prototypeCase, mockChoice, {} as Container);
 
     expect(theCase.isPrototype).to.equal(true);
+  });
+
+  it('determine if case is a prototype when all children are', () => {
+    const theCase = new Case(prototypeChildrenCase, mockChoice, {} as Container);
+
+    expect(theCase.isPrototype).to.equal(true);
+  });
+
+  it('determine if case is a prototype when one child is', () => {
+    const theCase = new Case(prototypeOneChildCase, mockChoice, {} as Container);
+
+    expect(theCase.isPrototype).to.equal(false);
   });
 
   it('visits itself', () => {

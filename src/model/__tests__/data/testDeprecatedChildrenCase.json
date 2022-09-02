@@ -1,0 +1,43 @@
+{
+  "keyword": "case",
+  "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+  "name": "peer-service-route",
+  "module-prefix": "test",
+  "nsmap": { "test": "http://foo.bar" },
+  "children": [
+    {
+      "keyword": "leaf",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "peer",
+      "children": [
+        {
+          "keyword": "status",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "value": "deprecated"
+        },
+        {
+          "keyword": "type",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "string"
+        }
+      ]
+    },
+    {
+      "keyword": "leaf",
+      "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+      "name": "name",
+      "children": [
+        {
+          "keyword": "status",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "value": "deprecated"
+        },
+        {
+          "keyword": "type",
+          "namespace": "urn:ietf:params:xml:ns:yang:yin:1",
+          "name": "string"
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "name": "@128technology/yinz-json",
-  "version": "6.0.0-alpha.8",
+  "version": "6.1.0",
   "description": "A module for injesting a YIN datamodel and handling instance data.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

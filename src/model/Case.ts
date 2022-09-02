@@ -44,19 +44,28 @@ export default class Case implements Whenable {
   }
 
   get isPrototype(): boolean {
-    return this.visibility !== null ? this.visibility === Visibility.prototype : this.parentChoice.isPrototype;
+    return this.visibility !== null
+      ? this.visibility === Visibility.prototype
+      : this.parentChoice.isPrototype || _.every(Array.from(this.children.values()), c => c.isPrototype);
   }
 
   get isVisible(): boolean {
-    return this.visibility !== null ? isVisible(this.visibility) : this.parentChoice.isVisible;
+    return this.visibility !== null
+      ? isVisible(this.visibility)
+      : this.parentChoice.isVisible ||
+          _.every(Array.from(this.children.values()), c => c.visibility !== null && isVisible(c.visibility));
   }
 
   get isObsolete() {
-    return this.status !== null ? this.status === Status.obsolete : this.parentChoice.isObsolete;
+    return this.status !== null
+      ? this.status === Status.obsolete
+      : this.parentChoice.isObsolete || _.every(Array.from(this.children.values()), c => c.isObsolete);
   }
 
   get isDeprecated() {
-    return this.status !== null ? this.status === Status.deprecated : this.parentChoice.isDeprecated;
+    return this.status !== null
+      ? this.status === Status.deprecated
+      : this.parentChoice.isDeprecated || _.every(Array.from(this.children.values()), c => c.isDeprecated);
   }
 
   public visit(visitor: Visitor) {
